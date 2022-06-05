@@ -1,0 +1,10 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname="helvetica"] ;
+graph [ranksep=equally, splines=polyline] ;
+edge [fontname="helvetica"] ;
+0 [label="samples = 2528\nCATE\n0.036\nvalue - cost = [0.036]\nTreatment: T[1]\n", fillcolor="#399de5"] ;
+labelloc="t"; 
+label="Average policy gains over no treatment: 0.036 
+Average policy gains over constant treatment policies for each treatment: [0.]"; 
+{rank=same ; 0} ;
+}
