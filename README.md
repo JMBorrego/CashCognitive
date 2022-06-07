@@ -3,8 +3,8 @@
 ## Resumen
 
 [intro Macours et al; objetivos + proceso; resultados]
-![AtencionACrisis01](/assets/images/AaC_info_1.png?raw=true | width=300)
-![AtencionACrisis02](/assets/images/AaC_info_2.png?raw=true | width=300)
+![AtencionACrisis01](./assets/images/AaC_info_1.png?raw=true | width=300)
+![AtencionACrisis02](./assets/images/AaC_info_2.png?raw=true | width=300)
 
 ## Contenido
 
