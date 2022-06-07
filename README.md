@@ -3,7 +3,7 @@
 ## Resumen
 
 [intro Macours et al; objetivos + proceso; resultados]
-
+![alt text](https://github.com/JMBorrego/CashCognitive/blob/main/Nicaragua Infografia 1 WIP.png?raw=true)
 
 ## Contenido
 
