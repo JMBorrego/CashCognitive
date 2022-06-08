@@ -7,9 +7,11 @@
     2.2.	Metodología del estudio
 3.	*Capstone project*: Motivación y objetivos
 4.	Exploración preliminar de datos
-5.	Análisis
-    5.1.	Cálculo de ITE: modelos de predicción
-    5.2.	Cálculo de CATE: honest causal forest
+5.	Metodlogía y análisis
+    5.1.	Primer enfoque: predicción del efecto causal
+    5.2.    Cálculo de ITE: modelos de predicción
+    5.3.	Segundo enfoque: estimación de efecto condicional
+    5.4.    Cálculo de CATE: honest causal forest
 6.	Resultados
 7.	Conclusión
 8.	Bibliografía
@@ -64,7 +66,10 @@ El objetivo de este articulo no es predictivo ya que simplemente pretende estima
 
 El ATE resulta muy útil para estimar la eficacia media de un tratamiento, pero no nos informa del efecto que el tratamiento tiene para cada individuo. Podría ser que el efecto del tratamiento fuese difiriera significativamente entre grupos con diferentes características, haciendo que el ATE sea en realidad poco informativo. Es más, de existir estas diferencias, sería interesante poder crear un modelo que permita capturar la heterogeneidad en la respuesta al tratamiento, indicando a qué grupos de la población se debería focalizar la política pública. 
 
-###    3.1 Primer enfoque: predicción del efecto causal
+## 4.	Exploración preliminar de datos
+## 5.	Análisis
+
+###    5.1 Primer enfoque: predicción del efecto causal
 
 En la tradición de los “potential outcomes”, un efecto causal se define como la comparación entre dos estados del mundo. El primer estado del mundo es el que se conoce como el actual y es el mundo tal y como lo observamos (el individuo i recibe la ayuda de Atención a Crisis). El segundo estado del mundo es el que llamamos contrafactual (el mismo individuo i no recibe la ayuda de Atención a Crisis). De acuerdo con esta tradición de pensamiento, el efecto causal de recibir la ayuda de Atención a Crisis es la diferencia en el desarrollo cognitivo y físico entre los dos estados del mundo:
 
@@ -84,10 +89,18 @@ Paralelamente, hemos aplicado un modelo de Random Decision Tree (RDT) siguiendo 
 Mediante el modelo que presente una mayor tasa de acierto en la predicción pretendemos estimar el contrafactual de cada individuo, obteniendo de esta forma δ_i. Una vez capturado el efecto del tratamiento individual (ITE) tenemos la capacidad de estudiar las características de los individuos por los cuales es más beneficioso el tratamiento.
 
 
-## 4.	Exploración preliminar de datos
-## 5.	Análisis
-###     5.1.	Cálculo de ITE: modelos de predicción
-###     5.2.	Cálculo de CATE: honest causal forest
+###     5.2.	Cálculo de ITE: modelos de predicción
+
+###     5.3.	Segundo enfoque: estimación de efecto condicional
+
+La metodología anterior, a pesar de ser intuitiva, no está exenta de problemas. En primer lugar, es necesario un modelo predictivo con una alta tasa de acierto si se pretende obtener resultados informativos. Debido a que los datos utilizados en el presente estudio son los mismos que en Crépon et al. (2014), cuyo objetivo era obtener una relación causal y no predecir, existe un número bajo de variables en la base de datos con un alto nivel predictivo. Es más, probablemente las variables más importantes para determinar el nivel de desarrollo de los niños (factores genéticos, ingesta exacta de alimentos…) no son observables. En segundo lugar, centrar el análisis en el individuo y no en un subgrupo más amplio puede crear problemas de falsos positivos (multiplicidad). 
+Por este motivo hemos decidido testear otros enfoques para la identificación causal de efectos heterogéneos más establecidos en la literatura. En particular nos centraremos en la estimación del ATE condicional (CATE) mediante un modelo de Random Decision Tree particular, el Causal Forest. 
+En primer lugar, definimos el CATE como:
+(…)
+Explicación del Causal Forest(…).
+
+
+###     5.4.	Cálculo de CATE: honest causal forest
 ## 6.	Resultados
 ## 7.	Conclusión
 ## 8.	Bibliografía
