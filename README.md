@@ -5,7 +5,7 @@
 2.	Introducción
     2.1.	Programa Atención a Crisis
     2.2.	Metodología del estudio
-3.	Motivación y objetivos
+3.	*Capstone project*: Motivación y objetivos
 4.	Exploración preliminar de datos
 5.	Análisis
     5.1.	Cálculo de ITE: modelos de predicción
@@ -30,7 +30,7 @@
 ### 2.2.	Metodología del estudio
 
 
-## 3.	Motivación y objetivos
+## 3.	*Capstone project*: Motivación y objetivos
 ## 4.	Exploración preliminar de datos
 ## 5.	Análisis
 ### 5.1.	Cálculo de ITE: modelos de predicción
