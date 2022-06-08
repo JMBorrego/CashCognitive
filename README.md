@@ -36,13 +36,13 @@ A pesar de la importancia de asegurar un desarrollo cognitivo y físico saludabl
 
 ###     2.2.	Metodología del estudio
 
- h<sub>&theta;</sub>(x) = &theta;<sub>o</sub> x + &theta;<sub>1</sub>x
+<center> h<sub>&theta;</sub>(x) = &theta;<sub>o</sub> x + &theta;<sub>1</sub>x </center>
 
 El artículo “Cash Transfers, Behavioral Changes,and Cognitive Development in Early Childhood: Evidence from a Randomized Experiment” (Macours 2012) supone una primera aproximación para evaluar los efectos de *Atención a Crisis*. El objetivo de los autores de este estudio es determinar el efecto de ser tratado sobre el desarrollo cognitivo y físico. De este modo, lo que se pretende estimar es la diferencia en el desarrollo entre los individuos que han recibido la compensación económica (tratamiento) *versus* otros individuos con característica similares que no (control). 
 
 La metodología aplicada en el artículo estima el efecto causal de ser beneficiario de Atención a Crisis mediante un simple análisis de regresión del tipo:
 
-[![\\ Y_i = \beta_0 + \beta_1 T_i + \beta_k X_{ki} + u_i](https://latex.codecogs.com/svg.latex?%5C%5C%20Y_i%20%3D%20%5Cbeta_0%20%2B%20%5Cbeta_1%20T_i%20%2B%20%5Cbeta_k%20X_%7Bki%7D%20%2B%20u_i)](#_)
+[![\\ Y_i = \beta_0 + \beta_1 T_i + \beta_k X_{ki} + u_i]](#_)
 
 Donde:
 Y_i=Puntuación en términos de desarrollo cognitivo y físico.
