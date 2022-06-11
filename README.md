@@ -30,6 +30,8 @@ A pesar de la importancia de asegurar un desarrollo cognitivo y físico saludabl
 
 ###     2.1.	Programa *Atención a Crisis*
 
+<img src="./assets/images/AaC_info_1.png" alt="lasagna">
+
 ![AtencionACrisis01](./assets/images/AaC_info_1.png?raw=true | width=500)
 ![AtencionACrisis02](./assets/images/AaC_info_2.png?raw=true | width=500)
 
