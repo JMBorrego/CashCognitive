@@ -99,61 +99,42 @@ Mediante el modelo que presente una mayor tasa de acierto en la predicción pret
 
 Como se ha explicado previamente, para estimar el ITE, hemos creado diversos modelos de predicción basándonos en nuestra elección de modelos delineada en el apartado anterior. Aplicamos a los datos previamente limpiados y separados en train y test a los modelos distintos. Usamos únicamente aquellas variables independientes que hemos seleccionado previamente y únicamente la variable dependiente “z_all_06”. Para la estimación de goodness-of-fit utilizamos el R<sup>2</sup> y un Root Mean Squared Error (RMSE), aplicando un Cross-Validation de 10 folds para los datos de validación.
 
-Inicialmente aplicamos los modelos sin hacer optimización de hiperparámetros para comprobar la utilidad de los modelos de base.
- 
-	Regresión Lineal
+Inicialmente aplicamos los modelos sin hacer optimización de hiperparámetros para comprobar la utilidad de los modelos de base. Los resultados obtenidos son los siguientes:
 
-La regresión lineal simple nos da una R<sup>2</sup> de 17.41%y un RMSE de 0.471.
-
-	Random Forest
-
-A continuación lo comparamos con el modelo de Random Forest. Construimos un modelo de regresión Random Forest con 20 estimadores (Decision Trees) y lo aplicamos a los datos.
-
-El R<sup>2</sup> resultante es de 26.39%, con un RMSE de 0.442, también mejor que la regresión lineal.
-
-	XGBoost
-
-Para el modelo XGBoost, optimizamos los parámetros de learning_rate y profundidad del árbol mediante un GridSearch con 2 Fold Cross-Validation. Usamos 100 estimadores para el XGBoost.
-
-El XGBoost proporciona un R<sup>2</sup> de 15.77% , siendo el modelo con peor goodness-of-fit de todos. El RMSE es de 0.474, el más alto de los modelos. Esto no nos sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un dataset tan pequeño.
-
-		Hyperparameter Tuning
+- La regresión lineal simple nos da una R<sup>2</sup> de 17.41%y un RMSE de 0.471.
+- Con el modelo Random Forest con 20 estimadores (Decision Trees) obtenemos un R<sup>2</sup> de 26.39%, con un RMSE de 0.442, mejor que la regresión lineal.
+- El XGBoost proporciona un R<sup>2</sup> de 15.77% , siendo el modelo con peor goodness-of-fit de todos. El RMSE es de 0.474, el más alto de los modelos. Esto no nos sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un dataset tan pequeño.
+   
+    
 
 A continuación, optimizamos los hiperparámetros para los modelos de Random Forest y XGBoost (para la regresión lineal no hace falta), usando un Randomized Search.
 
-	Random Forest:
+- Para el Random Forest, los hiperparámetros optimizados son los siguientes:
 
-Para el Random Forest, optimizamos los hiperparámetros y nos da los siguientes resultados:
+XXXX
 Nuestro nuevo Random Forest con los parámetros tuneados obtiene un R<sup>2</sup> de 31.80% y con un RMSE de 0.434, claramente superior al Random Forest base.
 
-	XGBoost:
-
-Para el XGBoost, los hiperparámetros optimizados son los siguientes:
-
+- Para el XGBoost, los hiperparámetros optimizados son los siguientes:
+XXXX
 El XGBoost optimizado nos da unR<sup>2</sup> de 32.35% y un RMSE de 0.431. Por lo tanto, concluímos que este es el mejor modelo comparado con el resto.
 
 Para seguir analizando los modelos realizamos una visualización de las Learning Curves.
 
-	Linear Regression
-
-
-Random Forest
+- Random Forest
 
 XXXX
 
-	XGBoost
-
+- XGBoost
+XXXX
 Esto confirma que el modelo XGBoost es el más adecuado para la predicción puesto que el RMSE de los datos de validación tiende hacia un valor más bajo.
 
 Comparamos el resultado, también, con un scatterplot:
 
-	Linear Regression
+- Linear Regression
+XXXX
 
-IMAGE
-
-	XGBoost
-
-IMAGE
+- XGBoost
+XXXX
 
 Calculando valores de ITE
 
