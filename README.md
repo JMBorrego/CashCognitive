@@ -2,16 +2,16 @@
 
 ## Índice
 1.	Resumen
-2.	Introducción
-    2.1.	Programa Atención a Crisis
-    2.2.	Metodología del estudio
+2.	Introducción    
+    2.1.	Programa Atención a Crisis    
+    2.2.	Metodología del estudio    
 3.	*Capstone project*: Motivación y objetivos
 4.	Exploración preliminar de datos
-5.	Metodlogía y análisis
-    5.1.	Primer enfoque: predicción del efecto causal
-    5.2.    Cálculo de ITE: modelos de predicción
-    5.3.	Segundo enfoque: estimación de efecto condicional
-    5.4.    Cálculo de CATE: honest causal forest
+5.	Metodlogía y análisis    
+    5.1.	Primer enfoque: predicción del efecto causal    
+    5.2.    Cálculo de ITE: modelos de predicción    
+    5.3.	Segundo enfoque: estimación de efecto condicional    
+    5.4.    Cálculo de CATE: honest causal forest    
 6.	Resultados
 7.	Conclusión
 8.	Bibliografía
@@ -55,8 +55,8 @@ Ambas propiedades permiten a los autores interpretar el coeficiente de β_1 como
 <center> ATE=<span style="text-decoration:overline">Y</span><sub>1</sub>-<span style="text-decoration:overline">Y</span><sub>0</sub> </center>
 
 Donde:    
-<span style="text-decoration:overline">Y</span><sub>1</sub>=Puntuación media de los individuos tratados.
-<span style="text-decoration:overline">Y</span><sub>0</sub>=Puntuación media de los individuos no tratados.
+<span style="text-decoration:overline">Y</span><sub>1</sub>=Puntuación media de los individuos tratados.    
+<span style="text-decoration:overline">Y</span><sub>0</sub>=Puntuación media de los individuos no tratados.    
 
 Los resultados del estudio muestran que el ATE=0.0876, significante a un nivel de significación del 99%. Teniendo en cuenta que Y<sub>i</sub> está mesurada en un z-score, con media 0 i desviación estándar de 1, podemos concluir que el beneficio medio de recibir Atención a Crisis es un incremento del 8.76% desviaciones estándares en el desarrollo cognitivo y físico.
 
@@ -76,9 +76,9 @@ En la tradición de los “potential outcomes”, un efecto causal se define com
 <center> &delta;<sub>i</sub>=Y<sub>i</sub><sup>1</sup>-Y<sub>i</sub><sup>0</sup> </center>
 
 Donde:    
-&delta;<sub>i</sub>=El efecto del tratamiento para el individuo i, Individual Treatment Effect (ITE)
-Y<sub>i</sub><sup>1</sup>=Resultado del individuo i en el estado del mundo donde ha recibido el tratamiento.
-Y<sub>i</sub><sup>0</sup>=Resultado del individuo i en el estado del mundo donde no ha recibido el tratamiento.
+&delta;<sub>i</sub>=El efecto del tratamiento para el individuo i, Individual Treatment Effect (ITE)    
+Y<sub>i</sub><sup>1</sup>=Resultado del individuo i en el estado del mundo donde ha recibido el tratamiento.    
+Y<sub>i</sub><sup>0</sup>=Resultado del individuo i en el estado del mundo donde no ha recibido el tratamiento.    
 
 Destacar que el ATE no es otra cosa que la media de &delta;<sub>i</sub>.
 
