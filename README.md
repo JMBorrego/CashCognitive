@@ -101,7 +101,7 @@ Mediante el modelo que presente una mayor tasa de acierto en la predicción pret
 Como se ha explicado previamente, para estimar el ITE, hemos creado diversos modelos de predicción basándonos en nuestra elección de modelos delineada en el apartado anterior. Aplicamos a los datos previamente limpiados y separados en train y test a los modelos distintos. Usamos únicamente aquellas variables independientes que hemos seleccionado previamente y únicamente la variable dependiente “z_all_06”. Para la estimación de goodness-of-fit utilizamos el R<sup>2</sup> y un Root Mean Squared Error (RMSE), aplicando un Cross-Validation de 10 folds para los datos de validación.
 
 Inicialmente aplicamos los modelos sin hacer optimización de hiperparámetros para comprobar la utilidad de los modelos de base.
-
+ 
 	Regresión Lineal
 
 La regresión lineal simple nos da una R<sup>2</sup> de 17.41%, algo superior a la regresión realizada en el estudio original (Macours et al., 2012), con una desviación estándard de 18.38%. El RMSE es de 0.471.
