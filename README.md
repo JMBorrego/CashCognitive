@@ -88,14 +88,14 @@ La complejidad a la hora de estimar &delta;<sub>i</sub> es que el resultado en e
      
     $$ \begin{equation} 
         T_i^{\square} = 
-\left\{
-    \begin{array}{lr}
-        1, & \text{if } T_i = 0\\
-        0, & \text{if } T_i= 1
-    \end{array}
-\right\} 
-    \end{equation}
-$$ 
+        \left\{
+        \begin{array}{lr}
+            1, & \text{if } T_i = 0\\
+            0, & \text{if } T_i= 1
+        \end{array}
+        \right\} 
+        \end{equation}
+    $$ 
     
 Debido a las pocas observaciones con disponibles en el dataset (N=3141) hemos decidido aplicar un modelo de regresión múltiple y un modelo de “extreme gradient boosting”. (…)
 
