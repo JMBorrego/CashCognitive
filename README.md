@@ -111,7 +111,7 @@ A continuación, optimizamos los hiperparámetros para los modelos de Random For
 
 - Para el Random Forest, los hiperparámetros optimizados son los siguientes:
 
-<img src="./assets/images/Learningcurves.png" alt="Learning Curves (Reg. Lineal; Random Forest; XGBoost)" align="center" width="800">
+
 
 Nuestro nuevo Random Forest con los parámetros tuneados obtiene un R<sup>2</sup> de 31.80% y con un RMSE de 0.434, claramente superior al Random Forest base.
 
@@ -121,13 +121,10 @@ El XGBoost optimizado nos da unR<sup>2</sup> de 32.35% y un RMSE de 0.431. Por l
 
 Para seguir analizando los modelos realizamos una visualización de las Learning Curves.
 
-- Random Forest
+<img src="./assets/images/Learningcurves.png" alt="Learning Curves (Reg. Lineal; Random Forest; XGBoost)" alaign="center" width="800">
 
-XXXX    
+A pesar de que las learning curves convergen con mayor rapidez utilizando la regresión lineal, el XGBoost presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del train y del test.
 
-- XGBoost
-XXXX    
-Esto confirma que el modelo XGBoost es el más adecuado para la predicción puesto que el RMSE de los datos de validación tiende hacia un valor más bajo.
 
 Comparamos el resultado, también, con un scatterplot:
 
