@@ -111,7 +111,8 @@ A continuación, optimizamos los hiperparámetros para los modelos de Random For
 
 - Para el Random Forest, los hiperparámetros optimizados son los siguientes:
 
-XXXX    
+<img src="./assets/images/AaC_info_1.png" alt="Atención a Crisis Infografía 1" width="200">
+
 Nuestro nuevo Random Forest con los parámetros tuneados obtiene un R<sup>2</sup> de 31.80% y con un RMSE de 0.434, claramente superior al Random Forest base.
 
 - Para el XGBoost, los hiperparámetros optimizados son los siguientes:
