@@ -98,6 +98,79 @@ Mediante el modelo que presente una mayor tasa de acierto en la predicción pret
 
 ###     5.2.	Cálculo de ITE: modelos de predicción
 
+Como se ha explicado previamente, para estimar el ITE, hemos creado diversos modelos de predicción basándonos en nuestra elección de modelos delineada en el apartado anterior. Los modelos son los siguientes:
+
+-	Una regresión lineal simple. Repetimos el modelo llevado a cabo por los investigadores originales (Crepón et al., 2014), pero esta vez con diferentes variables independientes y una limpieza distinta de los datos.
+
+-	Un Random Forest.
+
+-	Un modelo XGBoost.
+
+Aplicamos a los datos previamente limpiados y separados en train y test a los modelos distintos. Usamos únicamente aquellas variables independientes que hemos seleccionado previamente y únicamente la variable dependiente “z_all_06”. Para la estimación de goodness-of-fit utilizamos el R^2 y un Root Mean Squared Error (RMSE), aplicando un Cross-Validation de 10 folds para los datos de validación.
+
+Inicialmente aplicamos los modelos sin hacer optimización de hiperparámetros para comprobar la utilidad de los modelos de base.
+
+	Regresión Lineal
+
+La regresión lineal simple nos da una R^2 de 17.41%, algo superior a la regresión realizada en el estudio original (Crepón et al., 2014), con una desviación estándard de 18.38%. El RMSE es de 0.471.
+
+	Random Forest
+
+A continuación lo comparamos con el modelo de Random Forest. Construimos un modelo de regresión Random Forest con 20 estimadores (Decision Trees) y lo aplicamos a los datos.
+
+El R^2 resultante es de 26.39%, con una desviación estándard de 16.30%, bastante mejor que el modelo lineal. El RMSE es de 0.442, también mejor que la regresión lineal.
+
+	XGBoost
+
+Para el modelo XGBoost, optimizamos los parámetros de learning_rate y profundidad del árbol mediante un GridSearch con 2 Fold Cross-Validation. Usamos 100 estimadores para el XGBoost.
+
+El XGBoost proporciona un R^2 de 15.77% con una desviación estándard de 15.90%, por lo que resulta ser el modelo con peor goodness-of-fit de todos. El RMSE es de 0.474, el más alto de los modelos. Esto no nos sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un dataset tan pequeño.
+
+		Hyperparameter Tuning
+
+A continuación, optimizamos los hiperparámetros para los modelos de Random Forest y XGBoost (para la regresión lineal no hace falta), usando un Randomized Search.
+
+	Random Forest:
+
+Para el Random Forest, optimizamos los hiperparámetros y nos da los siguientes resultados:
+Nuestro nuevo Random Forest con los parámetros tuneados obtiene un R^2 de 31.80%, con una desviación estándard de 4.91%, con un RMSE de 0.434, claramente superior al Random Forest base.
+
+	XGBoost:
+
+Para el XGBoost, los hiperparámetros optimizados son los siguientes:
+
+El XGBoost optimizado nos da un 32.35% con una desviación estándard de 4.96%, con un RMSE de 0.431. Por lo tanto, concluímos que este es el mejor modelo comparado con el resto.
+
+Para seguir analizando los modelos realizamos una visualización de las Learning Curves.
+
+	Linear Regression
+
+
+Random Forest
+
+XXXX
+
+	XGBoost
+
+Esto confirma que el modelo XGBoost es el más adecuado para la predicción puesto que el RMSE de los datos de validación tiende hacia un valor más bajo.
+
+Comparamos el resultado, también, con un scatterplot:
+
+	Linear Regression
+
+IMAGE
+
+	XGBoost
+
+IMAGE
+
+Calculando valores de ITE
+
+El primer paso para estimar el ITE es generar el contrafactual de cada individuo. Mediante el modelo XGboost entrenado anteriormente predecimos el outcome (z_all_06) para cada contrafactual. Llegados a este punto, ya tenemos el estado actual y el estado contrafactual de cada individuo, obteniendo toda la información necesaria para calcular el ITE. El último paso simplemente consiste en calcular la diferencia de resultados entre el YY<sub>i</sub><sup>1</sup> (cuando el individuo i recibe el tratamiento) y YY<sub>i</sub><sup>0</sup> (cuando el individuo i no recibe el tratamiento).
+
+Así, obtenemos un dataframe con todos los ITEs para cada individuo. La distribución de los ITE tiene una distribución aproximadamente normal con una media en 0.09. Probablemente este es el primer resultado interesante del estudio. Tal y como se ha mencionado anteriormente, E(ITE)=E(δY<sub>i</sub> )=ATE, indicando que el ATE estimado mediante nuestro modelo es de 0.09, muy similar y dentro del intervalo de confianza del resultado obtenido por (Macours et al., 2012). Dada la consistencia y ausencia de sesgo del ATE en regresión simple, podemos asumir que nuestros estimadores son insesgados. 
+
+A pesar de esto, la precisión de nuestra estimación es baja. Para ilustrar este punto, nuestro modelo tiene un RMSE de 0.4 y el rango de z_all_06 es de 4. La baja capacidad predictiva de nuestros modelos implica que los ITE estimados probablemente tengan un nivel de ruido muy elevado que provoque que el análisis de subgrupos estratificando por ITE pierda sentido. 
 
 
 
