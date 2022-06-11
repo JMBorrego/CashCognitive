@@ -85,17 +85,9 @@ Y<sub>i</sub><sup>0</sup>=Resultado del individuo i en el estado del mundo donde
 Destacar que el ATE no es otra cosa que la media de &delta;<sub>i</sub>.
 
 La complejidad a la hora de estimar &delta;<sub>i</sub> es que el resultado en el mundo contrafactual no se observa. Sin embargo, el uso de modelos de Machine Learning bien entrenados podría predecir la variable outcome (Y<sub>i</sub>) para el estado del mundo contrafactual. Para ello, se genera una copia del conjunto de datos en la que se modifica la variable tratamiento (T<sub>i</sub><sup>□</sup>) por su valor complementario, de modo que:    
-     
-    $$ \begin{equation} 
-        T_i^{\square} = 
-        \left\{
-        \begin{array}{lr}
-            1, & \text{if } T_i = 0\\
-            0, & \text{if } T_i= 1
-        \end{array}
-        \right\} 
-        \end{equation}
-    $$ 
+      
+    ![CounterFactEq](./assets/images/counterfactualEq.png?raw=true | width=100)
+    <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
     
 Debido a las pocas observaciones con disponibles en el dataset (N=3141) hemos decidido aplicar un modelo de regresión múltiple y un modelo de “extreme gradient boosting”. (…)
 
