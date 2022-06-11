@@ -7,12 +7,12 @@
     2.2.	Metodología del estudio    
 3.	*Capstone project*: Motivación y objetivos
 4.	Exploración preliminar de datos
-5.	Metodlogía y análisis    
+5.	Metodología y análisis    
     5.1.	Primer enfoque: predicción del efecto causal    
     5.2.    Cálculo de ITE: modelos de predicción    
     5.3.	Segundo enfoque: estimación de efecto condicional    
     5.4.    Cálculo de CATE: honest causal forest    
-6.	Resultados
+6.	Comparación
 7.	Conclusión
 8.	Bibliografía
 
@@ -57,7 +57,7 @@ Donde:
 <span style="text-decoration:overline">Y</span><sub>1</sub>=Puntuación media de los individuos tratados.    
 <span style="text-decoration:overline">Y</span><sub>0</sub>=Puntuación media de los individuos no tratados.    
 
-Los resultados del estudio muestran que el ATE=0.0876, significante a un nivel de significación del 1%. Teniendo en cuenta que Y<sub>i</sub> está mesurada en un z-score, con media 0 i desviación estándar de 1, podemos concluir que el beneficio medio de recibir Atención a Crisis es un incremento del 8.76% desviaciones estándares en el desarrollo cognitivo y físico.
+Los resultados del estudio muestran que el ATE=0.0876, significante a un nivel de significación del 99%. Teniendo en cuenta que Y<sub>i</sub> está mesurada en un z-score, con media 0 i desviación estándar de 1, podemos concluir que el beneficio medio de recibir Atención a Crisis es un incremento del 8.76% desviaciones estándares en el desarrollo cognitivo y físico.
 
 El objetivo de este articulo no es predictivo ya que simplemente pretende estimar el efecto causal de recibir la compensación económica. Dado el diseño del programa dicho efecto podría calcularse simplemente con una regresión simple incluyendo la variable tratamiento (T<sub>i</sub>) y un intercepto (&beta;<sub>i</sub>). De hecho, el vector de variables de control X<sub>ki</sub> simplemente se incluye para controlar las diferencias existentes entre los grupos de control y tratamiento debidas a un número de observaciones relativamente bajo. Por este motivo no resulta especialmente relevante obtener unas medidas de ajuste como el R<sup>2</sup>. A pesar de ello hemos decidido replicar el análisis realizado por los autores (siguiendo las indicaciones metodológicas y de tratamiento de datos mencionados en el artículo) para obtener las principales medidas de bondad de ajuste de los modelos de regresión y que nos sirvan como base sobre la cual sofisticar nuestro análisis. La media del error de estimación al cuadrado es de  y el R<sup>2</sup> es de 0.17.
 
@@ -66,6 +66,9 @@ El objetivo de este articulo no es predictivo ya que simplemente pretende estima
 El ATE resulta muy útil para estimar la eficacia media de un tratamiento, pero no nos informa del efecto que el tratamiento tiene para cada individuo. Podría ser que el efecto del tratamiento fuese difiriera significativamente entre grupos con diferentes características, haciendo que el ATE sea en realidad poco informativo. Es más, de existir estas diferencias, sería interesante poder crear un modelo que permita capturar la heterogeneidad en la respuesta al tratamiento, indicando a qué grupos de la población se debería focalizar la política pública. 
 
 ## 4.	Exploración preliminar de datos
+
+El *dataset* cuenta con 4511 registros
+
 ## 5.	Análisis
 
 ###    5.1 Primer enfoque: predicción del efecto causal
@@ -81,14 +84,22 @@ Y<sub>i</sub><sup>0</sup>=Resultado del individuo i en el estado del mundo donde
 
 Destacar que el ATE no es otra cosa que la media de &delta;<sub>i</sub>.
 
-La complejidad a la hora de estimar &delta;<sub>i</sub> es que el resultado en el mundo contrafactual no se observa. Sin embargo, el uso de modelos de Machine Learning bien entrenados podría predecir la variable outcome (Y<sub>i</sub>) para el estado del mundo contrafactual. 
-Debido a las pocas observaciones con disponibles en el dataset (N=3141) hemos decidido aplicar un modelo de regresión múltiple y un modelo de “extreme gradient boosting”. 
+La complejidad a la hora de estimar &delta;<sub>i</sub> es que el resultado en el mundo contrafactual no se observa. Sin embargo, el uso de modelos de Machine Learning bien entrenados podría predecir la variable outcome (Y<sub>i</sub>) para el estado del mundo contrafactual. Para ello, se genera una copia del conjunto de datos en la que se modifica la variable tratamiento (T<sub>i</sub><sup>□</sup>) por su valor complementario, de modo que:    
+    $$\underbrace{X}_{\substack{\textrm{Text1 for X}\\  \textrm{Text2 for X}}}$$
+    
+    $$ T_i^{\square} = \left\{ \begin{array}{lr} 1, & \text{if } T_i = 0 \\ 0, & \text{if } T_i= 1 \end{array} \right\} $$ 
+    
+Debido a las pocas observaciones con disponibles en el dataset (N=3141) hemos decidido aplicar un modelo de regresión múltiple y un modelo de “extreme gradient boosting”. (…)
 
-Paralelamente, hemos aplicado un modelo de Random Decision Tree (RDT) siguiendo la metodología aplicada en Lamont et al. (2016).
+Paralelamente, hemos aplicado un modelo de Random Decision Tree (RDT) siguiendo la metodología aplicada en Lamont et al. (2016). (…)
 Mediante el modelo que presente una mayor tasa de acierto en la predicción pretendemos estimar el contrafactual de cada individuo, obteniendo de esta forma &delta;<sub>i</sub>. Una vez capturado el efecto del tratamiento individual (ITE) tenemos la capacidad de estudiar las características de los individuos por los cuales es más beneficioso el tratamiento.
 
 
 ###     5.2.	Cálculo de ITE: modelos de predicción
+
+
+
+
 
 ###     5.3.	Segundo enfoque: estimación de efecto condicional
 
@@ -101,14 +112,13 @@ En primer lugar, definimos el CATE como:
 
 Eso es, ciertas características de los individuos podrían influir en la respuesta que estos tienen al recibir el tratamiento. De este modo, resulta interesante estudiar subgrupos de la población. Un ejemplo claro seria dividir los individuos de nuestro estudio en dos subgrupos dependiendo de su edad y reestimar el ATE para niños mayores y menores que X años.    
 
-En el caso de muchas variables explicativas (X<sub>ki</sub>) y sin unos subgrupos previamente identificados para analizar, puede resultar útil el enfoque propuesto por Athey et al. (2019), en donde se presentan los Causal Forest. La intuición detrás de los Causal Forest es encontrar una serie de observaciones con características similares dentro de la base de datos. En este caso, el criterio a optimizar cuando se dividen los árboles no es minimizar el error en la predicción sino maximizar el ATE en cada subgrupo que se crea. El objetivo será encontrar ATEs constantes en cada subgrupo, pero diferentes entre subgrupos.    
-
+En el caso de muchas variables explicativas (X<sub>ki</sub>) y sin unos subgrupos previamente identificados para analizar, puede resultar útil el enfoque propuesto por Athey et al. (2019), en donde se presentan los Causal Forest. La intuición detrás de los Causal Forest es encontrar una serie de observaciones con características similares dentro de la base de datos. En este caso, el criterio a optimizar cuando se dividen los árboles no es minimizar el error en la predicción sino maximizar el ATE en cada subgrupo que se crea. Dicho de otra manera, un Causal Forest dividirá los datos en grupos con características similares para los cuales la diferencia de resultados entre los individuos tratados y los de control se maximiza. El objetivo será encontrar ATEs constantes en cada subgrupo, pero diferentes entre subgrupos.    
 Para construir un Causal Forest será necesario calcular la media entre un conjunto de Causal Trees creados a partir de diferentes submuestras. Finalmente, Athey e Imbens (2019) proponen los Honest Causal Trees para evitar que el modelo haga overfitting. Este método consiste en la división en dos muestras de igual tamaño de los datos, utilizando la primera mitad para crear la estructura y particiones del árbol y la segunda para estimar los ATE de cada hoja (subgrupo).
 
 
 
 ###     5.4.	Cálculo de CATE: honest causal forest
-## 6.	Resultados
+## 6.	Comparación
 ## 7.	Conclusión
 ## 8.	Bibliografía
 
