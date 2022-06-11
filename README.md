@@ -30,9 +30,9 @@ A pesar de la importancia de asegurar un desarrollo cognitivo y físico saludabl
 
 ###     2.1.	Programa *Atención a Crisis*
 
-<img src="./assets/images/AaC_info_1.png" alt="Atención a Crisis Infografía 1" width="1000">
+<img src="./assets/images/AaC_info_1.png" alt="Atención a Crisis Infografía 1" width="200">
 
-<img src="./assets/images/AaC_info_2.png" alt="Atención a Crisis Infografía 2" width="1000">
+<img src="./assets/images/AaC_info_2.png" alt="Atención a Crisis Infografía 2" width="200">
 
 ###     2.2.	Metodología del estudio
 
@@ -87,7 +87,7 @@ Destacar que el ATE no es otra cosa que la media de &delta;<sub>i</sub>.
 
 La complejidad a la hora de estimar &delta;<sub>i</sub> es que el resultado en el mundo contrafactual no se observa. Sin embargo, el uso de modelos de Machine Learning bien entrenados podría predecir la variable outcome (Y<sub>i</sub>) para el estado del mundo contrafactual. Para ello, se genera una copia del conjunto de datos en la que se modifica la variable tratamiento (T<sub>i</sub><sup>□</sup>) por su valor complementario, de modo que:    
       
-<img src="./assets/images/counterfactualEq.png" alt="Ecuación Contrafactual" width="300"> 
+<img src="./assets/images/counterfactualEq.png" alt="Ecuación Contrafactual" width="100"> 
     
 Debido a las pocas observaciones con disponibles en el dataset (N=3141) hemos decidido aplicar un modelo de regresión múltiple y un modelo de “extreme gradient boosting”. (…)
 
@@ -111,21 +111,21 @@ A continuación, optimizamos los hiperparámetros para los modelos de Random For
 
 - Para el Random Forest, los hiperparámetros optimizados son los siguientes:
 
-XXXX
+XXXX    
 Nuestro nuevo Random Forest con los parámetros tuneados obtiene un R<sup>2</sup> de 31.80% y con un RMSE de 0.434, claramente superior al Random Forest base.
 
 - Para el XGBoost, los hiperparámetros optimizados son los siguientes:
-XXXX
+XXXX    
 El XGBoost optimizado nos da unR<sup>2</sup> de 32.35% y un RMSE de 0.431. Por lo tanto, concluímos que este es el mejor modelo comparado con el resto.
 
 Para seguir analizando los modelos realizamos una visualización de las Learning Curves.
 
 - Random Forest
 
-XXXX
+XXXX    
 
 - XGBoost
-XXXX
+XXXX    
 Esto confirma que el modelo XGBoost es el más adecuado para la predicción puesto que el RMSE de los datos de validación tiende hacia un valor más bajo.
 
 Comparamos el resultado, también, con un scatterplot:
