@@ -42,25 +42,25 @@ La metodología aplicada en el artículo estima el efecto causal de ser benefici
 
 <center> Y<sub>i</sub> = &beta;<sub>0</sub> + &beta;<sub>1</sub>T<sub>i</sub> + &beta;<sub>k</sub>X<sub>ki</sub> + u<sub>i</sub></center>
 
-Donde:
+Donde:    
 Y<sub>i</sub>=Puntuación en términos de desarrollo cognitivo y físico.  
 T<sub>i</sub>=Variable binaria que igual a 1 para los individuos que han recibido la ayuda de Atención a Crisis (tratados) e igual a 0 del contrario (control).  
 X<sub>ki</sub>= Vector de k regresores para controlar por características de los individuos.  
-u<sub>i</sub>= Resto de características no incluidas en el modelo que también pueden tener efecto sobre la variable Y_i (por ej. Factores genéticos).  
+u<sub>i</sub>= Resto de características no incluidas en el modelo que también pueden tener efecto sobre la variable Y<sub>i</sub> (por ej. Factores genéticos).  
 
 El diseño experimental de Atanción a Crisis implica una serie de características que facilitan la estimación del efecto causal de ser tratado mediante el análisis de regresión. En primer lugar, asignar los individuos a grupos de tratamiento o de control de forma aleatoria, como si de una lotería se tratase, supone que no existe correlación entre ser tratado y otras características no observadas de los individuos. Esto es, E(u_i│T_i )=0. Al cumplirse esta propiedad se puede asumir que el coeficiente estimado β_1 no esta sesgado y representa de forma acurada el verdadero valor poblacional de recibir el tratamiento. En segundo lugar, los individuos de la muestra forman parte de una misma población y han sido seleccionados de forma aleatoria, implicando que los estimadores de mínimos cuadrados ordinarios (MCO) son consistentes. 
 
 Ambas propiedades permiten a los autores interpretar el coeficiente de β_1 como el efecto causal medio de ser tratado versus no ser tratado. Este efecto se conoce en la literatura como Average Treatment Effect (ATE) y representa la diferencia de medias entre el grupo de tratamiento y control:
 
-ATE=Y ̅_1-Y ̅_0
+<center> ATE=<span style="text-decoration:overline">Y</span><sub>1</sub>-<span style="text-decoration:overline">Y</span><sub>0</sub> </center>
 
-Donde:
- Y ̅_1=Puntuación media de los individuos tratados.
-Y ̅_0=Puntuación media de los individuos no tratados.
+Donde:    
+<span style="text-decoration:overline">Y</span><sub>1</sub>=Puntuación media de los individuos tratados.
+<span style="text-decoration:overline">Y</span><sub>0</sub>=Puntuación media de los individuos no tratados.
 
-Los resultados del estudio muestran que el ATE=0.0876, significante a un nivel de significación del 99%. Teniendo en cuenta que Y_i está mesurada en un z-score, con media 0 i desviación estándar de 1, podemos concluir que el beneficio medio de recibir Atención a Crisis es un incremento del 8.76% desviaciones estándares en el desarrollo cognitivo y físico.
+Los resultados del estudio muestran que el ATE=0.0876, significante a un nivel de significación del 99%. Teniendo en cuenta que Y<sub>i</sub> está mesurada en un z-score, con media 0 i desviación estándar de 1, podemos concluir que el beneficio medio de recibir Atención a Crisis es un incremento del 8.76% desviaciones estándares en el desarrollo cognitivo y físico.
 
-El objetivo de este articulo no es predictivo ya que simplemente pretende estimar el efecto causal de recibir la compensación económica. Dado el diseño del programa dicho efecto podría calcularse simplemente con una regresión simple incluyendo la variable tratamiento (T_i) y un intercepto (β_0). De hecho, el vector de variables de control X_ki simplemente se incluye para controlar las diferencias existentes entre los grupos de control y tratamiento debidas a un número de observaciones relativamente bajo. Por este motivo no resulta especialmente relevante obtener unas medidas de ajuste como el R^2. A pesar de ello hemos decidido replicar el análisis realizado por los autores (siguiendo las indicaciones metodológicas y de tratamiento de datos mencionados en el artículo) para obtener las principales medidas de bondad de ajuste de los modelos de regresión y que nos sirvan como base sobre la cual sofisticar nuestro análisis. La media del error de estimación al cuadrado es de  y el R^2 es de 0.17.
+El objetivo de este articulo no es predictivo ya que simplemente pretende estimar el efecto causal de recibir la compensación económica. Dado el diseño del programa dicho efecto podría calcularse simplemente con una regresión simple incluyendo la variable tratamiento (T<sub>i</sub>) y un intercepto (&beta;<sub>i</sub>). De hecho, el vector de variables de control X<sub>ki</sub> simplemente se incluye para controlar las diferencias existentes entre los grupos de control y tratamiento debidas a un número de observaciones relativamente bajo. Por este motivo no resulta especialmente relevante obtener unas medidas de ajuste como el R<sup>2</sup>. A pesar de ello hemos decidido replicar el análisis realizado por los autores (siguiendo las indicaciones metodológicas y de tratamiento de datos mencionados en el artículo) para obtener las principales medidas de bondad de ajuste de los modelos de regresión y que nos sirvan como base sobre la cual sofisticar nuestro análisis. La media del error de estimación al cuadrado es de  y el R<sup>2</sup> es de 0.17.
 
 ## 3.	*Capstone project*: Motivación y objetivos
 
@@ -73,20 +73,20 @@ El ATE resulta muy útil para estimar la eficacia media de un tratamiento, pero 
 
 En la tradición de los “potential outcomes”, un efecto causal se define como la comparación entre dos estados del mundo. El primer estado del mundo es el que se conoce como el actual y es el mundo tal y como lo observamos (el individuo i recibe la ayuda de Atención a Crisis). El segundo estado del mundo es el que llamamos contrafactual (el mismo individuo i no recibe la ayuda de Atención a Crisis). De acuerdo con esta tradición de pensamiento, el efecto causal de recibir la ayuda de Atención a Crisis es la diferencia en el desarrollo cognitivo y físico entre los dos estados del mundo:
 
-δ_i=Y_i^1-Y_i^0
+<center> &delta;<sub>i</sub>=Y<sub>i</sub><sup>1</sup>-Y<sub>i</sub><sup>0</sup> </center>
 
-Donde:
-δ_i=El efecto del tratamiento para el individuo i, Individual Treatment Effect (ITE)
-Y_i^1=Resultado del individuo i en el estado del mundo donde ha recibido el tratamiento.
-Y_i^0=Resultado del individuo i en el estado del mundo donde no ha recibido el tratamiento.
+Donde:    
+&delta;<sub>i</sub>=El efecto del tratamiento para el individuo i, Individual Treatment Effect (ITE)
+Y<sub>i</sub><sup>1</sup>=Resultado del individuo i en el estado del mundo donde ha recibido el tratamiento.
+Y<sub>i</sub><sup>0</sup>=Resultado del individuo i en el estado del mundo donde no ha recibido el tratamiento.
 
-Destacar que el ATE no es otra cosa que la media de δ_i.
+Destacar que el ATE no es otra cosa que la media de &delta;<sub>i</sub>.
 
-La complejidad a la hora de estimar δ_i es que el resultado en el mundo contrafactual no se observa. Sin embargo, el uso de modelos de Machine Learning bien entrenados podría predecir la variable outcome (Y_i) para el estado del mundo contrafactual. 
+La complejidad a la hora de estimar &delta;<sub>i</sub> es que el resultado en el mundo contrafactual no se observa. Sin embargo, el uso de modelos de Machine Learning bien entrenados podría predecir la variable outcome (Y<sub>i</sub>) para el estado del mundo contrafactual. 
 Debido a las pocas observaciones con disponibles en el dataset (N=3141) hemos decidido aplicar un modelo de regresión múltiple y un modelo de “extreme gradient boosting”. (…)
 
 Paralelamente, hemos aplicado un modelo de Random Decision Tree (RDT) siguiendo la metodología aplicada en Lamont et al. (2016). (…)
-Mediante el modelo que presente una mayor tasa de acierto en la predicción pretendemos estimar el contrafactual de cada individuo, obteniendo de esta forma δ_i. Una vez capturado el efecto del tratamiento individual (ITE) tenemos la capacidad de estudiar las características de los individuos por los cuales es más beneficioso el tratamiento.
+Mediante el modelo que presente una mayor tasa de acierto en la predicción pretendemos estimar el contrafactual de cada individuo, obteniendo de esta forma &delta;<sub>i</sub>. Una vez capturado el efecto del tratamiento individual (ITE) tenemos la capacidad de estudiar las características de los individuos por los cuales es más beneficioso el tratamiento.
 
 
 ###     5.2.	Cálculo de ITE: modelos de predicción
