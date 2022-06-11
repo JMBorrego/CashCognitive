@@ -111,7 +111,7 @@ A continuación, optimizamos los hiperparámetros para los modelos de Random For
 
 - Para el Random Forest, los hiperparámetros optimizados son los siguientes:
 
-<img src="./assets/images/Learningcurve.png" alt="Learning Curves (Reg. Lineal; Random Forest; XGBoost)" width="200">
+<img src="./assets/images/Learningcurves.png" alt="Learning Curves (Reg. Lineal; Random Forest; XGBoost)" width="200">
 
 Nuestro nuevo Random Forest con los parámetros tuneados obtiene un R<sup>2</sup> de 31.80% y con un RMSE de 0.434, claramente superior al Random Forest base.
 
