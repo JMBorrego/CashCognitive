@@ -82,9 +82,9 @@ Y<sub>i</sub><sup>0</sup>=Resultado del individuo i en el estado del mundo donde
 Destacar que el ATE no es otra cosa que la media de &delta;<sub>i</sub>.
 
 La complejidad a la hora de estimar &delta;<sub>i</sub> es que el resultado en el mundo contrafactual no se observa. Sin embargo, el uso de modelos de Machine Learning bien entrenados podría predecir la variable outcome (Y<sub>i</sub>) para el estado del mundo contrafactual. 
-Debido a las pocas observaciones con disponibles en el dataset (N=3141) hemos decidido aplicar un modelo de regresión múltiple y un modelo de “extreme gradient boosting”. (…)
+Debido a las pocas observaciones con disponibles en el dataset (N=3141) hemos decidido aplicar un modelo de regresión múltiple y un modelo de “extreme gradient boosting”. 
 
-Paralelamente, hemos aplicado un modelo de Random Decision Tree (RDT) siguiendo la metodología aplicada en Lamont et al. (2016). (…)
+Paralelamente, hemos aplicado un modelo de Random Decision Tree (RDT) siguiendo la metodología aplicada en Lamont et al. (2016).
 Mediante el modelo que presente una mayor tasa de acierto en la predicción pretendemos estimar el contrafactual de cada individuo, obteniendo de esta forma &delta;<sub>i</sub>. Una vez capturado el efecto del tratamiento individual (ITE) tenemos la capacidad de estudiar las características de los individuos por los cuales es más beneficioso el tratamiento.
 
 
@@ -101,7 +101,8 @@ En primer lugar, definimos el CATE como:
 
 Eso es, ciertas características de los individuos podrían influir en la respuesta que estos tienen al recibir el tratamiento. De este modo, resulta interesante estudiar subgrupos de la población. Un ejemplo claro seria dividir los individuos de nuestro estudio en dos subgrupos dependiendo de su edad y reestimar el ATE para niños mayores y menores que X años.    
 
-En el caso de muchas variables explicativas (X<sub>ki</sub>) y sin unos subgrupos previamente identificados para analizar, puede resultar útil el enfoque propuesto por Athey et al. (2019), en donde se presentan los Causal Forest. La intuición detrás de los Causal Forest es encontrar una serie de observaciones con características similares dentro de la base de datos. En este caso, el criterio a optimizar cuando se dividen los árboles no es minimizar el error en la predicción sino maximizar el ATE en cada subgrupo que se crea. Dicho de otra manera, un Causal Forest dividirá los datos en grupos con características similares para los cuales la diferencia de resultados entre los individuos tratados y los de control se maximiza. El objetivo será encontrar ATEs constantes en cada subgrupo, pero diferentes entre subgrupos.    
+En el caso de muchas variables explicativas (X<sub>ki</sub>) y sin unos subgrupos previamente identificados para analizar, puede resultar útil el enfoque propuesto por Athey et al. (2019), en donde se presentan los Causal Forest. La intuición detrás de los Causal Forest es encontrar una serie de observaciones con características similares dentro de la base de datos. En este caso, el criterio a optimizar cuando se dividen los árboles no es minimizar el error en la predicción sino maximizar el ATE en cada subgrupo que se crea. El objetivo será encontrar ATEs constantes en cada subgrupo, pero diferentes entre subgrupos.    
+
 Para construir un Causal Forest será necesario calcular la media entre un conjunto de Causal Trees creados a partir de diferentes submuestras. Finalmente, Athey e Imbens (2019) proponen los Honest Causal Trees para evitar que el modelo haga overfitting. Este método consiste en la división en dos muestras de igual tamaño de los datos, utilizando la primera mitad para crear la estructura y particiones del árbol y la segunda para estimar los ATE de cada hoja (subgrupo).
 
 
