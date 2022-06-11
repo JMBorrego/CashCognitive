@@ -121,7 +121,7 @@ El XGBoost optimizado nos da unR<sup>2</sup> de 32.35% y un RMSE de 0.431. Por l
 
 Para seguir analizando los modelos realizamos una visualización de las Learning Curves.
 
-<align="center" img src="./assets/images/Learningcurves.png" alt="Learning Curves (Reg. Lineal; Random Forest; XGBoost)"  width="800">
+<img src="./assets/images/Learningcurves.png" alt="Learning Curves (Reg. Lineal; Random Forest; XGBoost)"  width="800">
 
 A pesar de que las learning curves convergen con mayor rapidez utilizando la regresión lineal, el XGBoost presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del train y del test.
 
