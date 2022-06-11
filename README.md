@@ -104,19 +104,19 @@ Inicialmente aplicamos los modelos sin hacer optimización de hiperparámetros p
  
 	Regresión Lineal
 
-La regresión lineal simple nos da una R<sup>2</sup> de 17.41%, algo superior a la regresión realizada en el estudio original (Macours et al., 2012), con una desviación estándard de 18.38%. El RMSE es de 0.471.
+La regresión lineal simple nos da una R<sup>2</sup> de 17.41%y un RMSE de 0.471.
 
 	Random Forest
 
 A continuación lo comparamos con el modelo de Random Forest. Construimos un modelo de regresión Random Forest con 20 estimadores (Decision Trees) y lo aplicamos a los datos.
 
-El R<sup>2</sup> resultante es de 26.39%, con una desviación estándard de 16.30%, bastante mejor que el modelo lineal. El RMSE es de 0.442, también mejor que la regresión lineal.
+El R<sup>2</sup> resultante es de 26.39%, con un RMSE de 0.442, también mejor que la regresión lineal.
 
 	XGBoost
 
 Para el modelo XGBoost, optimizamos los parámetros de learning_rate y profundidad del árbol mediante un GridSearch con 2 Fold Cross-Validation. Usamos 100 estimadores para el XGBoost.
 
-El XGBoost proporciona un R<sup>2</sup> de 15.77% con una desviación estándard de 15.90%, por lo que resulta ser el modelo con peor goodness-of-fit de todos. El RMSE es de 0.474, el más alto de los modelos. Esto no nos sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un dataset tan pequeño.
+El XGBoost proporciona un R<sup>2</sup> de 15.77% , siendo el modelo con peor goodness-of-fit de todos. El RMSE es de 0.474, el más alto de los modelos. Esto no nos sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un dataset tan pequeño.
 
 		Hyperparameter Tuning
 
@@ -125,13 +125,13 @@ A continuación, optimizamos los hiperparámetros para los modelos de Random For
 	Random Forest:
 
 Para el Random Forest, optimizamos los hiperparámetros y nos da los siguientes resultados:
-Nuestro nuevo Random Forest con los parámetros tuneados obtiene un R^2 de 31.80%, con una desviación estándard de 4.91%, con un RMSE de 0.434, claramente superior al Random Forest base.
+Nuestro nuevo Random Forest con los parámetros tuneados obtiene un R<sup>2</sup> de 31.80% y con un RMSE de 0.434, claramente superior al Random Forest base.
 
 	XGBoost:
 
 Para el XGBoost, los hiperparámetros optimizados son los siguientes:
 
-El XGBoost optimizado nos da un 32.35% con una desviación estándard de 4.96%, con un RMSE de 0.431. Por lo tanto, concluímos que este es el mejor modelo comparado con el resto.
+El XGBoost optimizado nos da unR<sup>2</sup> de 32.35% y un RMSE de 0.431. Por lo tanto, concluímos que este es el mejor modelo comparado con el resto.
 
 Para seguir analizando los modelos realizamos una visualización de las Learning Curves.
 
