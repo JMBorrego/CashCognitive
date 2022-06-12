@@ -72,7 +72,7 @@ El *dataset* cuenta con 4511 registros
 
 ## 5.	Estrategia de identificación
 
-Tal y como mencionabamos anteriomente, el objetivo del presente trabajo es estudiar si existen efectos heterogeneos de recibir el tratamiento (HTE). La forma de proceder, explicada en profundidad a continuación, será identificar las características de los individuos que determinan diferentes respuestas al tratamiento y calcular los subgrupos (...) repensar aquesta intro pq sigui intuïtiva.
+Esquema Chema.
 ### 5.1.   "Potential Outcomes" e "Individual Treatment Effect"
 
 En la tradición de los “potential outcomes”, un efecto causal se define como la comparación entre dos estados del mundo. El primer estado del mundo es el que se conoce como el actual y es el mundo tal y como lo observamos (por ejemplo, el individuo i recibe la ayuda de Atención a Crisis). El segundo estado del mundo es el que llamamos contrafactual (el mismo individuo i no recibe la ayuda de Atención a Crisis). De acuerdo con esta tradición de pensamiento, el efecto causal de recibir la ayuda de Atención a Crisis es la diferencia en el desarrollo cognitivo y físico entre los dos estados del mundo:
@@ -111,10 +111,12 @@ Dicho esto, un Causal Forest está formado por un conjunto de Causal Trees. Cada
 
 ###     5.3.    Obtención de los subgrupos
 
-Llegados a este punto, por un lado tenemos el efecto del tratamiento para cada individuo (ITE) y por otro tenemos el conjunto de variables más relevantes para explicar la heterogenenidad en la respuesta al tratamiento. 
+Llegados a este punto, por un lado tenemos el efecto del tratamiento para cada individuo (ITE) y por otro tenemos el conjunto de variables más relevantes para explicar la heterogenenidad en la respuesta al tratamiento. (acabar demà)
 
 
-###     5.2.	Cálculo de ITE: modelos de predicción
+###     5.4. Obtención de resultados
+
+####    5.4.1. Cálculo de ITE: modelos de predicción
 
 Como se ha explicado previamente, para estimar el ITE, hemos creado diversos modelos de predicción basándonos en nuestra elección de modelos delineada en el apartado anterior. Aplicamos a los datos previamente limpiados y separados en train y test a los modelos distintos. Usamos únicamente aquellas variables independientes que hemos seleccionado previamente y únicamente la variable dependiente “z_all_06”. Para la estimación de goodness-of-fit utilizamos el R<sup>2</sup> y un Root Mean Squared Error (RMSE), aplicando un Cross-Validation de 10 folds para los datos de validación. 
 
@@ -132,7 +134,7 @@ A continuación, optimizamos los hiperparámetros para los modelos de Random For
 
 
 
-Nuestro nuevo Random Forest con los parámetros tuneados obtiene un R<sup>2</sup> de 31.80% y con un RMSE de 0.434, claramente superior al Random Forest base.
+Nuestro nuevo Random Forest con los hiperparámetros optimizados obtiene un R<sup>2</sup> de 31.80% y con un RMSE de 0.434, claramente superior al Random Forest base.
 
 - Para el XGBoost, los hiperparámetros optimizados son los siguientes:
 XXXX    
@@ -164,7 +166,9 @@ Así, obtenemos un dataframe con todos los ITEs para cada individuo. La distribu
 
 
 
-###     5.4.	Cálculo de CATE: honest causal forest
+####    5.4.2.	Cálculo de CATE: honest causal forest
+
+####    5.4.3.	Cálculo de subgrupos
 ## 6.	Comparación
 ## 7.	Conclusión
 ## 8.	Bibliografía
