@@ -53,7 +53,7 @@ El diseño experimental de Atanción a Crisis implica una serie de característi
 Ambas propiedades permiten a los autores interpretar el coeficiente de β<sup>1</sup> como el efecto causal medio de ser tratado versus no ser tratado. Este efecto se conoce en la literatura como Average Treatment Effect (ATE) y representa la diferencia de medias entre el grupo de tratamiento y control:
 
 <p align="center">
-  <img src="./assets/images/Eq0.png" alt="Ecuación 0">
+  <img src="./assets/images/Eq0.png" alt="Ecuación 0" height=100>
 </p>
 
 
