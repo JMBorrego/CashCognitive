@@ -116,7 +116,7 @@ Para ser más precisos, cada árbol calculado mediante el Causal Forest reportar
 
 Tal y como se puede observar, el Causal Forest no necesita de los ITE para calcular los CATEs, solamente individuos tratados y controles en cada subgrupo que se crea. La principal ventaja de esto es que nos permite utilizar los datos observacionales para estimar el Causal Forest. De este modo, obtendremos las variables de interés directamente de las observaciones reales librandonos de posibles errores de estimación producidos al calcular los ITE.
 
-Dicho esto, un Causal Forest está formado por un conjunto de Causal Trees. Cada Causal Tree selecciona de forma aleatoria un conjunto reducido de variables y observaciones, calcula los CATEs con el criterio de optimización mencionado anteriormente. El resultado del Causal Forest será el conjunto de variables que a lo largo de todos los Causal Forest maximizan las diferencias de CATEs entre subgrupos. 
+Dicho esto, un Causal Forest está formado por un conjunto de Causal Trees. Cada Causal Tree selecciona de forma aleatoria un conjunto reducido de variables y observaciones, calcula los CATEs con el criterio de optimización mencionado anteriormente. El resultado del Causal Forest será el conjunto de variables que a lo largo de todos los Causal Forest maximizan las diferencias de CATEs entre subgrupos. Finalmente, Athey e Imbens (2019) proponen los Honest Causal Trees para evitar que el modelo haga overfitting. Este método consiste en la división en dos muestras de igual tamaño de los datos, utilizando la primera mitad para crear la estructura y particiones del árbol y la segunda para estimar los CATEs de cada hoja (subgrupo).
 
 
 ###     5.3.    Obtención de los subgrupos
