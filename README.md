@@ -30,10 +30,9 @@ A pesar de la importancia de asegurar un desarrollo cognitivo y físico saludabl
 
 ###     2.1.	Programa *Atención a Crisis*
 
-<img src="./assets/images/AaC_info_1.png" alt="lasagna">
+<img src="./assets/images/AaC_info_1.png" alt="Atención a Crisis Infografía 1" width="1000">
 
-![AtencionACrisis01](./assets/images/AaC_info_1.png?raw=true | width=500)
-![AtencionACrisis02](./assets/images/AaC_info_2.png?raw=true | width=500)
+<img src="./assets/images/AaC_info_2.png" alt="Atención a Crisis Infografía 2" width="1000">
 
 ###     2.2.	Metodología del estudio
 
@@ -71,11 +70,12 @@ El ATE resulta muy útil para estimar la eficacia media de un tratamiento, pero 
 
 El *dataset* cuenta con 4511 registros
 
-## 5.	Análisis
+## 5.	Estrategia de identificación
 
-###    5.1 Primer enfoque: predicción del efecto causal
+Esquema Chema.
+### 5.1.   "Potential Outcomes" e "Individual Treatment Effect"
 
-En la tradición de los “potential outcomes”, un efecto causal se define como la comparación entre dos estados del mundo. El primer estado del mundo es el que se conoce como el actual y es el mundo tal y como lo observamos (el individuo i recibe la ayuda de Atención a Crisis). El segundo estado del mundo es el que llamamos contrafactual (el mismo individuo i no recibe la ayuda de Atención a Crisis). De acuerdo con esta tradición de pensamiento, el efecto causal de recibir la ayuda de Atención a Crisis es la diferencia en el desarrollo cognitivo y físico entre los dos estados del mundo:
+En la tradición de los “potential outcomes”, un efecto causal se define como la comparación entre dos estados del mundo. El primer estado del mundo es el que se conoce como el actual y es el mundo tal y como lo observamos (por ejemplo, el individuo i recibe la ayuda de Atención a Crisis). El segundo estado del mundo es el que llamamos contrafactual (el mismo individuo i no recibe la ayuda de Atención a Crisis). De acuerdo con esta tradición de pensamiento, el efecto causal de recibir la ayuda de Atención a Crisis es la diferencia en el desarrollo cognitivo y físico entre los dos estados del mundo:
 
 <center> &delta;<sub>i</sub>=Y<sub>i</sub><sup>1</sup>-Y<sub>i</sub><sup>0</sup> </center>
 
@@ -88,75 +88,72 @@ Destacar que el ATE no es otra cosa que la media de &delta;<sub>i</sub>.
 
 La complejidad a la hora de estimar &delta;<sub>i</sub> es que el resultado en el mundo contrafactual no se observa. Sin embargo, el uso de modelos de Machine Learning bien entrenados podría predecir la variable outcome (Y<sub>i</sub>) para el estado del mundo contrafactual. Para ello, se genera una copia del conjunto de datos en la que se modifica la variable tratamiento (T<sub>i</sub><sup>□</sup>) por su valor complementario, de modo que:    
       
-![CounterFactEq](./assets/images/counterfactualEq.png?raw=true | width=100)
+<img src="./assets/images/counterfactualEq.png" alt="Ecuación Contrafactual" width="200"> 
     
-<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
+Debido a las pocas observaciones con disponibles en el dataset (N=3141) hemos decidido aplicar un modelo de regresión múltiple y un modelo de “extreme gradient boosting”. Paralelamente, hemos aplicado un modelo de Random Decision Tree (RDT) siguiendo la metodología aplicada en (Lamont et al., 2016). Mediante el modelo que presente una mayor tasa de acierto en la predicción pretendemos estimar el contrafactual de cada individuo, obteniendo de esta forma &delta;<sub>i</sub>.    
+
+Capturar el efecto del tratamiento individual (ITE) nos permite distinguir entre aquellos individuos (y sus características) por los cuales el efecto del tratamiento ha sido (o hubiera sido) más beneficioso y aquellos por los cuales el efecto es nulo o incluso negativo. Llegados a este punto, parecería relativamente senzillo estratificar en función del ITE y crear clusters para identificar los grupos de población con mejor y peor respuesta al tratamiento.    
+
+Sin embargo exiten una serie de pronlemáticas que nos hacen dudar de este enfoque. En primer lugar, centrar el análisis en el individuo y no en un subgrupo más amplio puede crear problemas de multiplicidad, es decir, de falsos positivos (Lamont et al., 2016). En segundo lugar, la base de datos contiene muchas variables que pueden tener un buen poder predictivo pero con significados complejos (por ej. efecto en el desarrollo del % de indiviuos vacunados en la comunidad). Dadas estas características de la base de datos parece razonable pensar que crear clusters sin una previa selección de variables acabaría creando unos resultados difíciles de interpretar.    
     
-Debido a las pocas observaciones con disponibles en el dataset (N=3141) hemos decidido aplicar un modelo de regresión múltiple y un modelo de “extreme gradient boosting”. (…)
+### 5.2.   Causal Forest
 
-Paralelamente, hemos aplicado un modelo de Random Decision Tree (RDT) siguiendo la metodología aplicada en Lamont et al. (2016). (…)
-Mediante el modelo que presente una mayor tasa de acierto en la predicción pretendemos estimar el contrafactual de cada individuo, obteniendo de esta forma &delta;<sub>i</sub>. Una vez capturado el efecto del tratamiento individual (ITE) tenemos la capacidad de estudiar las características de los individuos por los cuales es más beneficioso el tratamiento.
+EL método que utilizaremos para encontrar las variables que determinan el éxito del tratamiento es el Causal Forest, propuesto por (Athey et al., 2019). La intuición detrás de los Causal Forest es similar a los Random Forest. Sin embargo, en este caso el criterio a optimizar cuando se dividen los árboles no es minimizar el error en la predicción sino maximizar la diferencia de ATE en cada subgrupo que se crea. 
+
+Para ser más precisos, cada árbol calculado mediante el Causal Forest reportarà un conjunto de subgrupos con diferentes ATEs, condicionado a sus características. Este concepto se define como el CATE (Conditional Average Treatment Effect):
+
+<center> CATE=E(Y<sub>i</sub><sup>1</sup>-Y<sub>i</sub><sup>0</sup>│X<sub>i</sub>=x)=<span style="text-decoration:overline">Y</span><sub>i</sub><sup>1</sup> (x)-<span style="text-decoration:overline">Y</span><sub>i</sub><sup>0</sup> (x) </center>
+
+Tal y como se puede observar, el Causal Forest no necesita de los ITE para calcular los CATEs, solamente individuos tratados y controles en cada subgrupo que se crea. La principal ventaja de esto es que nos permite utilizar los datos observacionales para estimar el Causal Forest. De este modo, obtendremos las variables de interés directamente de las observaciones reales librandonos de posibles errores de estimación producidos al calcular los ITE.
+
+Dicho esto, un Causal Forest está formado por un conjunto de Causal Trees. Cada Causal Tree selecciona de forma aleatoria un conjunto reducido de variables y observaciones, calcula los CATEs con el criterio de optimización mencionado anteriormente. El resultado del Causal Forest será el conjunto de variables que a lo largo de todos los Causal Forest maximizan las diferencias de CATEs entre subgrupos. 
 
 
-###     5.2.	Cálculo de ITE: modelos de predicción
+###     5.3.    Obtención de los subgrupos
 
-Como se ha explicado previamente, para estimar el ITE, hemos creado diversos modelos de predicción basándonos en nuestra elección de modelos delineada en el apartado anterior. Aplicamos a los datos previamente limpiados y separados en train y test a los modelos distintos. Usamos únicamente aquellas variables independientes que hemos seleccionado previamente y únicamente la variable dependiente “z_all_06”. Para la estimación de goodness-of-fit utilizamos el R<sup>2</sup> y un Root Mean Squared Error (RMSE), aplicando un Cross-Validation de 10 folds para los datos de validación.
+Llegados a este punto, por un lado tenemos el efecto del tratamiento para cada individuo (ITE) y por otro tenemos el conjunto de variables más relevantes para explicar la heterogenenidad en la respuesta al tratamiento. (acabar demà)
 
-Inicialmente aplicamos los modelos sin hacer optimización de hiperparámetros para comprobar la utilidad de los modelos de base.
- 
-	Regresión Lineal
 
-La regresión lineal simple nos da una R<sup>2</sup> de 17.41%y un RMSE de 0.471.
+###     5.4. Obtención de resultados
 
-	Random Forest
+####    5.4.1. Cálculo de ITE: modelos de predicción
 
-A continuación lo comparamos con el modelo de Random Forest. Construimos un modelo de regresión Random Forest con 20 estimadores (Decision Trees) y lo aplicamos a los datos.
+Como se ha explicado previamente, para estimar el ITE, hemos creado diversos modelos de predicción basándonos en nuestra elección de modelos delineada en el apartado anterior. Aplicamos a los datos previamente limpiados y separados en train y test a los modelos distintos. Usamos únicamente aquellas variables independientes que hemos seleccionado previamente y únicamente la variable dependiente “z_all_06”. Para la estimación de goodness-of-fit utilizamos el R<sup>2</sup> y un Root Mean Squared Error (RMSE), aplicando un Cross-Validation de 10 folds para los datos de validación. 
 
-El R<sup>2</sup> resultante es de 26.39%, con un RMSE de 0.442, también mejor que la regresión lineal.
+Inicialmente aplicamos los modelos sin hacer optimización de hiperparámetros para comprobar la utilidad de los modelos de base. Los resultados obtenidos son los siguientes:
 
-	XGBoost
-
-Para el modelo XGBoost, optimizamos los parámetros de learning_rate y profundidad del árbol mediante un GridSearch con 2 Fold Cross-Validation. Usamos 100 estimadores para el XGBoost.
-
-El XGBoost proporciona un R<sup>2</sup> de 15.77% , siendo el modelo con peor goodness-of-fit de todos. El RMSE es de 0.474, el más alto de los modelos. Esto no nos sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un dataset tan pequeño.
-
-		Hyperparameter Tuning
+- La regresión lineal simple nos da una R<sup>2</sup> de 17.41%y un RMSE de 0.471.
+- Con el modelo Random Forest con 20 estimadores (Decision Trees) obtenemos un R<sup>2</sup> de 26.39%, con un RMSE de 0.442, mejor que la regresión lineal.
+- El XGBoost proporciona un R<sup>2</sup> de 15.77% , siendo el modelo con peor goodness-of-fit de todos. El RMSE es de 0.474, el más alto de los modelos. Esto no nos sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un dataset tan pequeño.
+   
+    
 
 A continuación, optimizamos los hiperparámetros para los modelos de Random Forest y XGBoost (para la regresión lineal no hace falta), usando un Randomized Search.
 
-	Random Forest:
+- Para el Random Forest, los hiperparámetros optimizados son los siguientes:
 
-Para el Random Forest, optimizamos los hiperparámetros y nos da los siguientes resultados:
-Nuestro nuevo Random Forest con los parámetros tuneados obtiene un R<sup>2</sup> de 31.80% y con un RMSE de 0.434, claramente superior al Random Forest base.
 
-	XGBoost:
 
-Para el XGBoost, los hiperparámetros optimizados son los siguientes:
+Nuestro nuevo Random Forest con los hiperparámetros optimizados obtiene un R<sup>2</sup> de 31.80% y con un RMSE de 0.434, claramente superior al Random Forest base.
 
+- Para el XGBoost, los hiperparámetros optimizados son los siguientes:
+XXXX    
 El XGBoost optimizado nos da unR<sup>2</sup> de 32.35% y un RMSE de 0.431. Por lo tanto, concluímos que este es el mejor modelo comparado con el resto.
 
 Para seguir analizando los modelos realizamos una visualización de las Learning Curves.
 
-	Linear Regression
+<img src="./assets/images/Learningcurves.png" alt="Learning Curves (Reg. Lineal; Random Forest; XGBoost)"  width="800">
 
+A pesar de que las learning curves convergen con mayor rapidez utilizando la regresión lineal, el XGBoost presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del train y del test.
 
-Random Forest
-
-XXXX
-
-	XGBoost
-
-Esto confirma que el modelo XGBoost es el más adecuado para la predicción puesto que el RMSE de los datos de validación tiende hacia un valor más bajo.
 
 Comparamos el resultado, también, con un scatterplot:
 
-	Linear Regression
+- Linear Regression
+XXXX
 
-IMAGE
-
-	XGBoost
-
-IMAGE
+- XGBoost
+XXXX
 
 Calculando valores de ITE
 
@@ -164,29 +161,14 @@ El primer paso para estimar el ITE es generar el contrafactual de cada individuo
 
 Así, obtenemos un dataframe con todos los ITEs para cada individuo. La distribución de los ITE tiene una distribución aproximadamente normal con una media en 0.09. Probablemente este es el primer resultado interesante del estudio. Tal y como se ha mencionado anteriormente, E(ITE)=E(δ<sub>i</sub> )=ATE, indicando que el ATE estimado mediante nuestro modelo es de 0.09, muy similar y dentro del intervalo de confianza del resultado obtenido por (Macours et al., 2012). Dada la consistencia y ausencia de sesgo del ATE en regresión simple, podemos asumir que nuestros estimadores son insesgados. 
 
-A pesar de esto, la precisión de nuestra estimación es baja. Para ilustrar este punto, nuestro modelo tiene un RMSE de 0.4 y el rango de z_all_06 es de 4. La baja capacidad predictiva de nuestros modelos implica que los ITE estimados probablemente tengan un nivel de ruido muy elevado que provoque que el análisis de subgrupos estratificando por ITE pierda sentido. 
 
 
 
 
-###     5.3.	Segundo enfoque: estimación de efecto condicional
 
-La metodología anterior, a pesar de ser intuitiva, no está exenta de problemas. En primer lugar, es necesario un modelo predictivo con una alta tasa de acierto si se pretende obtener resultados informativos. Debido a que los datos utilizados en el presente estudio son los mismos que en Macours et al. (2012), cuyo objetivo era obtener una relación causal y no predecir, existe un número bajo de variables en la base de datos con un alto nivel predictivo. Es más, probablemente las variables más importantes para determinar el nivel de desarrollo de los niños (factores genéticos, ingesta exacta de alimentos…) no son observables. En segundo lugar, centrar el análisis en el individuo y no en un subgrupo más amplio puede crear problemas de falsos positivos (multiplicidad).    
+####    5.4.2.	Cálculo de CATE: honest causal forest
 
-Por este motivo hemos decidido testear otros enfoques para la identificación causal de efectos heterogéneos más establecidos en la literatura. En particular nos centraremos en la estimación del ATE condicional (CATE) mediante un modelo de Random Decision Tree particular, el Causal Forest. 
-En primer lugar, definimos el CATE como:
-
-<center> CATE=E(Y<sub>i</sub><sup>1</sup>-Y<sub>i</sub><sup>0</sup>│X<sub>i</sub>=x)=<span style="text-decoration:overline">Y</span><sub>i</sub><sup>1</sup> (x)-<span style="text-decoration:overline">Y</span><sub>i</sub><sup>0</sup> (x) </center>
-
-Eso es, ciertas características de los individuos podrían influir en la respuesta que estos tienen al recibir el tratamiento. De este modo, resulta interesante estudiar subgrupos de la población. Un ejemplo claro seria dividir los individuos de nuestro estudio en dos subgrupos dependiendo de su edad y reestimar el ATE para niños mayores y menores que X años.    
-
-En el caso de muchas variables explicativas (X<sub>ki</sub>) y sin unos subgrupos previamente identificados para analizar, puede resultar útil el enfoque propuesto por Athey et al. (2019), en donde se presentan los Causal Forest. La intuición detrás de los Causal Forest es encontrar una serie de observaciones con características similares dentro de la base de datos. En este caso, el criterio a optimizar cuando se dividen los árboles no es minimizar el error en la predicción sino maximizar el ATE en cada subgrupo que se crea. Dicho de otra manera, un Causal Forest dividirá los datos en grupos con características similares para los cuales la diferencia de resultados entre los individuos tratados y los de control se maximiza. El objetivo será encontrar ATEs constantes en cada subgrupo, pero diferentes entre subgrupos.    
-
-Para construir un Causal Forest será necesario calcular la media entre un conjunto de Causal Trees creados a partir de diferentes submuestras. Finalmente, Athey e Imbens (2019) proponen los Honest Causal Trees para evitar que el modelo haga overfitting. Este método consiste en la división en dos muestras de igual tamaño de los datos, utilizando la primera mitad para crear la estructura y particiones del árbol y la segunda para estimar los ATE de cada hoja (subgrupo).
-
-
-
-###     5.4.	Cálculo de CATE: honest causal forest
+####    5.4.3.	Cálculo de subgrupos
 ## 6.	Comparación
 ## 7.	Conclusión
 ## 8.	Bibliografía
