@@ -112,9 +112,9 @@ Dicho esto, un Causal Forest está formado por un conjunto de Causal Trees. Cada
 
 ###     5.3.    Obtención de los subgrupos
 
-Llegados a este punto, por un lado tenemos el efecto del tratamiento para cada individuo (ITE) y por otro tenemos el conjunto de variables más relevantes para explicar la heterogenenidad en la respuesta al tratamiento. (acabar demà)
+Llegados a este punto, por un lado tenemos el efecto del tratamiento para cada individuo (ITE) y por otro tenemos el conjunto de variables más relevantes para explicar la heterogenenidad en la respuesta al tratamiento. 
 
-
+A continuación, crearemos los subgrupos creando un Decision Tree sobre el ITE usando como únicas variables las seleccionadas mediante el Causal Forest. Con este procedimiento conseguiremos un conjunto de subgrupos con un ITE similar por cada subgrupo, pero distinto entre subgrupos. La parte más atractiva de este enfoque es que los subgrupos que obtenemos están creados teniendo en cuenta solamente aquellas variables que observacionalmente influyen al tratamiento, descartando todas aquellas que son poco informativas y complicarían la interpretación de nuestros resultados. 
 ###     5.4. Obtención de resultados
 
 ####    5.4.1. Cálculo de ITE: modelos de predicción
