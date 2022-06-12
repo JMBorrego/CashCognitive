@@ -52,7 +52,7 @@ El diseño experimental de Atanción a Crisis implica una serie de característi
 
 Ambas propiedades permiten a los autores interpretar el coeficiente de β<sup>1</sup> como el efecto causal medio de ser tratado versus no ser tratado. Este efecto se conoce en la literatura como Average Treatment Effect (ATE) y representa la diferencia de medias entre el grupo de tratamiento y control:
 
-<center> ATE=<span style="text-decoration:overline">Y</span><sub>1</sub>-<span style="text-decoration:overline">Y</span><sub>0</sub> </center>
+<img src="./assets/images/Eq0.png" alt="Ecuación 0" width="200" align="center">
 
 Donde:    
 <span style="text-decoration:overline">Y</span><sub>1</sub>=Puntuación media de los individuos tratados.    
@@ -72,12 +72,13 @@ El *dataset* cuenta con 4511 registros
 
 ## 5.	Estrategia de identificación
 
-Esquema Chema.
+<img src="./assets/images/Method_info.png" alt="Metodología esquema" width="1000">
+
 ### 5.1.   "Potential Outcomes" e "Individual Treatment Effect"
 
 En la tradición de los “potential outcomes”, un efecto causal se define como la comparación entre dos estados del mundo. El primer estado del mundo es el que se conoce como el actual y es el mundo tal y como lo observamos (por ejemplo, el individuo i recibe la ayuda de Atención a Crisis). El segundo estado del mundo es el que llamamos contrafactual (el mismo individuo i no recibe la ayuda de Atención a Crisis). De acuerdo con esta tradición de pensamiento, el efecto causal de recibir la ayuda de Atención a Crisis es la diferencia en el desarrollo cognitivo y físico entre los dos estados del mundo:
 
-<center> &delta;<sub>i</sub>=Y<sub>i</sub><sup>1</sup>-Y<sub>i</sub><sup>0</sup> </center>
+<img src="./assets/images/Eq1.png" alt="Ecuación 1" width="200" align="center">
 
 Donde:    
 &delta;<sub>i</sub>=El efecto del tratamiento para el individuo i, Individual Treatment Effect (ITE)    
@@ -87,11 +88,11 @@ Y<sub>i</sub><sup>0</sup>=Resultado del individuo i en el estado del mundo donde
 Destacar que el ATE no es otra cosa que la media de &delta;<sub>i</sub>.
 
 La complejidad a la hora de estimar &delta;<sub>i</sub> es que el resultado en el mundo contrafactual no se observa. Sin embargo, el uso de modelos de Machine Learning bien entrenados podría predecir la variable outcome (Y<sub>i</sub>) para el estado del mundo contrafactual. Para ello, se genera una copia del conjunto de datos en la que se modifica la variable tratamiento (T<sub>i</sub><sup>□</sup>) por su valor complementario, de modo que:    
-      
+<img src="./assets/images/Eq2.png" alt="Ecuación 2" width="200" align="center">      
 <img src="./assets/images/counterfactualEq.png" alt="Ecuación Contrafactual" width="200"> 
     
 Debido a las pocas observaciones con disponibles en el dataset (N=3141) hemos decidido aplicar un modelo de regresión múltiple y un modelo de “extreme gradient boosting”. Paralelamente, hemos aplicado un modelo de Random Decision Tree (RDT) siguiendo la metodología aplicada en (Lamont et al., 2016). Mediante el modelo que presente una mayor tasa de acierto en la predicción pretendemos estimar el contrafactual de cada individuo, obteniendo de esta forma &delta;<sub>i</sub>.    
-
+ 
 Capturar el efecto del tratamiento individual (ITE) nos permite distinguir entre aquellos individuos (y sus características) por los cuales el efecto del tratamiento ha sido (o hubiera sido) más beneficioso y aquellos por los cuales el efecto es nulo o incluso negativo. Llegados a este punto, parecería relativamente senzillo estratificar en función del ITE y crear clusters para identificar los grupos de población con mejor y peor respuesta al tratamiento.    
 
 Sin embargo exiten una serie de pronlemáticas que nos hacen dudar de este enfoque. En primer lugar, centrar el análisis en el individuo y no en un subgrupo más amplio puede crear problemas de multiplicidad, es decir, de falsos positivos (Lamont et al., 2016). En segundo lugar, la base de datos contiene muchas variables que pueden tener un buen poder predictivo pero con significados complejos (por ej. efecto en el desarrollo del % de indiviuos vacunados en la comunidad). Dadas estas características de la base de datos parece razonable pensar que crear clusters sin una previa selección de variables acabaría creando unos resultados difíciles de interpretar.    
@@ -102,7 +103,7 @@ EL método que utilizaremos para encontrar las variables que determinan el éxit
 
 Para ser más precisos, cada árbol calculado mediante el Causal Forest reportarà un conjunto de subgrupos con diferentes ATEs, condicionado a sus características. Este concepto se define como el CATE (Conditional Average Treatment Effect):
 
-<center> CATE=E(Y<sub>i</sub><sup>1</sup>-Y<sub>i</sub><sup>0</sup>│X<sub>i</sub>=x)=<span style="text-decoration:overline">Y</span><sub>i</sub><sup>1</sup> (x)-<span style="text-decoration:overline">Y</span><sub>i</sub><sup>0</sup> (x) </center>
+<img src="./assets/images/Eq3.png" alt="Ecuación 3" width="200" align="center">
 
 Tal y como se puede observar, el Causal Forest no necesita de los ITE para calcular los CATEs, solamente individuos tratados y controles en cada subgrupo que se crea. La principal ventaja de esto es que nos permite utilizar los datos observacionales para estimar el Causal Forest. De este modo, obtendremos las variables de interés directamente de las observaciones reales librandonos de posibles errores de estimación producidos al calcular los ITE.
 
@@ -111,9 +112,9 @@ Dicho esto, un Causal Forest está formado por un conjunto de Causal Trees. Cada
 
 ###     5.3.    Obtención de los subgrupos
 
-Llegados a este punto, por un lado tenemos el efecto del tratamiento para cada individuo (ITE) y por otro tenemos el conjunto de variables más relevantes para explicar la heterogenenidad en la respuesta al tratamiento. (acabar demà)
+Llegados a este punto, por un lado tenemos el efecto del tratamiento para cada individuo (ITE) y por otro tenemos el conjunto de variables más relevantes para explicar la heterogenenidad en la respuesta al tratamiento. 
 
-
+A continuación, crearemos los subgrupos creando un Decision Tree sobre el ITE usando como únicas variables las seleccionadas mediante el Causal Forest. Con este procedimiento conseguiremos un conjunto de subgrupos con un ITE similar por cada subgrupo, pero distinto entre subgrupos. La parte más atractiva de este enfoque es que los subgrupos que obtenemos están creados teniendo en cuenta solamente aquellas variables que observacionalmente influyen al tratamiento, descartando todas aquellas que son poco informativas y complicarían la interpretación de nuestros resultados. 
 ###     5.4. Obtención de resultados
 
 ####    5.4.1. Cálculo de ITE: modelos de predicción
