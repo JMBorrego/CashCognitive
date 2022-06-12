@@ -53,7 +53,7 @@ El diseño experimental de Atanción a Crisis implica una serie de característi
 Ambas propiedades permiten a los autores interpretar el coeficiente de β<sup>1</sup> como el efecto causal medio de ser tratado versus no ser tratado. Este efecto se conoce en la literatura como Average Treatment Effect (ATE) y representa la diferencia de medias entre el grupo de tratamiento y control:
 
 <p align="center">
-  <img src="./assets/images/Eq0.png" alt="Ecuación 0" height=100>
+  <img src="./assets/images/Eq0.png" alt="Ecuación 0" height=20>
 </p>
 
 
@@ -82,7 +82,7 @@ El *dataset* cuenta con 4511 registros
 En la tradición de los “potential outcomes”, un efecto causal se define como la comparación entre dos estados del mundo. El primer estado del mundo es el que se conoce como el actual y es el mundo tal y como lo observamos (por ejemplo, el individuo i recibe la ayuda de Atención a Crisis). El segundo estado del mundo es el que llamamos contrafactual (el mismo individuo i no recibe la ayuda de Atención a Crisis). De acuerdo con esta tradición de pensamiento, el efecto causal de recibir la ayuda de Atención a Crisis es la diferencia en el desarrollo cognitivo y físico entre los dos estados del mundo:
 
 <p align="center">
-  <img src="./assets/images/Eq1.png" alt="Ecuación 1">
+  <img src="./assets/images/Eq1.png" alt="Ecuación 1" height=20>
 </p>
 
 Donde:    
@@ -95,7 +95,7 @@ Destacar que el ATE no es otra cosa que la media de &delta;<sub>i</sub>.
 La complejidad a la hora de estimar &delta;<sub>i</sub> es que el resultado en el mundo contrafactual no se observa. Sin embargo, el uso de modelos de Machine Learning bien entrenados podría predecir la variable outcome (Y<sub>i</sub>) para el estado del mundo contrafactual. Para ello, se genera una copia del conjunto de datos en la que se modifica la variable tratamiento (T<sub>i</sub><sup>□</sup>) por su valor complementario, de modo que:    
 
 <p align="center">
-  <img src="./assets/images/Eq2.png" alt="Ecuación 2">
+  <img src="./assets/images/Eq2.png" alt="Ecuación 2" height=35>
 </p>
 
 Debido a las pocas observaciones con disponibles en el dataset (N=3141) hemos decidido aplicar un modelo de regresión múltiple y un modelo de “extreme gradient boosting”. Paralelamente, hemos aplicado un modelo de Random Decision Tree (RDT) siguiendo la metodología aplicada en (Lamont et al., 2016). Mediante el modelo que presente una mayor tasa de acierto en la predicción pretendemos estimar el contrafactual de cada individuo, obteniendo de esta forma &delta;<sub>i</sub>.    
@@ -111,7 +111,7 @@ EL método que utilizaremos para encontrar las variables que determinan el éxit
 Para ser más precisos, cada árbol calculado mediante el Causal Forest reportarà un conjunto de subgrupos con diferentes ATEs, condicionado a sus características. Este concepto se define como el CATE (Conditional Average Treatment Effect):
 
 <p align="center">
-  <img src="./assets/images/Eq3.png" alt="Ecuación 3">
+  <img src="./assets/images/Eq3.png" alt="Ecuación 3" height=20>
 </p>
 
 Tal y como se puede observar, el Causal Forest no necesita de los ITE para calcular los CATEs, solamente individuos tratados y controles en cada subgrupo que se crea. La principal ventaja de esto es que nos permite utilizar los datos observacionales para estimar el Causal Forest. De este modo, obtendremos las variables de interés directamente de las observaciones reales librandonos de posibles errores de estimación producidos al calcular los ITE.
