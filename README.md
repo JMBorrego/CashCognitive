@@ -23,9 +23,9 @@
 
 ## 2.	Introducción
 
-El desarrollo en los primeros años de vida es un predictor importante del éxito a lo largo de la vida. Tanto en países desarrollados como en desarrollo, los niños con un nivel de desarrollo cognitivo menor antes de entrar al sistema educativo tienen un peor desempeño escolar y obtienen un nivel salarial más bajo (Currie and Thomas 2001; Case and Paxson 2008). En este contexto, diseñar política pública que sea capaz de reducir los niveles de subdesarrollo de los niños debería ser una prioridad, ya que no solamente tiene efectos en el bienestar actual de los infantes sino también en su futuro y el de su comunidad.
+El desarrollo en los primeros años de vida es un predictor importante del éxito a lo largo de la vida. Tanto en países desarrollados como en vías de desarrollo, los niños con un nivel de desarrollo cognitivo menor antes de entrar al sistema educativo tienen un peor desempeño escolar y obtienen un nivel salarial más bajo (Currie and Thomas 2001; Case and Paxson 2008). En este contexto, diseñar política pública que sea capaz de reducir los niveles de subdesarrollo de los niños debería ser una prioridad, ya que no solamente tiene efectos en el bienestar actual de los infantes sino también en su futuro y el de su comunidad.
 
-A pesar de la importancia de asegurar un desarrollo cognitivo y físico saludable entre los más pequeños, los recursos económicos de los cuales disponen los gobiernos son limitados. Esta problemática es particularmente relevante para los países en desarrollo. Para garantizar un mayor nivel de eficiencia y equidad no solamente es relevante saber si dicha política pública es efectiva, sino también el efecto que tiene para grupos con diferentes características. De esta forma es posible identificar los individuos que se verían más beneficiados de recibir una ayuda pública (mayor eficiencia) y los grupos a los cuales es más urgente ayudar para garantizar un mayor nivel de equidad.
+A pesar de la importancia de asegurar un desarrollo cognitivo y físico saludable entre los más pequeños, los recursos económicos de los cuales disponen los gobiernos son limitados. Esta problemática es particularmente relevante para los países en vías de desarrollo. Para garantizar un mayor nivel de eficiencia y equidad no solamente es relevante saber si dicha política pública es efectiva, sino también el efecto que tiene para grupos con diferentes características. De esta forma es posible identificar los individuos que se verían más beneficiados de recibir una ayuda pública y los grupos a los cuales es más urgente ayudar para garantizar un mayor nivel de equidad.
 
 
 ###     2.1.	Programa *Atención a Crisis*
@@ -38,19 +38,21 @@ A pesar de la importancia de asegurar un desarrollo cognitivo y físico saludabl
 
 El artículo “Cash Transfers, Behavioral Changes,and Cognitive Development in Early Childhood: Evidence from a Randomized Experiment” (Macours 2012) supone una primera aproximación para evaluar los efectos de *Atención a Crisis*. El objetivo de los autores de este estudio es determinar el efecto de ser tratado sobre el desarrollo cognitivo y físico. De este modo, lo que se pretende estimar es la diferencia en el desarrollo entre los individuos que han recibido la compensación económica (tratamiento) *versus* otros individuos con característica similares que no (control). 
 
-La metodología aplicada en el artículo estima el efecto causal de ser beneficiario de Atención a Crisis mediante un simple análisis de regresión del tipo:
+La metodología aplicada en el artículo estima el efecto causal de ser beneficiario de *Atención a Crisis* mediante un simple análisis de regresión del tipo:
 
-<center> Y<sub>i</sub> = &beta;<sub>0</sub> + &beta;<sub>1</sub>T<sub>i</sub> + &beta;<sub>k</sub>X<sub>ki</sub> + u<sub>i</sub></center>
+<p align="center">
+  <img src="./assets/images/Eq00.png" alt="Ecuación 00" height=20>
+</p>
 
 Donde:    
-Y<sub>i</sub>=Puntuación en términos de desarrollo cognitivo y físico.  
-T<sub>i</sub>=Variable binaria que igual a 1 para los individuos que han recibido la ayuda de Atención a Crisis (tratados) e igual a 0 del contrario (control).  
-X<sub>ki</sub>= Vector de k regresores para controlar por características de los individuos.  
-u<sub>i</sub>= Resto de características no incluidas en el modelo que también pueden tener efecto sobre la variable Y<sub>i</sub> (por ej. Factores genéticos).  
+$Y_i$ = Puntuación en términos de desarrollo cognitivo y físico.  
+$T_i$ = Variable binaria que igual a 1 para los individuos que han recibido la ayuda de *Atención a Crisis* (tratados) e igual a 0 del contrario (control).  
+$X_i$ = Vector de k regresores para controlar por características de los individuos.  
+$u_i$ = Resto de características no incluidas en el modelo que también pueden tener efecto sobre la variable Y<sub>i</sub> (por ej. Factores genéticos).  
 
-El diseño experimental de Atanción a Crisis implica una serie de características que facilitan la estimación del efecto causal de ser tratado mediante el análisis de regresión. En primer lugar, asignar los individuos a grupos de tratamiento o de control de forma aleatoria, como si de una lotería se tratase, supone que no existe correlación entre ser tratado y otras características no observadas de los individuos. Esto es, E(u_i│T_i )=0. Al cumplirse esta propiedad se puede asumir que el coeficiente estimado β_1 no esta sesgado y representa de forma acurada el verdadero valor poblacional de recibir el tratamiento. En segundo lugar, los individuos de la muestra forman parte de una misma población y han sido seleccionados de forma aleatoria, implicando que los estimadores de mínimos cuadrados ordinarios (MCO) son consistentes. 
+El diseño experimental de *Atención a Crisis* implica una serie de características que facilitan la estimación del efecto causal de ser tratado mediante el análisis de regresión. En primer lugar, asignar los individuos a grupos de tratamiento o de control de forma aleatoria, como si de una lotería se tratase, supone que no existe correlación entre ser tratado y otras características no observadas de los individuos,  es decir, $E(u_i│T_i )=0$. Al cumplirse esta propiedad se puede asumir que el coeficiente estimado $β_1$ no esta sesgado y representa de forma acurada el verdadero valor poblacional de recibir el tratamiento. En segundo lugar, los individuos de la muestra forman parte de una misma población y han sido seleccionados de forma aleatoria, implicando que los estimadores de mínimos cuadrados ordinarios (MCO) son consistentes. 
 
-Ambas propiedades permiten a los autores interpretar el coeficiente de β<sup>1</sup> como el efecto causal medio de ser tratado versus no ser tratado. Este efecto se conoce en la literatura como Average Treatment Effect (ATE) y representa la diferencia de medias entre el grupo de tratamiento y control:
+Ambas propiedades permiten a los autores interpretar el coeficiente de $β_1$ como el efecto causal medio de ser tratado *versus* no ser tratado. Este efecto se conoce en la literatura como *Average Treatment Effect* (ATE) y representa la diferencia de medias entre el grupo de tratamiento y control:
 
 <p align="center">
   <img src="./assets/images/Eq0.png" alt="Ecuación 0" height=20>
@@ -58,10 +60,10 @@ Ambas propiedades permiten a los autores interpretar el coeficiente de β<sup>1<
 
 
 Donde:    
-<span style="text-decoration:overline">Y</span><sub>1</sub>=Puntuación media de los individuos tratados.    
-<span style="text-decoration:overline">Y</span><sub>0</sub>=Puntuación media de los individuos no tratados.    
+$\overline{Y_1}$ = Puntuación media de los individuos tratados.    
+$\overline{Y_0}$ = Puntuación media de los individuos no tratados.    
 
-Los resultados del estudio muestran que el ATE=0.0876, significante a un nivel de significación del 99%. Teniendo en cuenta que Y<sub>i</sub> está mesurada en un z-score, con media 0 i desviación estándar de 1, podemos concluir que el beneficio medio de recibir Atención a Crisis es un incremento del 8.76% desviaciones estándares en el desarrollo cognitivo y físico.
+Los resultados del estudio muestran que el ATE=0.0876, significante a un nivel de significación del 99%. Teniendo en cuenta que Y<sub>i</sub> está mesurada en un z-score, con media 0 i desviación estándar de 1, podemos concluir que el beneficio medio de recibir *Atención a Crisis* es un incremento del 8.76% desviaciones estándares en el desarrollo cognitivo y físico.
 
 El objetivo de este articulo no es predictivo ya que simplemente pretende estimar el efecto causal de recibir la compensación económica. Dado el diseño del programa dicho efecto podría calcularse simplemente con una regresión simple incluyendo la variable tratamiento (T<sub>i</sub>) y un intercepto (&beta;<sub>i</sub>). De hecho, el vector de variables de control X<sub>ki</sub> simplemente se incluye para controlar las diferencias existentes entre los grupos de control y tratamiento debidas a un número de observaciones relativamente bajo. Por este motivo no resulta especialmente relevante obtener unas medidas de ajuste como el R<sup>2</sup>. A pesar de ello hemos decidido replicar el análisis realizado por los autores (siguiendo las indicaciones metodológicas y de tratamiento de datos mencionados en el artículo) para obtener las principales medidas de bondad de ajuste de los modelos de regresión y que nos sirvan como base sobre la cual sofisticar nuestro análisis. La media del error de estimación al cuadrado es de  y el R<sup>2</sup> es de 0.17.
 
@@ -79,10 +81,10 @@ El *dataset* cuenta con 4511 registros
 
 ### 5.1.   "Potential Outcomes" e "Individual Treatment Effect"
 
-En la tradición de los “potential outcomes”, un efecto causal se define como la comparación entre dos estados del mundo. El primer estado del mundo es el que se conoce como el actual y es el mundo tal y como lo observamos (por ejemplo, el individuo i recibe la ayuda de Atención a Crisis). El segundo estado del mundo es el que llamamos contrafactual (el mismo individuo i no recibe la ayuda de Atención a Crisis). De acuerdo con esta tradición de pensamiento, el efecto causal de recibir la ayuda de Atención a Crisis es la diferencia en el desarrollo cognitivo y físico entre los dos estados del mundo:
+En la tradición de los “potential outcomes”, un efecto causal se define como la comparación entre dos estados del mundo. El primer estado del mundo es el que se conoce como el actual y es el mundo tal y como lo observamos (por ejemplo, el individuo i recibe la ayuda de *Atención a Crisis*). El segundo estado del mundo es el que llamamos contrafactual (el mismo individuo i no recibe la ayuda de *Atención a Crisis*). De acuerdo con esta tradición de pensamiento, el efecto causal de recibir la ayuda de *Atención a Crisis* es la diferencia en el desarrollo cognitivo y físico entre los dos estados del mundo:
 
 <p align="center">
-  <img src="./assets/images/Eq1.png" alt="Ecuación 1" height=20>
+  <img src="./assets/images/Eq1.png" alt="Ecuación 1" height=27>
 </p>
 
 Donde:    
@@ -95,7 +97,7 @@ Destacar que el ATE no es otra cosa que la media de &delta;<sub>i</sub>.
 La complejidad a la hora de estimar &delta;<sub>i</sub> es que el resultado en el mundo contrafactual no se observa. Sin embargo, el uso de modelos de Machine Learning bien entrenados podría predecir la variable outcome (Y<sub>i</sub>) para el estado del mundo contrafactual. Para ello, se genera una copia del conjunto de datos en la que se modifica la variable tratamiento (T<sub>i</sub><sup>□</sup>) por su valor complementario, de modo que:    
 
 <p align="center">
-  <img src="./assets/images/Eq2.png" alt="Ecuación 2" height=35>
+  <img src="./assets/images/Eq2.png" alt="Ecuación 2" height=45>
 </p>
 
 Debido a las pocas observaciones con disponibles en el dataset (N=3141) hemos decidido aplicar un modelo de regresión múltiple y un modelo de “extreme gradient boosting”. Paralelamente, hemos aplicado un modelo de Random Decision Tree (RDT) siguiendo la metodología aplicada en (Lamont et al., 2016). Mediante el modelo que presente una mayor tasa de acierto en la predicción pretendemos estimar el contrafactual de cada individuo, obteniendo de esta forma &delta;<sub>i</sub>.    
@@ -111,12 +113,12 @@ EL método que utilizaremos para encontrar las variables que determinan el éxit
 Para ser más precisos, cada árbol calculado mediante el Causal Forest reportarà un conjunto de subgrupos con diferentes ATEs, condicionado a sus características. Este concepto se define como el CATE (Conditional Average Treatment Effect):
 
 <p align="center">
-  <img src="./assets/images/Eq3.png" alt="Ecuación 3" height=20>
+  <img src="./assets/images/Eq3.png" alt="Ecuación 3" height=35>
 </p>
 
 Tal y como se puede observar, el Causal Forest no necesita de los ITE para calcular los CATEs, solamente individuos tratados y controles en cada subgrupo que se crea. La principal ventaja de esto es que nos permite utilizar los datos observacionales para estimar el Causal Forest. De este modo, obtendremos las variables de interés directamente de las observaciones reales librandonos de posibles errores de estimación producidos al calcular los ITE.
 
-Dicho esto, un Causal Forest está formado por un conjunto de Causal Trees. Cada Causal Tree selecciona de forma aleatoria un conjunto reducido de variables y observaciones, calcula los CATEs con el criterio de optimización mencionado anteriormente. El resultado del Causal Forest será el conjunto de variables que a lo largo de todos los Causal Forest maximizan las diferencias de CATEs entre subgrupos. Finalmente, Athey e Imbens (2019) proponen los Honest Causal Trees para evitar que el modelo haga overfitting. Este método consiste en la división en dos muestras de igual tamaño de los datos, utilizando la primera mitad para crear la estructura y particiones del árbol y la segunda para estimar los CATEs de cada hoja (subgrupo).
+Dicho esto, un Causal Forest está formado por un conjunto de Causal Trees. Cada Causal Tree selecciona de forma aleatoria un conjunto reducido de variables y observaciones, calcula los CATEs con el criterio de optimización mencionado anteriormente. El resultado del Causal Forest será el conjunto de variables que a lo largo de todos los Causal Forest maximizan las diferencias de CATEs entre subgrupos. 
 
 
 ###     5.3.    Obtención de los subgrupos
