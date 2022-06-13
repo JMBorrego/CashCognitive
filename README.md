@@ -14,8 +14,7 @@
     6.1. Interpretación    
     6.2. Validez del método    
 7.	Limitaciones    
-    7.1.   *Causal Forest*    
-    7.2.   Implementación    
+    7.1.   *Causal Forest*       
 9.	Conclusión
 10.	Bibliografía
 
@@ -124,9 +123,17 @@ Capturar el efecto individual del tratamiento (ITE) permite distinguir entre aqu
 
 Para la agrupación se utiliza un *Decision Tree*, de manera que subdivida los registros estratificando por ITE. Con este procedimiento se conseguirá un conjunto de subgrupos con un ITE similar por cada subgrupo, pero distinto entre ellos.
 
+Finalmente, como una *a priori* sencilla comprovación de la validez conceptual del método, se propone calcular el efecto del tratamiento condicionado condicionado a las características de cada subgrupo. Este concepto se define como el CATE (*Conditional Average Treatment Effect*):
+
+<p align="center">
+  <img src="./assets/images/Eq3.png" alt="Ecuación 3" height=35>
+</p>
+
+Es decir, dentro de cada subgrupo se computará diferencia entre la media de la variable respuesta para los individuos tratados (<span style="text-decoration:overline">Y<sub>i</sub><sup>1</sup></span>(X)) y para los no tratados (<span style="text-decoration:overline">Y<sub>i</sub><sup>0</sup></span>(X)). De esta forma, si la estratificación por ITE captura una heterogeneidad real en los datos respecto al efecto del tratamiento, la media de ITE dentro de cada subgrupo debería ser comparable a su respectivo CATE.
+
 ###     5.2. Implementación
 
-Como se ha explicado previamente, para estimar el ITE, se han explorado diversos modelos de predicción basados en la elección de modelos delineada en el apartado anterior. Sobre el *dataset* procesado y separado en *train* y *test*, se entrenan los distintos modelos (proceso disponible en [03_ITE_METHOD](03_ITE_METHOD.ipynb)). Únicamente se usan aquellas variables independientes que previamente se han seleccionado en la exploración de datos y únicamente la variable dependiente *z_all_06*. Para la estimación de la bondad de ajuste se utiliza el R<sup>2</sup> y un *Root Mean Squared Error* (RMSE), aplicando una  validación cruzada de 10 iteraciones (*10-fold cross-validation*). 
+Como se ha explicado previamente, para estimar el ITE, se han explorado diversos modelos de predicción basados en la elección de modelos delineada en el apartado anterior. Sobre el *dataset* procesado y separado en *train* y *test*, se entrenan los distintos modelos (proceso disponible en [03_ITE_MODEL](03_ITE_MODEL.ipynb)). Únicamente se usan aquellas variables independientes que previamente se han seleccionado en la exploración de datos y únicamente la variable dependiente *z_all_06*. Para la estimación de la bondad de ajuste se utiliza el R<sup>2</sup> y un *Root Mean Squared Error* (RMSE), aplicando una  validación cruzada de 10 iteraciones (*10-fold cross-validation*). 
 
 Inicialmente se entrenaron los modelos sin hacer optimización de sus hiperparámetros para comprobar la utilidad de base de los modelos. Los resultados obtenidos son los siguientes:
 
@@ -212,16 +219,11 @@ Las variables seleccionadas por este modelo para las agrupaciones son:
 
 La intuición detrás de este método, propuesto por Susan Athey (Athey et al., 2019), es similar a un *Decision Tree*. Sin embargo, en este caso el criterio a optimizar cuando se dividen los nodos no es minimizar el error en la predicción sino maximizar la diferencia de ATE en cada subgrupo que se crea. 
 
-Para ser más precisos, el árbol calculado reportará un conjunto de subgrupos con diferentes ATE, condicionado a sus características. Este concepto se define como el CATE (*Conditional Average Treatment Effect*):
-
-<p align="center">
-  <img src="./assets/images/Eq3.png" alt="Ecuación 3" height=35>
-</p>
+Para ser más precisos, el árbol calculado reportará un 
 
 Tal y como se puede observar, el *Causal Tree* no necesita el cálculo de los ITE para conseguir los subgrupos y sus CATEs, solamente necesita que haya individuos tratados y controles en cada subgrupo que se crea. La principal ventaja de esto es que permite utilizar los datos observacionales evitando posibles errores de estimación producidos al calcular los ITE.
 
-### 7.2.   Implementación
-🟥(proceso disponible en [04_CAUSAL_TREE](04_CAUSAL_TREE.ipynb))🟥
+🟥(proceso disponible en [05_CAUSAL_TREE](05_CAUSAL_TREE.ipynb))🟥
 ## 7.	Conclusión
 ## 8.	Bibliografía
 
