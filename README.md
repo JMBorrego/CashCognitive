@@ -9,15 +9,13 @@
 4.	Exploración preliminar de datos
 5.	Metodología y análisis    
     5.1.	Marco teórico: *Potential Outcomes* e *Individual Treatment Effect*    
-    5.2.    Implementación    
-        5.2.1.	Cálculo de ITE: modelos de predicción    
-        5.2.2.  Cálculo de subgrupos: *Decision Tree*        
+    5.2.    Implementación        
 6.	Resultados
     6.1. Interpretación
     6.2. Validez del método
-8.	Limitaciones
-    8.1.   *Causal Forest*
-    8.2.   Implementación    
+7.	Limitaciones
+    7.1.   *Causal Forest*
+    7.2.   Implementación    
 9.	Conclusión
 10.	Bibliografía
 
@@ -82,7 +80,7 @@ El *dataset* cuenta con 4511 registros.
 
 ## 5.	Metodología y análisis
 
-El método que se propone busca calcular el efecto del tratamiento a nivel individual mediante un modelo predictivo de la variable de respuesta *z_all_06*, como medida del desarrollo infantil. Una vez calculado, se realiza una estrificación de la muestra según su valor, de manera que se agrupen los individuos con un efecto del tratamiento similar. El siguiente diagrama resume el procedimiento explicado en detalle en las siguientes secciones.
+El método que se propone busca calcular el efecto del tratamiento a nivel individual mediante un modelo predictivo de la variable de respuesta *z_all_06*, como medida del desarrollo infantil. Una vez calculado, se realiza una estratificación de la muestra según su valor, de manera que se agrupen los individuos con un efecto del tratamiento similar. El siguiente diagrama resume el procedimiento explicado en detalle en las siguientes secciones.
 
 <img src="./assets/images/Method_info.png" alt="Metodología esquema" width="1000">
 
@@ -113,76 +111,82 @@ Para la agrupación se utiliza un *Decision Tree* que hace split minimiza el MSE
 
 ###     5.2. Implementación
 
-####    5.2.1. Cálculo de ITE: modelos de predicción
+Como se ha explicado previamente, para estimar el ITE, se han explorado diversos modelos de predicción basados en la elección de modelos delineada en el apartado anterior. Sobre el *dataset* procesado y separado en *train* y *test*, se entrenan los distintos modelos. Únicamente se usan aquellas variables independientes que previamente se han seleccionado en la exploración de datos y únicamente la variable dependiente *z_all_06*. Para la estimación de la bondad de ajuste se utiliza el $R^2$ y un *Root Mean Squared Error* (RMSE), aplicando una  validación cruzada de 10 iteraciones (*10-fold cross-validation*). 
 
-Como se ha explicado previamente, para estimar el ITE, hemos creado diversos modelos de predicción basándonos en nuestra elección de modelos delineada en el apartado anterior. Aplicamos a los datos previamente limpiados y separados en train y test a los modelos distintos. Usamos únicamente aquellas variables independientes que hemos seleccionado previamente y únicamente la variable dependiente “z_all_06”. Para la estimación de goodness-of-fit utilizamos el R<sup>2</sup> y un Root Mean Squared Error (RMSE), aplicando un Cross-Validation de 10 folds para los datos de validación. 
+Inicialmente se entrenaron los modelos sin hacer optimización de sus hiperparámetros para comprobar la utilidad de base de los modelos. Los resultados obtenidos son los siguientes:
 
-Inicialmente aplicamos los modelos sin hacer optimización de hiperparámetros para comprobar la utilidad de los modelos de base. Los resultados obtenidos son los siguientes:
-
-- La regresión lineal simple nos da una R<sup>2</sup> de 17.41%y un RMSE de 0.471.
-- Con el modelo Random Forest con 20 estimadores (Decision Trees) obtenemos un R<sup>2</sup> de 26.39%, con un RMSE de 0.442, mejor que la regresión lineal.
-- El XGBoost proporciona un R<sup>2</sup> de 15.77% , siendo el modelo con peor goodness-of-fit de todos. El RMSE es de 0.474, el más alto de los modelos. Esto no nos sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un dataset tan pequeño.
+- La regresión lineal simple proporciona una $R^2$ de 17.41 % y un RMSE de 0.471.
+- El modelo *Random Forest* con 20 estimadores proporciona un $R^2$ de 26.39 % y un RMSE de 0.442, mejor que la regresión lineal.
+- Finalmente, el *XGBoost* proporciona un $R^2$ de 15.77 %, siendo el modelo con peor bondad de ajuste de todos. El RMSE es de 0.474, el más alto de los modelos. Esto no sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un *dataset* tan pequeño.
    
-    
+A continuación, se optimizan los hiperparámetros para los modelos *Random Forest* y *XGBoost* (para la regresión lineal no es necesario), usando un *Randomized Grid Search*.
 
-A continuación, optimizamos los hiperparámetros para los modelos de Random Forest y XGBoost (para la regresión lineal no hace falta), usando un Randomized Search.
+- Para el *Random Forest*, los hiperparámetros optimizados son los siguientes:
 
-- Para el Random Forest, los hiperparámetros optimizados son los siguientes:
+<img src="./assets/images/RF_hyperparam.png" alt="RF hyperparameters"  width="800">
 
+El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un $R^2$ de 31.80 % y un RMSE de 0.434, claramente superior al *Random Forest* base.
 
+- Para el *XGBoost*, los hiperparámetros optimizados son los siguientes:
 
-Nuestro nuevo Random Forest con los hiperparámetros optimizados obtiene un R<sup>2</sup> de 31.80% y con un RMSE de 0.434, claramente superior al Random Forest base.
+<img src="./assets/images/XGB_hyperparam.png" alt="XGBoost hyperparameters"  width="800">
 
-- Para el XGBoost, los hiperparámetros optimizados son los siguientes:
-XXXX    
-El XGBoost optimizado nos da unR<sup>2</sup> de 32.35% y un RMSE de 0.431. Por lo tanto, concluímos que este es el mejor modelo comparado con el resto.
+El *XGBoost* optimizado proporciona un $R^2$ de 32.35 % y un RMSE de 0.431. Por lo tanto, se concluye que este es el mejor modelo comparado con el resto.
 
-Para seguir analizando los modelos realizamos una visualización de las Learning Curves.
+Para seguir analizando los modelos se realiza una visualización de sus respectivas curvas de aprendizaje.
 
 <img src="./assets/images/Learningcurves.png" alt="Learning Curves (Reg. Lineal; Random Forest; XGBoost)"  width="800">
 
-A pesar de que las learning curves convergen con mayor rapidez utilizando la regresión lineal, el XGBoost presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del train y del test.
+A pesar de que las curvas convergen con mayor rapidez utilizando la regresión lineal, el *XGBoost* presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del *train* y del *test*.
 
 
-Comparamos el resultado, también, con un scatterplot:
+A continuación se muestra, también, un *scatterplot* para comparar los resultados:
 
-- Linear Regression
-XXXX
+<img src="./assets/images/ScatterModels.png" alt="Scatterplot Models"  width="800">
 
-- XGBoost
-XXXX
+<ins> Cálculo de los valores de ITE </ins>
 
-Calculando valores de ITE
+El primer paso para estimar el ITE es generar el contrafactual de cada individuo. Mediante el modelo *XGboost* entrenado anteriormente se podrá predecir el *outcome* (*z_all_06*) para cada contrafactual. Llegados a este punto, se dispone del estado actual y del estado contrafactual de cada individuo, obteniendo así toda la información necesaria para calcular el ITE. El último paso simplemente consiste en calcular la diferencia de resultados entre el $Y_i^1$ (la puntuación cuando el individuo $i$ recibe el tratamiento) y $Y_i^0$ (cuando el individuo $i$ no recibe el tratamiento).
 
-El primer paso para estimar el ITE es generar el contrafactual de cada individuo. Mediante el modelo XGboost entrenado anteriormente predecimos el outcome (z_all_06) para cada contrafactual. Llegados a este punto, ya tenemos el estado actual y el estado contrafactual de cada individuo, obteniendo toda la información necesaria para calcular el ITE. El último paso simplemente consiste en calcular la diferencia de resultados entre el Y<sub>i</sub><sup>1</sup> (cuando el individuo i recibe el tratamiento) y Y<sub>i</sub><sup>0</sup> (cuando el individuo i no recibe el tratamiento).
+Así, se obtiene un *dataframe* con el ITE para cada individuo. <ins><strong>La distribución de los ITE sigue una distribución aproximadamente normal con una media en 0.09. Probablemente este es el primer resultado interesante del estudio. Tal y como se ha mencionado anteriormente, E(ITE)=E(δ<sub>i</sub> )=ATE, indicando que el ATE estimado mediante nuestro modelo es de 0.09, muy similar y dentro del intervalo de confianza del resultado obtenido por (Macours et al., 2012). Dada la consistencia y ausencia de sesgo del ATE en regresión simple, podemos asumir que nuestros estimadores son insesgados. </strong> </ins> 
 
-Así, obtenemos un dataframe con todos los ITEs para cada individuo. La distribución de los ITE tiene una distribución aproximadamente normal con una media en 0.09. Probablemente este es el primer resultado interesante del estudio. Tal y como se ha mencionado anteriormente, E(ITE)=E(δ<sub>i</sub> )=ATE, indicando que el ATE estimado mediante nuestro modelo es de 0.09, muy similar y dentro del intervalo de confianza del resultado obtenido por (Macours et al., 2012). Dada la consistencia y ausencia de sesgo del ATE en regresión simple, podemos asumir que nuestros estimadores son insesgados. 
+<ins> Estratificación por ITE </ins>
 
-####    5.2.2.	Cálculo de subgrupos
+El punto final para la implementación del método es el entrenamiento de un *Decision Tree* sobre el *dataset* con el ITE calculado como variable de respuesta. [...]
+
+El resultado es: [...]
+
+<img src="./assets/images/DecisionTree.png" alt="Decision Tree"  width="800">
+
+Las variables seleccionadas por este modelo para las agrupaciones son:
+
+[tabla de variables y significado]
 
 ## 6.	Resultados
 ### 6.1.   Interpretación
+
+El *Decision Tree* obtenido clasifica en primera instancia según la variable BLABLABLABLA que podría ser por BLABLABLABLA.
+
 ### 6.2.   Validez del método
+
 ## 7.   Limitaciones
 
 *z_all_06*
 En primer lugar, centrar el análisis en el individuo y no en un subgrupo más amplio puede crear problemas de multiplicidad, es decir, de falsos positivos (Lamont et al., 2016). En segundo lugar, la base de datos contiene muchas variables que pueden tener un buen poder predictivo pero con significados complejos (por ej. efecto en el desarrollo del % de indiviuos vacunados en la comunidad). Dadas estas características de la base de datos parece razonable pensar que crear clusters sin una previa selección de variables acabaría creando unos resultados difíciles de interpretar.  
 
+BUSCANDO INFO ENCONTRAMOS EL CAUSAL TREE ASÍ QUE SE APLICA PARA VER QUÉ OFRECE
 
-### 7.1.   *Causal Forest*
+### 7.1.   *Causal Tree*
 
-Las variables a seleccionar deberían maximizar la explicabilidad de la heterogeneidad del efecto del tratamiento dentro de toda la población, es decir, las variables deberían separar esta información se ha extrapolado de la predicción sobre un contrafactual y 
-    El método que utilizaremos para encontrar las variables que determinan el éxito del tratamiento es el *Causal Forest*, propuesto por (Athey et al., 2019). La intuición detrás de los Causal Forest es similar a los Random Forest. Sin embargo, en este caso el criterio a optimizar cuando se dividen los árboles no es minimizar el error en la predicción sino maximizar la diferencia de ATE en cada subgrupo que se crea. 
+La intuición detrás de este método, propuesto por Susan Athey (Athey et al., 2019), es similar a un *Decision Tree*. Sin embargo, en este caso el criterio a optimizar cuando se dividen los nodos no es minimizar el error en la predicción sino maximizar la diferencia de ATE en cada subgrupo que se crea. 
 
-Para ser más precisos, cada árbol calculado mediante el Causal Forest reportarà un conjunto de subgrupos con diferentes ATEs, condicionado a sus características. Este concepto se define como el CATE (Conditional Average Treatment Effect):
+Para ser más precisos, el árbol calculado reportará un conjunto de subgrupos con diferentes ATEs, condicionado a sus características. Este concepto se define como el CATE (*Conditional Average Treatment Effect*):
 
 <p align="center">
   <img src="./assets/images/Eq3.png" alt="Ecuación 3" height=35>
 </p>
 
-Tal y como se puede observar, el Causal Forest no necesita de los ITE para calcular los CATEs, solamente individuos tratados y controles en cada subgrupo que se crea. La principal ventaja de esto es que nos permite utilizar los datos observacionales para estimar el Causal Forest. De este modo, obtendremos las variables de interés directamente de las observaciones reales librandonos de posibles errores de estimación producidos al calcular los ITE.
-
-Dicho esto, un Causal Forest está formado por un conjunto de Causal Trees. Cada Causal Tree selecciona de forma aleatoria un conjunto reducido de variables y observaciones, calcula los CATEs con el criterio de optimización mencionado anteriormente. El resultado del Causal Forest será el conjunto de variables que a lo largo de todos los Causal Forest maximizan las diferencias de CATEs entre subgrupos. 
+Tal y como se puede observar, el *Causal Tree* no necesita el cálculo de los ITE para conseguir los subgrupos y sus CATEs, solamente necesita individuos tratados y controles en cada subgrupo que se crea. La principal ventaja de esto es que permite utilizar los datos observacionales evitando posibles errores de estimación producidos al calcular los ITE.
 
 ### 7.2.   Implementación
 
