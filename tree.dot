@@ -1,0 +1,25 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="com_deworm_05 <= 0.213\nsquared_error = 0.188\nsamples = 3145\nvalue = 0.0", fillcolor="#f7d8c2"] ;
+1 [label="s1hhsz_5_14_05 <= 2.5\nsquared_error = 0.378\nsamples = 40\nvalue = 0.444", fillcolor="#eead7e"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="male <= 0.5\nsquared_error = 0.421\nsamples = 24\nvalue = 0.64", fillcolor="#ea9a60"] ;
+1 -> 2 ;
+3 [label="squared_error = 0.161\nsamples = 10\nvalue = 0.29", fillcolor="#f1bc95"] ;
+2 -> 3 ;
+4 [label="squared_error = 0.457\nsamples = 14\nvalue = 0.89", fillcolor="#e58139"] ;
+2 -> 4 ;
+5 [label="squared_error = 0.17\nsamples = 16\nvalue = 0.149", fillcolor="#f4caab"] ;
+1 -> 5 ;
+6 [label="com_waz_05 <= -2.462\nsquared_error = 0.183\nsamples = 3105\nvalue = -0.006", fillcolor="#f7d9c3"] ;
+0 -> 6 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+7 [label="squared_error = 0.34\nsamples = 17\nvalue = 0.479", fillcolor="#eda978"] ;
+6 -> 7 ;
+8 [label="weight_05 <= -2.733\nsquared_error = 0.181\nsamples = 3088\nvalue = -0.008", fillcolor="#f7d9c3"] ;
+6 -> 8 ;
+9 [label="squared_error = 0.244\nsamples = 29\nvalue = -0.395", fillcolor="#ffffff"] ;
+8 -> 9 ;
+10 [label="squared_error = 0.179\nsamples = 3059\nvalue = -0.005", fillcolor="#f7d9c3"] ;
+8 -> 10 ;
+}
