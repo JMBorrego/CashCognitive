@@ -129,7 +129,7 @@ Finalmente, como una *a priori* sencilla comprovación de la validez conceptual 
   <img src="./assets/images/Eq3.png" alt="Ecuación 3" height=35>
 </p>
 
-De esta forma, si la estratificación por ITE captura una heterogeneidad real en los datos respecto al efecto del tratamiento, la media de ITE dentro de cada subgrupo debería ser comparable a su respectivo CATE.
+Es decir, dentro de cada subgrupo se computará diferencia entre la media de la variable respuesta para los individuos tratados (<span style="text-decoration:overline">Y<sub>i</sub><sup>1</sup></span>(X)) y para los no tratados (<span style="text-decoration:overline">Y<sub>i</sub><sup>0</sup></span>(X)). De esta forma, si la estratificación por ITE captura una heterogeneidad real en los datos respecto al efecto del tratamiento, la media de ITE dentro de cada subgrupo debería ser comparable a su respectivo CATE.
 
 ###     5.2. Implementación
 
