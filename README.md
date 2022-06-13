@@ -10,11 +10,11 @@
 5.	Metodología y análisis    
     5.1.	Marco teórico: *Potential Outcomes* e *Individual Treatment Effect*    
     5.2.    Implementación        
-6.	Resultados
-    6.1. Interpretación
-    6.2. Validez del método
-7.	Limitaciones
-    7.1.   *Causal Forest*
+6.	Resultados    
+    6.1. Interpretación    
+    6.2. Validez del método    
+7.	Limitaciones    
+    7.1.   *Causal Forest*    
     7.2.   Implementación    
 9.	Conclusión
 10.	Bibliografía
@@ -39,7 +39,7 @@ A pesar de la importancia de asegurar un desarrollo cognitivo y físico saludabl
 
 ###     2.2.	Metodología del estudio
 
-El artículo “Cash Transfers, Behavioral Changes,and Cognitive Development in Early Childhood: Evidence from a Randomized Experiment” (Macours 2012) supone una primera aproximación para evaluar los efectos de *Atención a Crisis*. El objetivo de los autores de este estudio es determinar el efecto de ser tratado sobre el desarrollo cognitivo y físico. De este modo, lo que se pretende estimar es la diferencia en el desarrollo entre los individuos que han recibido la compensación económica (tratamiento) *versus* otros individuos con característica similares que no (control). 
+El artículo “Cash Transfers, Behavioral Changes,and Cognitive Development in Early Childhood: Evidence from a Randomized Experiment” (Macours, 2012) supone una primera aproximación para evaluar los efectos de *Atención a Crisis*. El objetivo de los autores de este estudio es determinar el efecto de ser tratado sobre el desarrollo cognitivo y físico. De este modo, lo que se pretende estimar es la diferencia en el desarrollo entre los individuos que han recibido la compensación económica (tratamiento) *versus* otros individuos con característica similares que no (control).
 
 La metodología aplicada en el artículo estima el efecto causal de ser beneficiario de *Atención a Crisis* mediante un simple análisis de regresión del tipo:
 
