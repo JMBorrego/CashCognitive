@@ -123,27 +123,35 @@ A continuación, se optimizan los hiperparámetros para los modelos *Random Fore
 
 - Para el *Random Forest*, los hiperparámetros optimizados son los siguientes:
 
-<img src="./assets/images/RF_hyperparam.png" alt="RF hyperparameters"  width="800">
-
+<p align="center">
+<img src="./assets/images/RF_hyperparam.png" alt="RF hyperparameters">
+</p>
+    
 El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un $R^2$ de 31.80 % y un RMSE de 0.434, claramente superior al *Random Forest* base.
 
 - Para el *XGBoost*, los hiperparámetros optimizados son los siguientes:
 
-<img src="./assets/images/XGB_hyperparam.png" alt="XGBoost hyperparameters"  width="800">
-
+<p align="center">
+<img src="./assets/images/XGB_hyperparam.png" alt="XGBoost hyperparameters">
+</p>
+    
 El *XGBoost* optimizado proporciona un $R^2$ de 32.35 % y un RMSE de 0.431. Por lo tanto, se concluye que este es el mejor modelo comparado con el resto.
 
 Para seguir analizando los modelos se realiza una visualización de sus respectivas curvas de aprendizaje.
 
-<img src="./assets/images/Learningcurves.png" alt="Learning Curves (Reg. Lineal; Random Forest; XGBoost)"  width="800">
-
+<p align="center">
+<img src="./assets/images/Learningcurves.png" alt="Learning Curves (Reg. Lineal; Random Forest; XGBoost)">
+</p>
+    
 A pesar de que las curvas convergen con mayor rapidez utilizando la regresión lineal, el *XGBoost* presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del *train* y del *test*.
 
 
 A continuación se muestra, también, un *scatterplot* para comparar los resultados:
 
-<img src="./assets/images/ScatterModels.png" alt="Scatterplot Models"  width="800">
-
+<p align="center">
+<img src="./assets/images/ScatterModels.png" alt="Scatterplot Models">
+</p>
+    
 <ins> Cálculo de los valores de ITE </ins>
 
 El primer paso para estimar el ITE es generar el contrafactual de cada individuo. Mediante el modelo *XGboost* entrenado anteriormente se podrá predecir el *outcome* (*z_all_06*) para cada contrafactual. Llegados a este punto, se dispone del estado actual y del estado contrafactual de cada individuo, obteniendo así toda la información necesaria para calcular el ITE. El último paso simplemente consiste en calcular la diferencia de resultados entre el $Y_i^1$ (la puntuación cuando el individuo $i$ recibe el tratamiento) y $Y_i^0$ (cuando el individuo $i$ no recibe el tratamiento).
@@ -156,7 +164,9 @@ El punto final para la implementación del método es el entrenamiento de un *De
 
 El resultado es: [...]
 
-<img src="./assets/images/DecisionTree.png" alt="Decision Tree"  width="800">
+<p align="center">
+<img src="./assets/images/DecisionTree.png" alt="Decision Tree">
+</p>
 
 Las variables seleccionadas por este modelo para las agrupaciones son:
 
