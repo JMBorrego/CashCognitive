@@ -224,13 +224,14 @@ Puesto que algunas estas variables pertenecen a variables comunitarias (como *co
 
 <center>
     
-|    Variable     |   |                      Significado                       |
-|-----------------|---|--------------------------------------------------------|
-|male             |   |Sexo                                                    |
-|age_transfer     |   |Edad del niño al recibir la transferencia               |
-|pranimalprot_f_05|   |% de consumo de proteina animal sobre el total consumido|
-|prstap_f_05      |   |% de alimentos básicos sobre el total consumido         |
-|a10whz_05        |   |Peso por la edad (z-score)                              |
+| Variable           |   | Significado                                  |
+|--------------------|---|----------------------------------------------|
+| bweight            |   | peso al nacer                                |
+| ed_mom             |   | años de educación de la madre                |
+| prfruitveg_f_05    |   | % de frutas y verduras en el gasto en comida |
+| cons_food_pc_05    |   | gasto total en comida (*per capita*)         |
+| propfood_05        |   | % de comida en el gasto total                |
+| s3ap25_hqtime_h_05 |   | tiempo (en h) hasta la sede municipal        |
 
 </center>
 
