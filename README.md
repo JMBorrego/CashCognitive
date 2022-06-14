@@ -1,9 +1,9 @@
 # Cash Transfers and Cognitive Development: treatment effect
 
-Borrego Burón, José Manuel
-Magre i Pont, Jaume
-Roura i Cubí, Antonino
-Sanginés-Uriarte Dooly, Joel
+Borrego Burón, José Manuel    
+Magre i Pont, Jaume    
+Roura i Cubí, Antonino    
+Sanginés-Uriarte Dooly, Joel    
 
 ## Índice
 1.	Resumen
