@@ -151,13 +151,13 @@ A continuación, se optimizan los hiperparámetros para los modelos *Random Fore
     
 El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un R<sup>2</sup> de 31.80 % y un RMSE de 0.434, claramente superior al *Random Forest* base.
 
-- Para el *XGBoost*, los hiperparámetros optimizados son los siguientes:
+- Para el *LightGBM*, los hiperparámetros optimizados son los siguientes:
 
 <p align="center">
 <img src="./assets/results/XGB_hyperparam.png" alt="XGBoost hyperparameters">
 </p>
     
-El *XGBoost* optimizado proporciona un R<sup>2</sup> de 32.35 % y un RMSE de 0.431. Por lo tanto, se concluye que este es el mejor modelo comparado con el resto.
+El *LightGBM* optimizado proporciona un R<sup>2</sup> de 32.35 % y un RMSE de 0.431. Por lo tanto, se concluye que este es el mejor modelo comparado con el resto.
 
 Para seguir analizando los modelos se realiza una visualización de sus respectivas curvas de aprendizaje.
 
@@ -165,7 +165,7 @@ Para seguir analizando los modelos se realiza una visualización de sus respecti
     <img src="./assets/results/LC_LinReg.png" alt="Learning Curve LinReg">
     <img src="./assets/results/LC_XGB.png" alt="Learning Curve XGBoost">
 </p>
-A pesar de que las curvas convergen con mayor rapidez utilizando la regresión lineal, el *XGBoost* presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del *train* y del *test*.
+A pesar de que las curvas convergen con mayor rapidez utilizando la regresión lineal, el *LightGBM* presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del *train* y del *test*.
 
 
 A continuación se muestra, también, un *scatterplot* para comparar los resultados: 🟥 [...] 🟥
@@ -182,7 +182,7 @@ A continuación se muestra, también, un *scatterplot* para comparar los resulta
 El primer paso para estimar el ITE es generar el contrafactual de cada individuo. Mediante el modelo *LightGBM* entrenado anteriormente se podrá predecir el *outcome* (*z_all_06*) para cada contrafactual. Llegados a este punto, se dispone del estado actual y del estado contrafactual de cada individuo, obteniendo así toda la información necesaria para calcular el ITE. El último paso simplemente consiste en calcular la diferencia de resultados entre el Y<sub>i</sub><sup>1</sup> (la puntuación cuando el individuo i recibe el tratamiento) y Y<sub>i</sub><sup>0</sup> (cuando el individuo i no recibe el tratamiento). Así, se obtiene un *dataframe* con el ITE para cada individuo. 
 
 <p align="center">
-    <img src="./assets/results/hist_ite.png" alt="Scatterplot LinReg">
+    <img src="./assets/results/hist_ite.png" alt="Histograma ITE" width="100">
 </p>
 En el histograma anterior se puede observar que la distribución de los ITEs es aproximadamente normal con media muy cercana al 0, concretamente de 0.04. Se debe considerar que la media poblacional del ITE debería coincidir con el ATE. Teniendo esto en cuenta, se puede decir que probablemente estamos infraestimando el efecto del tratamiento teniendo en cuenta que el ATE poblacional que ofrece el paper de (Crepon, 2014) es de 0.0875.
 
