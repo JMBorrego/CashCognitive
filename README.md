@@ -146,7 +146,7 @@ A continuación, se optimizan los hiperparámetros para los modelos *Random Fore
 - Para el *Random Forest*, los hiperparámetros optimizados son los siguientes:
 
 <p align="center">
-<img src="./assets/images/par_RF.jpeg" alt="RF hyperparameters" width="400">
+<img src="./assets/images/par_RF.jpeg" alt="RF hyperparameters" width="200">
 </p>
     
 El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un R<sup>2</sup> de 32.69 % y un RMSE de 0.433, claramente superior al *Random Forest* base.
