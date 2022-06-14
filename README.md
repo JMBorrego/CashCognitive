@@ -293,3 +293,15 @@ Los resultados del *Causal Tree*, a diferencia de los modelos presentados anteri
 ## 7.	Conclusión
 ## 8.	Bibliografía
 
+- [Athey and Imbens, 2015] Athey, S. and Imbens, G. (2015). Recursive partitioning for heterogeneous causal effects.
+- [Case and Paxson, 2006] Case, A. and Paxson, C. (2006). Stature and status: Height, ability, and labor market outcomes.
+- [Crépon et al., 2014] Cr ́epon, B., Devoto, F., Duflo, E., and Pariente, W.(2014). Estimating the impact of microcredit on those who take it up: Evidence from a randomized experiment in morocco.
+- [Currie and Thomas, 1999] Currie, J. and Thomas, D. (1999). Early test scores, socioeconomic status and future outcomes.
+- [Friedberg et al., 2018] Friedberg, R., Tibshirani, J., Athey, S., and Wager, S. (2018). Local linear forests.
+- [Jacob, 2021] Jacob, D. (2021). Cate meets ml - conditional average treatment effect and machine learning. SSRN Electronic Journal.
+- [Kwak and Kim, 2017] Kwak, S. K. and Kim, J. H. (2017). Statistical data preparation: Management of missing values and outliers.
+- [Lamont et al., 2018] Lamont, A., Lyons, M. D., Jaki, T., Stuart, E., Feaster, D. J., Tharmaratnam, K., Oberski, D., Ishwaran, H., Wilson, D. K., and Horn, M. L. V. (2018). Identification of predicted individual treatment effects in randomized clinical trials. Statistical Methods in Medical Research, 27:142–157.
+- [Macours et al., 2012] Macours, K., Schady, N., and Vakis, R. (2012). Cash transfers, behavioral changes, and cognitive development in early childhood: Evidence from a randomized experiment.
+- [Yao, 2021] Yao, F. (2021). Machine learning with limited data.
+- [Zhou et al., 2017] Zhou, D. P., Balandat, M., and Tomlin, C. J. (2017). Estimating heterogeneous treatment effects in residential demand response.
+
