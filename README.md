@@ -21,7 +21,7 @@
 
 ## 1. Resumen
 
-[...]
+
 
 ## 2.	Introducción
 
@@ -80,7 +80,7 @@ Por ello, este proyecto busca seguir una metodología que identifique las difere
 
 Para estudiar la heterogeneidad en la respuesta al tratamiento se realiza una exploración incial del conjunto de datos, en previsión del entrenamiento de modelos predictivos sobre las variables de respuesta. El *dataset* bruto cuenta con 4511 registros de 198 variables, de las cuales 25 son variables de respuesta (*outcome*) correspondientes a distintas medidas del desarrollo de los niños (puntuaciones de tests como el Test de Vocabulario en Imágenes de Peabody). 
 
-Después analizar el significado de las variables de entrada disponibles y estudiar la metodología y estructura del estudio, se realiza una selección inicial de variables basada en el conocimiento previo sobre sus potenciales efectos sobre las variables resultado (es decir, se seleccionan las variables que se consideran más implicadas en el desarrollo cognitivo de los niños). Seguidamente, se realiza una exploración más detallada de los datos seleccionados (para más información, consúltese el cuaderno [01_DATA_EXPLORATION](01_DATA_EXPLORATION.ipynb)).
+Después de analizar el significado de las variables de entrada disponibles y estudiar la metodología y estructura del estudio, se realiza una selección inicial de variables basada en el conocimiento previo sobre sus potenciales efectos sobre las variables resultado (es decir, se seleccionan las variables que se consideran más implicadas en el desarrollo cognitivo de los niños). Seguidamente, se realiza una exploración más detallada de los datos seleccionados (para más información, consúltese el cuaderno [01_DATA_EXPLORATION](01_DATA_EXPLORATION.ipynb)).
 
 En primer lugar, se estudia la presencia y distribución de datos faltantes para decidir una estrategia de gestión. Existe un alto número de datos faltantes para los *outcomes* debido a que el individuo en cuestión no cumplía el límite de edad para la realización de los tests. Por este motivo se decide filtrar los registros con una edad demasiado pequeña en el momento de iniciar el tratamiento (*age_transfer* < -11). Para resolver el resto de datos faltantes en las variables independientes, se observa que ciertas variables corresponden a información que potencialmente pertenece a toda la unidad familiar (como los años de educación de la madre), por lo que se hipotetiza que en otros registros que pertenezcan a la misma unidad familiar (según el identificador *hogarid_old*) aparecerá la información faltante. De esta manera, se podrán imputar según la media o la moda (para variables cuantitativas y categóricas, respectivamente) dentro de la misma unidad familiar. Finalmente, el resto de datos faltantes se imputarán por mediana y moda.
 
@@ -162,17 +162,17 @@ El *LightGBM* optimizado proporciona un R<sup>2</sup> de 32.34 % y un RMSE de 0.
 Para seguir analizando los modelos se realiza una visualización de sus respectivas curvas de aprendizaje.
 
 <p align="center">
-    <img src="./assets/results/LC_LinReg.png" alt="Learning Curve LinReg">
-    <img src="./assets/results/LC_XGB.png" alt="Learning Curve LightGBM">
+    <img src="./assets/results/LC Linear Reg.png" alt="Learning Curve LinReg">
+    <img src="./assets/results/LC best RF.png" alt="Learning Curve RF">
+    <img src="./assets/results/LC best LightGBM.png" alt="Learning Curve lightGBM">
 </p>
 A pesar de que las curvas convergen con mayor rapidez utilizando la regresión lineal, el *LightGBM* presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del *train* y del *test*.
-
+ 
 
 A continuación se muestra, también, un *scatterplot* para comparar los resultados:
 
 <p align="center">
     <img src="./assets/results/ScP_LinReg.png" alt="Scatterplot LinReg">
-    <img src="./assets/results/ScP_XGB.png" alt="Scatterplot XGBoost">
 </p>
    
 Se puede observar que en el gráfico del *Random Forest* se revela un *overfitting* durante el entrenamiento del modelo donde incluso los valores extremos se predicen con poco error. En cambio, se observa que el modelo *LightGBM* no se ajusta de forma tan extrema.
@@ -212,7 +212,7 @@ Según esta estructura, las variables que permiten subclasificar la población s
 
 </center>
 
-Puesto que algunas estas variables pertenecen a variables comunitarias (como *VARIABLE*), se decide entrenar un segundo árbol que sólo incluya variables de naturaleza individual/familiar como propuesta para identificar mejor la naturaleza de la heterogeneidad a nivel individual. Este segundo árbol, entrenado con los mismos parámetros, tiene las siguientes estructura y variables:
+Puesto que algunas estas variables pertenecen a variables comunitarias (como *com_dewom_05*), se decide entrenar un segundo árbol que sólo incluya variables de naturaleza individual/familiar como propuesta para identificar mejor la naturaleza de la heterogeneidad a nivel individual. Este segundo árbol, entrenado con los mismos parámetros, tiene las siguientes estructura y variables:
 
 
 <p align="center">
@@ -254,28 +254,28 @@ Tal y como se ha mencionado, se ha decidido hacer un segundo análisis centrado 
  
 El primer resultado relevante es que existen diferencias a la respuesta al tratamiento en función del sexo de individuo. Acorde con los resultados del modelo, el subgrupo masculino recibiría un efecto positivo del tratamiento, mientras el efecto del subgrupo femenino seria negativo. Una vez más, estos resultados pueden estar indicando que la metodología usada es imprecisa. Incluso de ser ciertos estos resultados y el efecto del tratamiento se maximizará en función del sexo, por razones de sentido común y equidad, este no debería ser un criterio para tener en cuenta a la hora de diseñar política pública.   
 
-Para el subgrupo masculino, el Decision Tree crea tres subgrupos en función de la edad. El ITE toma un mayor valor para aquellos individuos de mayor edad, diluyéndose el efecto del tratamiento para el grupo de edad media (age_transfer_05(0.543, 0.97] y llegando a ser negativo para el subgrupo de niños de menor edad. De forma similar a lo que hemos comentado anteriormente, estos resultados sugieren que Atención a Crisis debería centrarse en individuos de más edad elegibles para el programa (menos de 5 años).    
+Para el subgrupo masculino, el Decision Tree crea tres subgrupos en función de la edad. El ITE toma un mayor valor para aquellos individuos de mayor edad, diluyéndose el efecto del tratamiento para el grupo de edad media (age_transfer_05 entre (0.543, 0.97] y llegando a ser negativo para el subgrupo de niños de menor edad. De forma similar a lo que hemos comentado anteriormente, estos resultados sugieren que *Atención a Crisis* debería centrarse en individuos de más edad elegibles para el programa (menos de 5 años).    
 
 Para el subgrupo femenino, parece que el efecto del tratamiento depende en gran medida de variables relacionadas con la alimentación. Para el subgrupo de niñas con un consumo elevado de proteína animal y con una relación entre peso y altura elevado, el efecto del tratamiento es positivo. De la misma forma, para el subgrupo de niñas con un porcentaje de dieta básica elevado, a pesar de un consumo de proteína animal reducido, el efecto del tratamiento es positivo. Para el resto de los subgrupos el efecto es negativo. 
 
 
 ### 6.2.   Validez del método
-Para evaluar el grado de precisión del modelo presentado se ha considerado pertinente comparar los ITEs obtenidos en cada subgrupo con los CATEs que se obtienen de los mismos subgrupos utilizando los datos observacionales. De este modo se puede comparar si los subgrupos que se generan a partir de los ITEs realmente existen en la realidad. También permite comparar la dirección del efecto (si el tratamiento tiene un efecto positivo o negativo) y la magnitud de este efecto.
+Para evaluar el grado de precisión del modelo presentado se ha considerado pertinente comparar los ITEs obtenidos en cada subgrupo con los CATEs correspondientes utilizando los datos observacionales. De este modo se puede comparar si los subgrupos que se generan a partir de los ITEs realmente existen en la realidad. También permite comparar la dirección del efecto (si el tratamiento tiene un efecto positivo o negativo) y la magnitud de este efecto.
 Para comparar de forma más sencilla los resultados se ha calculado el error relativo cometido en cada uno de los subgrupos.
 
 En términos relativos las diferencias entre ITEs y CATEs son grandes. A pesar de esto, se debe tener en cuenta que en general los ITEs y CATEs calculados son muy pequeños, con lo que pequeñas variaciones acaban sugiriendo grandes desajustes en términos relativos.
 
-En términos generales, el signo de los ITEs y de los CATEs es el mismo, indicando que la metodología presentada es capaz de identificar de forma correcta los subgrupos y la dirección del efecto del tratamiento, hasta cierto punto. Dicho esto, al fijarse en la magnitud de los coeficientes, parece que mediante el cálculo de los ITES se subestima el efecto del tratamiento.  Para la gran mayoría de los subgrupos el valor del ITE es menor que el CATE incluso provocando en algunas ocasiones que el signo del efecto se invierta. 
+En términos generales, el signo de los ITEs y de los CATEs es el mismo, indicando que la metodología presentada es capaz de identificar de forma correcta los subgrupos y la dirección del efecto del tratamiento, hasta cierto punto. Dicho esto, al fijarse en la magnitud de los coeficientes, parece que mediante el cálculo de los ITES se subestima el efecto del tratamiento. Para la gran mayoría de los subgrupos el valor del ITE es menor que el CATE incluso provocando en algunas ocasiones que el signo del efecto se invierta. 
 
 En términos generales esta comparación entre los resultados obtenidos y los CATEs muestra que el cálculo de subgrupos mediante el ITE es capaz de capturar ciertas tendencias, pero también evidencia fallos en la estimación. A pesar de esto, la estimación de los CATEs tampoco es del todo fiable. Alguna de las hojas contiene muy pocas observaciones y el cálculo del CATE es poco preciso, con un error estándar muy elevado. Como conclusión, esta comparación de resultados no invalida el análisis propuesto en este trabajo, pero tampoco lo respalda.
 
 
 ## 7.   Limitaciones
 
-La base de datos utilizada en este estudio surge del articulo realizado por ( Macours, 2012). Como se ha puntualizado anteriormente, el objetivo de dicho estudio era causal, con lo que la mayoría de información que se recogió de los sujetos de estudio no estaba pensada para realizar un ejercicio de predicción, sino simplemente para corregir las diferencias en las características del grupo de control y tratamiento. Dadas estas características de la base de datos, probablemente el enfoque realizado en este estudio no es el más acertado ya que este se basa en gran medida en la precisión de la predicción que se realiza para estimar los ITEs. Los principales puntos que cuestionan la validez del enfoque propuesto son los siguientes: 
+La base de datos utilizada en este estudio surge del articulo realizado por ( Macours, 2012). Como se ha puntualizado anteriormente, el objetivo de dicho estudio era causal, con lo que la mayoría de información que se recogió de los sujetos de estudio no estaba pensada para realizar un ejercicio de predicción. Dadas estas características de la base de datos, probablemente el enfoque realizado en este estudio no es el más acertado ya que este se basa en gran medida en la precisión de la predicción que se realiza para estimar los ITEs. Los principales puntos que cuestionan la validez del enfoque propuesto son los siguientes: 
 - Las variables que se han podido usar para realizar los modelos de Machine Learning para obtener el ITE tienen poco valor predictivo. Consecuentemente, las estimaciones del ITE son poco precisas. Para ilustrar este punto, la media del ITE estimado es muy cercano a 0, indicando un efecto prácticamente nulo del tratamiento, y la raíz del error de medición es superior al 0.4. 
 - Otra de las características de la base de datos que no ayuda a obtener estimaciones precisas es el número de observaciones. Hacer predicción con 3145 observaciones es francamente complicado, ya que los modelos complejos acaban sufriendo problemas de overfitting severos. Por este motivo ha sido necesario recurrir a modelos más simples y generalistas.
-- El último punto por destacar con respecto a la base de datos es la naturaleza de la variable dependiente z_all_06. Esta variable es un resumen de resultados de pruebas realizadas a los sujetos de estudio que construyeron los autores del estudio en (Macours, 2012). El desarrollo cognitivo y físico es una medida multifacética, con muchos factores relevantes que tener en cuenta. Es fácil de imaginar que el tratamiento podría tener efectos positivos en el desarrollo físico de algunos individuos, pero no en el cognitivo o viceversa. Es posible que la complejidad de la variable que se está tratando de estimar contribuya a obtener modelos moco predictivos para estimar el ITE.
+- El último punto por destacar con respecto a la base de datos es la naturaleza de la variable dependiente z_all_06. Esta variable es un resumen de resultados de pruebas realizadas a los sujetos de estudio que construyeron los autores del estudio en (Macours, 2012). El desarrollo cognitivo y físico es una medida multifacética, con muchos factores relevantes que tener en cuenta. Es fácil de imaginar que el tratamiento podría tener efectos positivos en el desarrollo físico de algunos individuos, pero no en el cognitivo o viceversa. Es posible que la complejidad de la variable que se está tratando de estimar contribuya a obtener modelos poco predictivos para estimar el ITE.
 
 Más allá de los datos, una limitación importante es que los modelos predictivos que se han usado no han sido capaces de capturar el efecto del tratamiento en su totalidad. Si se para atención al primer nodo de los dos Decision Trees sobre los ITEs se puede observar que el ITE es de 0. Es decir, el efecto medio del tratamiento de la población (equivalente al ATE) es nulo. A pesar de que si que se encuentran diferencias en los ITEs de los distintos subgrupos la magnitud del efecto es más pequeño en la mayoría de los casos si se compara con los CATEs correspondientes. No ser capaces de percibir el efecto del tratamiento, cuando empíricamente si existe, invalida en parte los resultados obtenidos.
 
@@ -293,7 +293,7 @@ Tal y como se puede intuir, el *Causal Tree* no necesita el cálculo de los ITE 
 
 <img src="./assets/images/arbre3.png" alt="Decision Tree con las variables individuales" width="1000">
 
-Los resultados del *Causal Tree*, a diferencia de los modelos presentados anteriormente, presente unos valores de CATE sustancialmente más grandes en valor absoluto. En Este caso, el modelo si es capaz de captar el efecto del tratamiento. Un resultado que se puede obtener si se comparan los resultados del *Causal Tree* con el modelo propuesto anteriormente es que el porcentage de niños que han recibido medicación antiparasitaria sigue siendo una de las variables más relevantes a la hora de explicar la resupuesta al tratamiento. Las dos otras variables que el *Causal Tree* destaca son el porcentage de proteina vegetal consumida(prfruitveg_f_08) y el tiempo que se tarda en llegar a la escuela (s3ap23_stime_h_05).
+Los resultados del *Causal Tree*, a diferencia de los modelos presentados anteriormente, presente unos valores de CATE sustancialmente más grandes en valor absoluto. En Este caso, el modelo si es capaz de captar el efecto del tratamiento. Un resultado que se puede obtener si se comparan los resultados del *Causal Tree* con el modelo propuesto anteriormente es que el porcentage de niños que han recibido medicación antiparasitaria sigue siendo una de las variables más relevantes a la hora de explicar la resupuesta al tratamiento. Las dos otras variables que el *Causal Tree* destaca son el porcentage de proteina vegetal consumida (prfruitveg_f_08) y el tiempo que se tarda en llegar a la escuela (s3ap23_stime_h_05).
 
 (proceso disponible en [05_CAUSAL_TREE](05_CAUSAL_TREE.ipynb))
 ## 7.	Conclusión
