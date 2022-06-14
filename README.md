@@ -146,7 +146,7 @@ A continuación, se optimizan los hiperparámetros para los modelos *Random Fore
 - Para el *Random Forest*, los hiperparámetros optimizados son los siguientes:
 
 <p align="center">
-<img src="./assets/images/RF_hyperparam.png" alt="RF hyperparameters">
+<img src="./assets/results/RF_hyperparam.png" alt="RF hyperparameters">
 </p>
     
 El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un R<sup>2</sup> de 31.80 % y un RMSE de 0.434, claramente superior al *Random Forest* base.
@@ -154,7 +154,7 @@ El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un 
 - Para el *XGBoost*, los hiperparámetros optimizados son los siguientes:
 
 <p align="center">
-<img src="./assets/images/XGB_hyperparam.png" alt="XGBoost hyperparameters">
+<img src="./assets/results/XGB_hyperparam.png" alt="XGBoost hyperparameters">
 </p>
     
 El *XGBoost* optimizado proporciona un R<sup>2</sup> de 32.35 % y un RMSE de 0.431. Por lo tanto, se concluye que este es el mejor modelo comparado con el resto.
