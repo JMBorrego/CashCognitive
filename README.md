@@ -193,18 +193,18 @@ El punto final para la implementación del método es el entrenamiento de un *De
 El *Decision Tree* entrenado tiene una profundidad máxima de 3 y un valor mínimo de 30 individuos por hoja. Con estos parámetros, se ha obtenido el siguiente árbol:
 
 <p align="center">
-<img src="./assets/results/DecisionTree.png" alt="Decision Tree">
+<img src="./assets/images/arbre1.png" alt="Decision Tree con las variables individuales" width="1000">
 </p>
 
 Según esta estructura, las variables que permiten subclasificar la población según el efecto del tratamiento son las siguientes:
 
 <center>
 
-| Variable |   | Significado |
-|----------|---|-------------|
-|          |   |             |
-|          |   |             |
-|          |   |             |
+|    Variable   |   |                    Significado                  |
+|---------------|---|-------------------------------------------------|
+|com_deworm_05  |   |% de niños con medicación antiparasitaria        |
+|com_haz_05     |   |Media comunitaria depeso por estaturade los niños|
+|age_transfer   |   |Edad del niño al recibir la transferencia        |
 
 </center>
 
@@ -212,16 +212,18 @@ Puesto que algunas estas variables pertenecen a variables comunitarias (como *VA
 
 
 <p align="center">
-<img src="./assets/results/DecisionTree.png" alt="Decision Tree">
+<img src="./assets/images/arbre2.png" alt="Decision Tree con las variables individuales" width="1000">
 </p>
 
 <center>
     
-| Variable |   | Significado |
-|----------|---|-------------|
-|          |   |             |
-|          |   |             |
-|          |   |             |
+|    Variable     |   |                      Significado                       |
+|-----------------|---|--------------------------------------------------------|
+|male             |   |Sexo                                                    |
+|age_transfer     |   |Edad del niño al recibir la transferencia               |
+|pranimalprot_f_05|   |% de consumo de proteina animal sobre el total consumido|
+|prstap_f_05      |   |% de alimentos básicos sobre el total consumido         |
+|a10whz_05        |   |Peso por la edad (z-score)                              |
 
 </center>
 
@@ -229,8 +231,6 @@ Puesto que algunas estas variables pertenecen a variables comunitarias (como *VA
 ### 6.1.   Interpretación
 
 El primer Decision Tree aplicado sobre los resultados del ITE usa todas las variables utilizadas para la estimación del ITE presentado anteriormente. El primer resultado a destacar es la relevancia de las variables comunitarias para explicar el éxito del tratamiento en los individuos.   
-
-<img src="./assets/images/arbre1.png" alt="Decision Tree con todas las variables" width="1000">
 
 Tal y como se puede observar, las dos primeras particiones del árbol se explican a través de la variable com_deworm_05, es decir el porcentaje de niños que han recibido medicina antiparasitaria. A pesar de que esta variable tiene un significado muy concreto, es razonable pensar que en realidad es un proxy de otras características de la comunidad. Por ejemplo, es posible que las comunidades con un menor porcentaje de niños medicados estén más lejos de los centros hospitalarios, tengan menos acceso a la información y dispongan de un menor nivel de renta que impide costear el viaje a centros hospitalarios y/o a los medicamentos antiparasitarios.    
 
@@ -247,9 +247,6 @@ Para las comunidades con mayor tasa de medicación el Decision Tree identifica d
 Los resultados son un poco más difíciles de interpretar para las comunidades con una tasa de medicación media. Como ya se ha comentado, para este tipo de comunidades parece que el efecto de recibir una transferencia monetaria es negativo, lo cual es sorprendente. A pesar de que el Decision Tree crea dos subgrupos en función de la altura de los niños dentro de estos tipos de comunidades, el efecto del tratamiento para los dos subgrupos sigue siendo negativo. Al no encontrar una explicación lógica para explicar un efecto negativo del tratamiento sobre estos subgrupos, este resultado hace sospechar que el modelo aplicado a lo largo de este estudio puede ser poco preciso y contener algún tipo de sesgo.     
 
 Tal y como se ha mencionado, se ha decidido hacer un segundo análisis centrado en las variables de tipo individual para poder seguir indagando en los factores que determinan el éxito del tratamiento.    
-
-
-<img src="./assets/images/arbre2.png" alt="Decision Tree con las variables individuales" width="1000">
  
 El primer resultado relevante es que existen diferencias a la respuesta al tratamiento en función del sexo de individuo. Acorde con los resultados del modelo, el subgrupo masculino recibiría un efecto positivo del tratamiento, mientras el efecto del subgrupo femenino seria negativo. Una vez más, estos resultados pueden estar indicando que la metodología usada es imprecisa. Incluso de ser ciertos estos resultados y el efecto del tratamiento se maximizará en función del sexo, por razones de sentido común y equidad, este no debería ser un criterio para tener en cuenta a la hora de diseñar política pública.   
 
@@ -271,7 +268,7 @@ En términos generales esta comparación entre los resultados obtenidos y los CA
 
 ## 7.   Limitaciones
 
-La base de datos utilizada en este estudio surge del articulo realizado por ( Macours, 202). Como se ha puntualizado anteriormente, el objetivo de dicho estudio era causal, con lo que la mayoría de información que se recogió de los sujetos de estudio no estaba pensada para realizar un ejercicio de predicción, sino simplemente para corregir las diferencias en las características del grupo de control y tratamiento. Dadas estas características de la base de datos, probablemente el enfoque realizado en este estudio no es el más acertado ya que este se basa en gran medida en la precisión de la predicción que se realiza para estimar los ITEs. Los principales puntos que cuestionan la validez del enfoque propuesto son los siguientes: 
+La base de datos utilizada en este estudio surge del articulo realizado por ( Macours, 2012). Como se ha puntualizado anteriormente, el objetivo de dicho estudio era causal, con lo que la mayoría de información que se recogió de los sujetos de estudio no estaba pensada para realizar un ejercicio de predicción, sino simplemente para corregir las diferencias en las características del grupo de control y tratamiento. Dadas estas características de la base de datos, probablemente el enfoque realizado en este estudio no es el más acertado ya que este se basa en gran medida en la precisión de la predicción que se realiza para estimar los ITEs. Los principales puntos que cuestionan la validez del enfoque propuesto son los siguientes: 
 - Las variables que se han podido usar para realizar los modelos de Machine Learning para obtener el ITE tienen poco valor predictivo. Consecuentemente, las estimaciones del ITE son poco precisas. Para ilustrar este punto, la media del ITE estimado es muy cercano a 0, indicando un efecto prácticamente nulo del tratamiento, y la raíz del error de medición es superior al 0.4. 
 - Otra de las características de la base de datos que no ayuda a obtener estimaciones precisas es el número de observaciones. Hacer predicción con 3145 observaciones es francamente complicado, ya que los modelos complejos acaban sufriendo problemas de overfitting severos. Por este motivo ha sido necesario recurrir a modelos más simples y generalistas.
 - El último punto por destacar con respecto a la base de datos es la naturaleza de la variable dependiente z_all_06. Esta variable es un resumen de resultados de pruebas realizadas a los sujetos de estudio que construyeron los autores del estudio en (Macours, 2012). El desarrollo cognitivo y físico es una medida multifacética, con muchos factores relevantes que tener en cuenta. Es fácil de imaginar que el tratamiento podría tener efectos positivos en el desarrollo físico de algunos individuos, pero no en el cognitivo o viceversa. Es posible que la complejidad de la variable que se está tratando de estimar contribuya a obtener modelos moco predictivos para estimar el ITE.
