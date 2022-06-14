@@ -228,9 +228,12 @@ Puesto que algunas estas variables pertenecen a variables comunitarias (como *VA
 ## 6.	Resultados
 ### 6.1.   Interpretación
 
-El primer Decision Tree aplicado sobre los resultados del ITE usa todas las variables utilizadas para la estimación del ITE presentado anteriormente. El primer resultado a destacar es la relevancia de las variables comunitarias para explicar el éxito del tratamiento en los individuos.     
+El primer Decision Tree aplicado sobre los resultados del ITE usa todas las variables utilizadas para la estimación del ITE presentado anteriormente. El primer resultado a destacar es la relevancia de las variables comunitarias para explicar el éxito del tratamiento en los individuos.   
+
 Tal y como se puede observar, las dos primeras particiones del árbol se explican a través de la variable com_deworm_05, es decir el porcentaje de niños que han recibido medicina antiparasitaria. A pesar de que esta variable tiene un significado muy concreto, es razonable pensar que en realidad es un proxy de otras características de la comunidad. Por ejemplo, es posible que las comunidades con un menor porcentaje de niños medicados estén más lejos de los centros hospitalarios, tengan menos acceso a la información y dispongan de un menor nivel de renta que impide costear el viaje a centros hospitalarios y/o a los medicamentos antiparasitarios.    
+
 Mediante las dos particiones en la variable com_deworm_05 se pueden identificar tres tipos de comunidades donde el efecto del tratamiento es muy heterogéneo. 
+
 -	Comunidades donde menos del 21.3% de los niños han recibido la medicación antiparasitaria. -> Efecto positivo de 44.4% desviaciones estándares en el desarrollo de los niños.
 -	Comunidades con un porcentaje de niños medicados entre (21.3%, 46.5%]. ->Efecto negativo del tratamiento, próximo a 0.
 -	Comunidades con una tasa de medicación superior el 46.5%. ->Efecto positivo del tratamiento, próximo a 0.    
@@ -238,11 +241,15 @@ Mediante las dos particiones en la variable com_deworm_05 se pueden identificar 
 
 Parece bastante claro que comunidades con menor tasa de niños con medicación antiparasitaria, probablemente aquellas más empobrecidas y con menos recursos, son las más beneficiadas de recibir el tratamiento. Des de la óptica de la política pública la primera recomendación, acorde con los resultados de nuestro modelo, seria focalizar los esfuerzos económicos en esas comunidades más humildes, ya que en estas el impacto del tratamiento se maximiza. 
 Para las comunidades con mayor tasa de medicación el Decision Tree identifica dos subgrupos en función de la edad de los niños. Los resultados del modelo sugieren que el subgrupo en el cual se debería centrar la política pública son aquellos individuos de mayor edad elegibles para el programa Atención a Crisis, en donde el ITE se maximiza.    
+
 Los resultados son un poco más difíciles de interpretar para las comunidades con una tasa de medicación media. Como ya se ha comentado, para este tipo de comunidades parece que el efecto de recibir una transferencia monetaria es negativo, lo cual es sorprendente. A pesar de que el Decision Tree crea dos subgrupos en función de la altura de los niños dentro de estos tipos de comunidades, el efecto del tratamiento para los dos subgrupos sigue siendo negativo. Al no encontrar una explicación lógica para explicar un efecto negativo del tratamiento sobre estos subgrupos, este resultado hace sospechar que el modelo aplicado a lo largo de este estudio puede ser poco preciso y contener algún tipo de sesgo.     
 
 Dada la relevancia que el Decision Tree da a las variables comunitarias, se ha decidido hacer un segundo análisis centrado en las variables de tipo individual para poder seguir indagando en los factores que determinan el éxito del tratamiento.    
-El primer resultado relevante es que existen diferencias a la respuesta al tratamiento en función del sexo de individuo. Acorde con los resultados del modelo, el subgrupo masculino recibiría un efecto positivo del tratamiento, mientras el efecto del subgrupo femenino seria negativo. Una vez más, estos resultados pueden estar indicando que la metodología usada es imprecisa. Incluso de ser ciertos estos resultados y el efecto del tratamiento se maximizará en función del sexo, por razones de sentido común y equidad, este no debería ser un criterio para tener en cuenta a la hora de diseñar política pública.     
+
+El primer resultado relevante es que existen diferencias a la respuesta al tratamiento en función del sexo de individuo. Acorde con los resultados del modelo, el subgrupo masculino recibiría un efecto positivo del tratamiento, mientras el efecto del subgrupo femenino seria negativo. Una vez más, estos resultados pueden estar indicando que la metodología usada es imprecisa. Incluso de ser ciertos estos resultados y el efecto del tratamiento se maximizará en función del sexo, por razones de sentido común y equidad, este no debería ser un criterio para tener en cuenta a la hora de diseñar política pública.   
+
 Para el subgrupo masculino, el Decision Tree crea tres subgrupos en función de la edad. El ITE toma un mayor valor para aquellos individuos de mayor edad, diluyéndose el efecto del tratamiento para el grupo de edad media (age_transfer_05(0.543, 0.97] y llegando a ser negativo para el subgrupo de niños de menor edad. De forma similar a lo que hemos comentado anteriormente, estos resultados sugieren que Atención a Crisis debería centrarse en individuos de más edad elegibles para el programa (menos de 5 años).    
+
 Para el subgrupo femenino, parece que el efecto del tratamiento depende en gran medida de variables relacionadas con la alimentación. Para el subgrupo de niñas con un consumo elevado de proteína animal y con una relación entre peso y altura elevado, el efecto del tratamiento es positivo. De la misma forma, para el subgrupo de niñas con un porcentaje de dieta básica elevado, a pesar de un consumo de proteína animal reducido, el efecto del tratamiento es positivo. Para el resto de los subgrupos el efecto es negativo. 
 
 
