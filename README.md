@@ -157,7 +157,7 @@ El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un 
 <img src="./assets/images/par_light.jpeg" alt="LightGBM hyperparameters" width="400">
 </p>
     
-El *LightGBM* optimizado proporciona un R<sup>2</sup> de 32.34 % y un RMSE de 0.431. Por lo tanto, se concluye que este es el mejor modelo comparado con el resto.
+El *LightGBM* optimizado proporciona un R<sup>2</sup> de 32.34 % y un RMSE de 0.431.
 
 Para seguir analizando los modelos se realiza una visualización de sus respectivas curvas de aprendizaje.
 
