@@ -20,9 +20,9 @@
  
 
 ## 1. Resumen
-Durante los años 2005 y 2008 se llevó a cabo un programa de ayudas monetarias en Nicaragua llamado *Atención a Crisis*. En un artículo de 2012, Macrous et al.  estudiaron el efecto medio de recibir la ayuda (*Average Treatment Effect* - ATE). 
+Durante los años 2005 y 2008 se llevó a cabo un programa de ayudas monetarias en Nicaragua llamado *Atención a Crisis*. En un artículo de 2012, Macours et al.  estudiaron el efecto medio de recibir la ayuda (*Average Treatment Effect* - ATE). 
 
-El trabajo que se presenta a continuación pretende ampliar las conclusiones de Macrous et al. calculando el efecto del tratamiento por diferentes subgrupos de la población, con el objetivo de poder aplicar políticas económicas de forma más personalizada a cada subgrupo. La metodología que se lleva a cabo es estimar los efectos de tratamiento para cada individuo (comúnmente conocido como *Individual Treatment Effect* - ITE) mediante modelos de Machine Learning para posteriormente estudiar las características que determinan mayor o menor éxito del tratamiento.
+El trabajo que se presenta a continuación pretende ampliar las conclusiones de Macours et al. calculando el efecto del tratamiento por diferentes subgrupos de la población, con el objetivo de poder aplicar políticas económicas de forma más personalizada a cada subgrupo. La metodología que se lleva a cabo es estimar los efectos de tratamiento para cada individuo (comúnmente conocido como *Individual Treatment Effect* - ITE) mediante modelos de Machine Learning para posteriormente estudiar las características que determinan mayor o menor éxito del tratamiento.
 
 
 
@@ -311,6 +311,10 @@ Tal y como se puede intuir, el *Causal Tree* no necesita el cálculo de los ITE 
 Los resultados del Causal Tree presentan unos valores de CATE relativamente similares a los obtenidos mediante el análisis propuesto con ITEs. A pesar de esto, cuando se incluyen todas las variables, no solamente las individuales, parece que el Causal Tree no da tanta importancia a las variables de comunidad. En este caso, variables como la edad del padre o el % de gasto en comida (propfood_05) explican mejor las diferencias de CATEs entre grupos.
 
 ## 7.	Conclusión
+    
+ La metodología propuesta para identificar la heterogeneidad del efecto al tratamiento ha ofrecido una clasificación en subgrupos según ciertas variables a partir de la predicción del ITE. El método ha presentado un error significativo respecto al efecto del tratamiento representado por el CATE. 
+En vista de los resultados, se han identificado una serie de limitaciones del propio método, pero también de la combinación del método propuesto y el *dataset* sobre el que se ha aplicado. Es por ello que se propone estudiar su validez en otros conjuntos de datos que no presenten las limitaciones identificadas.
+
 ## 8.	Bibliografía
 
 - [Athey and Imbens, 2015] Athey, S. and Imbens, G. (2015). Recursive partitioning for heterogeneous causal effects.
