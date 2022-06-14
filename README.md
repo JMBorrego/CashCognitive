@@ -212,7 +212,7 @@ Según esta estructura, las variables que permiten subclasificar la población s
 
 </center>
 
-Puesto que algunas estas variables pertenecen a variables comunitarias (como *VARIABLE*), se decide entrenar un segundo árbol que sólo incluya variables de naturaleza individual/familiar como propuesta para identificar mejor la naturaleza de la heterogeneidad a nivel individual. Este segundo árbol, entrenado con los mismos parámetros, tiene las siguientes estructura y variables:
+Puesto que algunas estas variables pertenecen a variables comunitarias (como *com_dewom_05*), se decide entrenar un segundo árbol que sólo incluya variables de naturaleza individual/familiar como propuesta para identificar mejor la naturaleza de la heterogeneidad a nivel individual. Este segundo árbol, entrenado con los mismos parámetros, tiene las siguientes estructura y variables:
 
 
 <p align="center">
