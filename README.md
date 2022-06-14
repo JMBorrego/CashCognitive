@@ -187,7 +187,7 @@ Considerando esta visualización y la previa visualización de las curvas de apr
 El primer paso para estimar el ITE es generar el contrafactual de cada individuo. Mediante el modelo *LightGBM* entrenado anteriormente se podrá predecir el *outcome* (*z_all_06*) para cada contrafactual. Llegados a este punto, se dispone del estado actual y del estado contrafactual de cada individuo, obteniendo así toda la información necesaria para calcular el ITE. El último paso simplemente consiste en calcular la diferencia de resultados entre el Y<sub>i</sub><sup>1</sup> (la puntuación cuando el individuo i recibe el tratamiento) y Y<sub>i</sub><sup>0</sup> (cuando el individuo i no recibe el tratamiento). Así, se obtiene un *dataframe* con el ITE para cada individuo. 
 
 <p align="center">
-    <img src="./assets/results/hist_ite.png" alt="Histograma ITE" width="400">
+    <img src="./assets/results/hist_iteb.png" alt="Histograma ITE" width="400">
 </p>
 En el histograma anterior se puede observar que la distribución de los ITEs es aproximadamente normal con media muy cercana al 0, concretamente de 0.04. Se debe considerar que la media poblacional del ITE debería coincidir con el ATE. Teniendo esto en cuenta, se puede decir que probablemente estamos infraestimando el efecto del tratamiento teniendo en cuenta que el ATE poblacional que ofrece el paper de (Macours, 2012) es de 0.0875.    
      
