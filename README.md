@@ -21,7 +21,7 @@
 
 ## 1. Resumen
 
-[...]
+
 
 ## 2.	Introducción
 
