@@ -163,8 +163,9 @@ El *LightGBM* optimizado proporciona un R<sup>2</sup> de 32.34 % y un RMSE de 0.
 Para seguir analizando los modelos se realiza una visualización de sus respectivas curvas de aprendizaje.
 
 <p align="center">
-    <img src="./assets/results/LC_LinReg.png" alt="Learning Curve LinReg">
-    <img src="./assets/results/LC_XGB.png" alt="Learning Curve LightGBM">
+    <img src="./assets/results/LC Linear Reg.png" alt="Learning Curve LinReg">
+    <img src="./assets/results/LC best RF.png" alt="Learning Curve RF">
+    <img src="./assets/results/LC best LightGBM.png" alt="Learning Curve LightGBM">
 </p>
 A pesar de que las curvas convergen con mayor rapidez utilizando la regresión lineal, el *LightGBM* presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del *train* y del *test*.
 
