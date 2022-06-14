@@ -162,16 +162,17 @@ El *XGBoost* optimizado proporciona un R<sup>2</sup> de 32.35 % y un RMSE de 0.4
 Para seguir analizando los modelos se realiza una visualización de sus respectivas curvas de aprendizaje.
 
 <p align="center">
-<img src="./assets/images/Learningcurves.png" alt="Learning Curves (Reg. Lineal; Random Forest; XGBoost)">
+    <img src="./assets/results/LC_LinReg.png" alt="Learning Curve LinReg">
+    <img src="./assets/results/LC_XGB.png" alt="Learning Curve XGBoost">
 </p>
-    
 A pesar de que las curvas convergen con mayor rapidez utilizando la regresión lineal, el *XGBoost* presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del *train* y del *test*.
 
 
 A continuación se muestra, también, un *scatterplot* para comparar los resultados: 🟥 [...] 🟥
 
 <p align="center">
-<img src="./assets/images/ScatterModels.png" alt="Scatterplot Models">
+    <img src="./assets/results/ScP_LinReg.png" alt="Scatterplot LinReg">
+    <img src="./assets/results/ScP_XGB.png" alt="Scatterplot XGBoost">
 </p>
    
 🟥 [Conclusión de qué modelo se usa finalmente y cómo performa] 🟥
@@ -187,17 +188,42 @@ Así, se obtiene un *dataframe* con el ITE para cada individuo. <ins><strong>La 
 
 <ins> Estratificación por ITE </ins>
 
-El punto final para la implementación del método es el entrenamiento de un *Decision Tree* sobre el *dataset* con el ITE calculado como variable de respuesta. 🟥[...]🟥
+El punto final para la implementación del método es el entrenamiento de un *Decision Tree* sobre el *dataset* con el ITE calculado como variable de respuesta. En el cuaderno [04_DECISION_TREE](04_DECISION_TREE.ipynb) se expone el procedimiento en detalle. Para una mejor visualización del árbol, con la estratificación de ITE como objetivo, se establece una escala de color con el intervalo (-0.5, 0.5).
 
-El resultado es: [...]
+El *Decision Tree* entrenado tiene una profundidad máxima de 3 y un valor mínimo de 30 individuos por hoja. Con estos parámetros, se ha obtenido el siguiente árbol:
 
 <p align="center">
-<img src="./assets/images/DecisionTree.png" alt="Decision Tree">
+<img src="./assets/results/DecisionTree.png" alt="Decision Tree">
 </p>
 
-Las variables seleccionadas por este modelo para las agrupaciones son:
+Según esta estructura, las variables que permiten subclasificar la población según el efecto del tratamiento son las siguientes:
 
-🟥[tabla de variables y significado]🟥
+<center>
+
+| Variable |   | Significado |
+|----------|---|-------------|
+|          |   |             |
+|          |   |             |
+|          |   |             |
+
+</center>
+
+Puesto que algunas estas variables pertenecen a variables comunitarias (como *VARIABLE*), se decide entrenar un segundo árbol que sólo incluya variables de naturaleza individual/familiar como propuesta para identificar mejor la naturaleza de la heterogeneidad a nivel individual. Este segundo árbol, entrenado con los mismos parámetros, tiene las siguientes estructura y variables:
+
+
+<p align="center">
+<img src="./assets/results/DecisionTree.png" alt="Decision Tree">
+</p>
+
+<center>
+    
+| Variable |   | Significado |
+|----------|---|-------------|
+|          |   |             |
+|          |   |             |
+|          |   |             |
+
+</center>
 
 ## 6.	Resultados
 ### 6.1.   Interpretación
