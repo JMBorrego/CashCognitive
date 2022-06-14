@@ -146,7 +146,7 @@ A continuación, se optimizan los hiperparámetros para los modelos *Random Fore
 - Para el *Random Forest*, los hiperparámetros optimizados son los siguientes:
 
 <p align="center">
-<img src="./assets/images/par_RF.png" alt="RF hyperparameters">
+<img src="./assets/images/par_RF.jpeg" alt="RF hyperparameters">
 </p>
     
 El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un R<sup>2</sup> de 32.69 % y un RMSE de 0.433, claramente superior al *Random Forest* base.
@@ -154,7 +154,7 @@ El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un 
 - Para el *LightGBM*, los hiperparámetros optimizados son los siguientes:
 
 <p align="center">
-<img src="./assets/images/par_light.png" alt="LightGBM hyperparameters">
+<img src="./assets/images/par_light.jpeg" alt="LightGBM hyperparameters">
 </p>
     
 El *LightGBM* optimizado proporciona un R<sup>2</sup> de 32.34 % y un RMSE de 0.431. Por lo tanto, se concluye que este es el mejor modelo comparado con el resto.
@@ -189,9 +189,9 @@ El primer paso para estimar el ITE es generar el contrafactual de cada individuo
 <p align="center">
     <img src="./assets/results/hist_ite.png" alt="Histograma ITE" width="400">
 </p>
-En el histograma anterior se puede observar que la distribución de los ITEs es aproximadamente normal con media muy cercana al 0, concretamente de 0.04. Se debe considerar que la media poblacional del ITE debería coincidir con el ATE. Teniendo esto en cuenta, se puede decir que probablemente estamos infraestimando el efecto del tratamiento teniendo en cuenta que el ATE poblacional que ofrece el paper de (Macours, 2012) es de 0.0875.
-
-
+En el histograma anterior se puede observar que la distribución de los ITEs es aproximadamente normal con media muy cercana al 0, concretamente de 0.04. Se debe considerar que la media poblacional del ITE debería coincidir con el ATE. Teniendo esto en cuenta, se puede decir que probablemente estamos infraestimando el efecto del tratamiento teniendo en cuenta que el ATE poblacional que ofrece el paper de (Macours, 2012) es de 0.0875.    
+     
+     
 
 
 <ins> Estratificación por ITE </ins>
