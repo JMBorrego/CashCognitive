@@ -244,7 +244,9 @@ Mediante las dos particiones en la variable com_deworm_05 se pueden identificar 
 
 
 Parece bastante claro que comunidades con menor tasa de niños con medicación antiparasitaria, probablemente aquellas más empobrecidas y con menos recursos, son las más beneficiadas de recibir el tratamiento. Entre este subgrupo, el efecto del tratamiento es especialmente elevado para aquellos hogares con más de un infante. Des de la óptica de la política pública la primera recomendación, acorde con los resultados de nuestro modelo, seria focalizar los esfuerzos económicos en esas comunidades más humildes y con más de un hijo en el hogar, ya que en estas el impacto del tratamiento se maximiza. 
+
 Para las comunidades con mayor tasa de medicación el Decision Tree hace una partición en función de si el individuo vive o no en el municipio 6. Parece ser que si el individuo forma parte del municipio 6 y forma parte de una comunidad con altos niveles de medicación antiparasitaria el efecto del tratamiento es muy pequeño, incluso negativo. Para los individuos que no viven en el municipio 6 el efecto del tratamiento es positivo, especialmente para el subgrupo de individuos que forma parte de comunidades con un porcentaje de niños medicados con antiparasitarios menor al 65.7% (y mayor al 26.7%). Otra vez, estos resultados parecen apuntar a que las comunidades más humildes son aquellas que más se benefician de recibir el tratamiento.
+
 En este primer árbol, creado usando todas las variables disponibles, la importancia de las variables relacionadas con la comunidad es aplastante. En algunos casos, como es el caso de la variable municipio 6, los resultados son poco intuitivos y difíciles de interpretar. Por este motivo, tal y como hemos comentado anteriormente, vamos a realizar otro estudio incluyendo solamente variables de características individuales. 
 
   
