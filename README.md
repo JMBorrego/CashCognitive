@@ -289,7 +289,12 @@ La intuición detrás de este método, propuesto por Susan Athey (Athey et al., 
 
 Tal y como se puede intuir, el *Causal Tree* no necesita el cálculo de los ITE para conseguir los subgrupos y sus CATEs, solamente necesita que haya individuos tratados y controles en cada subgrupo que se crea. La principal ventaja de esto es que permite utilizar los datos observacionales evitando posibles errores de estimación producidos al calcular los ITE.
 
-🟥(proceso disponible en [05_CAUSAL_TREE](05_CAUSAL_TREE.ipynb))🟥
+
+<img src="./assets/images/arbre3.png" alt="Decision Tree con las variables individuales" width="1000">
+
+Los resultados del *Causal Tree*, a diferencia de los modelos presentados anteriormente, presente unos valores de CATE sustancialmente más grandes en valor absoluto. En Este caso, el modelo si es capaz de captar el efecto del tratamiento. Un resultado que se puede obtener si se comparan los resultados del *Causal Tree* con el modelo propuesto anteriormente es que el porcentage de niños que han recibido medicación antiparasitaria sigue siendo una de las variables más relevantes a la hora de explicar la resupuesta al tratamiento. Las dos otras variables que el *Causal Tree* destaca son el porcentage de proteina vegetal consumida(prfruitveg_f_08) y el tiempo que se tarda en llegar a la escuela (s3ap23_stime_h_05).
+
+(proceso disponible en [05_CAUSAL_TREE](05_CAUSAL_TREE.ipynb))
 ## 7.	Conclusión
 ## 8.	Bibliografía
 
