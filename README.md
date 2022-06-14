@@ -246,7 +246,7 @@ Para las comunidades con mayor tasa de medicación el Decision Tree identifica d
 
 Los resultados son un poco más difíciles de interpretar para las comunidades con una tasa de medicación media. Como ya se ha comentado, para este tipo de comunidades parece que el efecto de recibir una transferencia monetaria es negativo, lo cual es sorprendente. A pesar de que el Decision Tree crea dos subgrupos en función de la altura de los niños dentro de estos tipos de comunidades, el efecto del tratamiento para los dos subgrupos sigue siendo negativo. Al no encontrar una explicación lógica para explicar un efecto negativo del tratamiento sobre estos subgrupos, este resultado hace sospechar que el modelo aplicado a lo largo de este estudio puede ser poco preciso y contener algún tipo de sesgo.     
 
-Dada la relevancia que el Decision Tree da a las variables comunitarias, se ha decidido hacer un segundo análisis centrado en las variables de tipo individual para poder seguir indagando en los factores que determinan el éxito del tratamiento.    
+Tal y como se ha mencionado, se ha decidido hacer un segundo análisis centrado en las variables de tipo individual para poder seguir indagando en los factores que determinan el éxito del tratamiento.    
 
 
 <img src="./assets/images/arbre2.png" alt="Decision Tree con las variables individuales" width="1000">
