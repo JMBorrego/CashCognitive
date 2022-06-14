@@ -191,7 +191,7 @@ El punto final para la implementación del método es el entrenamiento de un *De
 El *Decision Tree* entrenado tiene una profundidad máxima de 3 y un valor mínimo de 30 individuos por hoja. Con estos parámetros, se ha obtenido el siguiente árbol:
 
 <p align="center">
-<img src="./assets/images/arbre1.png" alt="Decision Tree con las variables individuales" width="1000">
+<img src="./assets/images/arbre1.png" alt="Decision Tree con las variables individuales" width="800">
 </p>
 
 Según esta estructura, las variables que permiten subclasificar la población según el efecto del tratamiento son las siguientes:
