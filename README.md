@@ -20,7 +20,10 @@
  
 
 ## 1. Resumen
-Durante los años 2005 y 2008 se llevo a cabo un programa de ayudas monetarias en Nicaragua llamado Atención a Crisis. En un artículo de 2012, Macrous et al.  estudiaron el efecto medio de recibir la ayuda. El trabajo que se presenta a continuación pretende ampliar las conclusiones de Macrous et al. calculando el efecto del tratamiento por diferentes subgrupos de la población. La metodología que se lleva a cabo es estimar los efectos de tratamiento para cada individuo mediante modelos de Machine Learning para posteriormente estudiar las características que determinan mayor o menor éxito del tratamiento.
+Durante los años 2005 y 2008 se llevó a cabo un programa de ayudas monetarias en Nicaragua llamado *Atención a Crisis*. En un artículo de 2012, Macrous et al.  estudiaron el efecto medio de recibir la ayuda (*Average Treatment Effect* - ATE). 
+
+El trabajo que se presenta a continuación pretende ampliar las conclusiones de Macrous et al. calculando el efecto del tratamiento por diferentes subgrupos de la población, con el objetivo de poder aplicar políticas económicas de forma más personalizada a cada subgrupo. La metodología que se lleva a cabo es estimar los efectos de tratamiento para cada individuo (comúnmente conocido como *Individual Treatment Effect* - ITE) mediante modelos de Machine Learning para posteriormente estudiar las características que determinan mayor o menor éxito del tratamiento.
+
 
 
 ## 2.	Introducción
