@@ -189,7 +189,7 @@ El primer paso para estimar el ITE es generar el contrafactual de cada individuo
 <p align="center">
     <img src="./assets/results/hist_iteb.png" alt="Histograma ITE" width="400">
 </p>
-En el histograma anterior se puede observar que la distribución de los ITEs es aproximadamente normal con media muy cercana al 0, concretamente de 0.04. Se debe considerar que la media poblacional del ITE debería coincidir con el ATE. Teniendo esto en cuenta, se puede decir que probablemente estamos infraestimando el efecto del tratamiento teniendo en cuenta que el ATE poblacional que ofrece el paper de (Macours, 2012) es de 0.0875.    
+En el histograma anterior se puede observar que la distribución de los ITEs es aproximadamente normal con media muy cercana al 0, concretamente de 0.068. Teniendo  en cuenta que la media del ITE debería coincidir con el ATE,  estimado por (Macours, 2012) es de 0.0875, el efecto del tratamiento se puede decir que probablemente estamos infraestimando el efecto del tratamiento teniendo en cuenta que el ATE poblacional que ofrece el paper de .    
      
 <br> 
 <ins> Estratificación por ITE </ins>
