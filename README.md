@@ -193,18 +193,18 @@ El punto final para la implementación del método es el entrenamiento de un *De
 El *Decision Tree* entrenado tiene una profundidad máxima de 3 y un valor mínimo de 30 individuos por hoja. Con estos parámetros, se ha obtenido el siguiente árbol:
 
 <p align="center">
-<img src="./assets/results/DecisionTree.png" alt="Decision Tree">
+<img src="./assets/images/arbre1.png" alt="Decision Tree con las variables individuales" width="1000">
 </p>
 
 Según esta estructura, las variables que permiten subclasificar la población según el efecto del tratamiento son las siguientes:
 
 <center>
 
-| Variable |   | Significado |
-|----------|---|-------------|
-|          |   |             |
-|          |   |             |
-|          |   |             |
+|    Variable   |   |                    Significado                  |
+|---------------|---|-------------------------------------------------|
+|com_deworm_05  |   |% de niños con medicación antiparasitaria        |
+|com_haz_05     |   |media comunitaria depeso por estaturade los niños|
+|age_transfer   |   |edad del niño al recibir la transferencia        |
 
 </center>
 
@@ -212,16 +212,18 @@ Puesto que algunas estas variables pertenecen a variables comunitarias (como *VA
 
 
 <p align="center">
-<img src="./assets/results/DecisionTree.png" alt="Decision Tree">
+<img src="./assets/images/arbre2.png" alt="Decision Tree con las variables individuales" width="1000">
 </p>
 
 <center>
     
-| Variable |   | Significado |
-|----------|---|-------------|
-|          |   |             |
-|          |   |             |
-|          |   |             |
+|    Variable     |   |                      Significado                       |
+|-----------------|---|--------------------------------------------------------|
+|male             |   |Sexo                                                    |
+|age_transfer     |   |edad del niño al recibir la transferencia               |
+|pranimalprot_f_05|   |% de consumo de proteina animal sobre el total consumido|
+|prstap_f_05      |   |% de alimentos básicos sobre el total consumido         |
+|a10whz_05        |   |peso por la edad (z-score)                              |
 
 </center>
 
@@ -229,8 +231,6 @@ Puesto que algunas estas variables pertenecen a variables comunitarias (como *VA
 ### 6.1.   Interpretación
 
 El primer Decision Tree aplicado sobre los resultados del ITE usa todas las variables utilizadas para la estimación del ITE presentado anteriormente. El primer resultado a destacar es la relevancia de las variables comunitarias para explicar el éxito del tratamiento en los individuos.   
-
-<img src="./assets/images/arbre1.png" alt="Decision Tree con todas las variables" width="1000">
 
 Tal y como se puede observar, las dos primeras particiones del árbol se explican a través de la variable com_deworm_05, es decir el porcentaje de niños que han recibido medicina antiparasitaria. A pesar de que esta variable tiene un significado muy concreto, es razonable pensar que en realidad es un proxy de otras características de la comunidad. Por ejemplo, es posible que las comunidades con un menor porcentaje de niños medicados estén más lejos de los centros hospitalarios, tengan menos acceso a la información y dispongan de un menor nivel de renta que impide costear el viaje a centros hospitalarios y/o a los medicamentos antiparasitarios.    
 
@@ -247,9 +247,6 @@ Para las comunidades con mayor tasa de medicación el Decision Tree identifica d
 Los resultados son un poco más difíciles de interpretar para las comunidades con una tasa de medicación media. Como ya se ha comentado, para este tipo de comunidades parece que el efecto de recibir una transferencia monetaria es negativo, lo cual es sorprendente. A pesar de que el Decision Tree crea dos subgrupos en función de la altura de los niños dentro de estos tipos de comunidades, el efecto del tratamiento para los dos subgrupos sigue siendo negativo. Al no encontrar una explicación lógica para explicar un efecto negativo del tratamiento sobre estos subgrupos, este resultado hace sospechar que el modelo aplicado a lo largo de este estudio puede ser poco preciso y contener algún tipo de sesgo.     
 
 Tal y como se ha mencionado, se ha decidido hacer un segundo análisis centrado en las variables de tipo individual para poder seguir indagando en los factores que determinan el éxito del tratamiento.    
-
-
-<img src="./assets/images/arbre2.png" alt="Decision Tree con las variables individuales" width="1000">
  
 El primer resultado relevante es que existen diferencias a la respuesta al tratamiento en función del sexo de individuo. Acorde con los resultados del modelo, el subgrupo masculino recibiría un efecto positivo del tratamiento, mientras el efecto del subgrupo femenino seria negativo. Una vez más, estos resultados pueden estar indicando que la metodología usada es imprecisa. Incluso de ser ciertos estos resultados y el efecto del tratamiento se maximizará en función del sexo, por razones de sentido común y equidad, este no debería ser un criterio para tener en cuenta a la hora de diseñar política pública.   
 
