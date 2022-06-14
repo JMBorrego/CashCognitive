@@ -137,9 +137,9 @@ Como se ha explicado previamente, para estimar el ITE, se han explorado diversos
 
 Inicialmente se entrenaron los modelos sin hacer optimización de sus hiperparámetros para comprobar la utilidad de base de los modelos. Los resultados obtenidos son los siguientes:
 
-- La regresión lineal simple proporciona una R<sup>2</sup> de 17.41 % y un RMSE de 0.471.
-- El modelo *Random Forest* con 20 estimadores proporciona un R<sup>2</sup> de 26.39 % y un RMSE de 0.442, mejor que la regresión lineal.
-- Finalmente, el *LightGBM* proporciona un R<sup>2</sup> de 15.77 %, siendo el modelo con peor bondad de ajuste de todos. El RMSE es de 0.474, el más alto de los modelos. Esto no sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un *dataset* tan pequeño.
+- La regresión lineal simple proporciona una R<sup>2</sup> de 16.57 % y un RMSE de 0.464.
+- El modelo *Random Forest* con 20 estimadores proporciona un R<sup>2</sup> de 25.62 % y un RMSE de 0.443, mejor que la regresión lineal.
+- Finalmente, el *LightGBM* proporciona un R<sup>2</sup> de 11.46 %, siendo el modelo con peor bondad de ajuste de todos. El RMSE es de 0.476, el más alto de los modelos. Esto no sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un *dataset* tan pequeño.
    
 A continuación, se optimizan los hiperparámetros para los modelos *Random Forest* y *LightGBM* (para la regresión lineal no es necesario), usando un *Randomized Grid Search*.
 
@@ -149,15 +149,15 @@ A continuación, se optimizan los hiperparámetros para los modelos *Random Fore
 <img src="./assets/results/RF_hyperparam.png" alt="RF hyperparameters">
 </p>
     
-El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un R<sup>2</sup> de 31.80 % y un RMSE de 0.434, claramente superior al *Random Forest* base.
+El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un R<sup>2</sup> de 32.69 % y un RMSE de 0.433, claramente superior al *Random Forest* base.
 
 - Para el *LightGBM*, los hiperparámetros optimizados son los siguientes:
 
 <p align="center">
-<img src="./assets/results/XGB_hyperparam.png" alt="LightGBM hyperparameters">
+<img src="./assets/results/LightGBM_hyperparam.png" alt="LightGBM hyperparameters">
 </p>
     
-El *LightGBM* optimizado proporciona un R<sup>2</sup> de 32.35 % y un RMSE de 0.431. Por lo tanto, se concluye que este es el mejor modelo comparado con el resto.
+El *LightGBM* optimizado proporciona un R<sup>2</sup> de 32.34 % y un RMSE de 0.431. Por lo tanto, se concluye que este es el mejor modelo comparado con el resto.
 
 Para seguir analizando los modelos se realiza una visualización de sus respectivas curvas de aprendizaje.
 
@@ -168,14 +168,19 @@ Para seguir analizando los modelos se realiza una visualización de sus respecti
 A pesar de que las curvas convergen con mayor rapidez utilizando la regresión lineal, el *LightGBM* presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del *train* y del *test*.
 
 
-A continuación se muestra, también, un *scatterplot* para comparar los resultados: 🟥 [...] 🟥
+A continuación se muestra, también, un *scatterplot* para comparar los resultados:
 
 <p align="center">
     <img src="./assets/results/ScP_LinReg.png" alt="Scatterplot LinReg">
-    <img src="./assets/results/ScP_XGB.png" alt="Scatterplot LightGBM">
+    <img src="./assets/results/ScP_XGB.png" alt="Scatterplot XGBoost">
 </p>
    
-🟥 [Conclusión de qué modelo se usa finalmente y cómo performa] 🟥
+Se puede observar que en el gráfico del *Random Forest* se revela un *overfitting* durante el entrenamiento del modelo donde incluso los valores extremos se predicen con poco error. En cambio, se observa que el modelo *LightGBM* no se ajusta de forma tan extrema.
+
+Considerando esta visualización y la previa visualización de las curvas de aprendizaje, y pese a que el modelo *Random Forest* haya tenido un mayor R<sup>2</sup> y un RMSE parecido al *LightGBM*, se ha escogido el modelo de *LightGBM* para realizar las predicciones de los valores contrafactuales.
+
+
+
   
 <ins> Cálculo de los valores de ITE </ins>
 
