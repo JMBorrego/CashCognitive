@@ -265,8 +265,8 @@ Para comparar de forma más sencilla los resultados se ha calculado el error rel
 
 <p align="center">
 
-<img src="./assets/results/Tree_VAL_FULL.png" alt="Error DT total" width="1000">   
-<img src="./assets/results/Tree_VAL_IND.png" alt="Error DT variables individuales" width="1000">
+<img src="./assets/results/Tree_VAL_FULL.png" alt="Error DT total">   
+<img src="./assets/results/Tree_VAL_IND.png" alt="Error DT variables individuales">
 </p>
     
 
