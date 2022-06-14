@@ -179,8 +179,6 @@ Se puede observar que en el gráfico del *Random Forest* se revela un *overfitti
 
 Considerando esta visualización y la previa visualización de las curvas de aprendizaje, y pese a que el modelo *Random Forest* haya tenido un mayor R<sup>2</sup> y un RMSE parecido al *LightGBM*, se ha escogido el modelo de *LightGBM* para realizar las predicciones de los valores contrafactuales.
 
-
-
   
 <ins> Cálculo de los valores de ITE </ins>
 
@@ -191,9 +189,7 @@ El primer paso para estimar el ITE es generar el contrafactual de cada individuo
 </p>
 En el histograma anterior se puede observar que la distribución de los ITEs es aproximadamente normal con media muy cercana al 0, concretamente de 0.04. Se debe considerar que la media poblacional del ITE debería coincidir con el ATE. Teniendo esto en cuenta, se puede decir que probablemente estamos infraestimando el efecto del tratamiento teniendo en cuenta que el ATE poblacional que ofrece el paper de (Macours, 2012) es de 0.0875.    
      
-     
-
-
+<br> 
 <ins> Estratificación por ITE </ins>
 
 El punto final para la implementación del método es el entrenamiento de un *Decision Tree* sobre el *dataset* con el ITE calculado como variable de respuesta. En el cuaderno [04_DECISION_TREE](04_DECISION_TREE.ipynb) se expone el procedimiento en detalle. Para una mejor visualización del árbol, con la estratificación de ITE como objetivo, se establece una escala de color con el intervalo (-0.5, 0.5).
