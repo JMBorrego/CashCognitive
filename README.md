@@ -241,16 +241,18 @@ La base de datos utilizada en este estudio surge del articulo realizado por ( Ma
 - Otra de las características de la base de datos que no ayuda a obtener estimaciones precisas es el número de observaciones. Hacer predicción con 3145 observaciones es francamente complicado, ya que los modelos complejos acaban sufriendo problemas de overfitting severos. Por este motivo ha sido necesario recurrir a modelos más simples y generalistas.
 - El último punto por destacar con respecto a la base de datos es la naturaleza de la variable dependiente z_all_06. Esta variable es un resumen de resultados de pruebas realizadas a los sujetos de estudio que construyeron los autores del estudio en (Macours, 2012). El desarrollo cognitivo y físico es una medida multifacética, con muchos factores relevantes que tener en cuenta. Es fácil de imaginar que el tratamiento podría tener efectos positivos en el desarrollo físico de algunos individuos, pero no en el cognitivo o viceversa. Es posible que la complejidad de la variable que se está tratando de estimar contribuya a obtener modelos moco predictivos para estimar el ITE.
 
-Más allá de los datos, una limitación importante es que los modelos predictivos que se han usado no han sido capaces de capturar el efecto del tratamiento en su totalidad. Si se para atención al primer nodo de los dos Decision Trees sobre los ITEs se puede observar que el ITE es de 0. Es decir, el efecto medio del tratamiento de la población (equivalente al ATE) es nulo. A pesar de que si que se encuentran diferencias en los ITEs de los distintos subgrupos la magnitud del efecto es más pequeño en la mayoría de los casos si se compara con los CATEs correspondientes. 
+Más allá de los datos, una limitación importante es que los modelos predictivos que se han usado no han sido capaces de capturar el efecto del tratamiento en su totalidad. Si se para atención al primer nodo de los dos Decision Trees sobre los ITEs se puede observar que el ITE es de 0. Es decir, el efecto medio del tratamiento de la población (equivalente al ATE) es nulo. A pesar de que si que se encuentran diferencias en los ITEs de los distintos subgrupos la magnitud del efecto es más pequeño en la mayoría de los casos si se compara con los CATEs correspondientes. No ser capaces de percibir el efecto del tratamiento, cuando empíricamente si existe, invalida en parte los resultados obtenidos.
+
+El conjunto de limitaciones que se han presentado apuntan a la idea que a pesar que el método utilizado en este estudio puede ser válido y útil en ciertos contextos, probablemente no es óptimo para nuestro caso particular. Por este motivo se ha realizdo una busqueda de metodos alternativos que podrían encajar mejor al estudio de *Atención a Crisis*. En la siguiente sección se presentan el *Causal Tree* como uno de los enfoques alternativos a la metodología presentada en este trabajo.
+
+
 
 
 ### 7.1.   *Causal Tree*
 
 La intuición detrás de este método, propuesto por Susan Athey (Athey et al., 2019), es similar a un *Decision Tree*. Sin embargo, en este caso el criterio a optimizar cuando se dividen los nodos no es minimizar el error en la predicción sino maximizar la diferencia de ATE en cada subgrupo que se crea. 
 
-Para ser más precisos, el árbol calculado reportará un 
-
-Tal y como se puede observar, el *Causal Tree* no necesita el cálculo de los ITE para conseguir los subgrupos y sus CATEs, solamente necesita que haya individuos tratados y controles en cada subgrupo que se crea. La principal ventaja de esto es que permite utilizar los datos observacionales evitando posibles errores de estimación producidos al calcular los ITE.
+Tal y como se puede intuir, el *Causal Tree* no necesita el cálculo de los ITE para conseguir los subgrupos y sus CATEs, solamente necesita que haya individuos tratados y controles en cada subgrupo que se crea. La principal ventaja de esto es que permite utilizar los datos observacionales evitando posibles errores de estimación producidos al calcular los ITE.
 
 🟥(proceso disponible en [05_CAUSAL_TREE](05_CAUSAL_TREE.ipynb))🟥
 ## 7.	Conclusión
