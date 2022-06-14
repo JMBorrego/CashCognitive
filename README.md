@@ -259,8 +259,15 @@ Para el subgrupo femenino, parece que el efecto del tratamiento depende en gran 
 
 
 ### 6.2.   Validez del método
-🟥 Para evaluar qué tal se calcula ATE de cada subgrupo restando la SCORE media de los tratados menos los control 🟥
-🟥 El resultado es BLABLABLA 🟥
+Para evaluar el grado de precisión del modelo presentado se ha considerado pertinente comparar los ITEs obtenidos en cada subgrupo con los CATEs que se obtienen de los mismos subgrupos utilizando los datos observacionales. De este modo se puede comparar si los subgrupos que se generan a partir de los ITEs realmente existen en la realidad. También permite comparar la dirección del efecto (si el tratamiento tiene un efecto positivo o negativo) y la magnitud de este efecto.
+Para comparar de forma más sencilla los resultados se ha calculado el error relativo cometido en cada uno de los subgrupos.
+
+En términos relativos las diferencias entre ITEs y CATEs son grandes. A pesar de esto, se debe tener en cuenta que en general los ITEs y CATEs calculados son muy pequeños, con lo que pequeñas variaciones acaban sugiriendo grandes desajustes en términos relativos.
+
+En términos generales, el signo de los ITEs y de los CATEs es el mismo, indicando que la metodología presentada es capaz de identificar de forma correcta los subgrupos y la dirección del efecto del tratamiento, hasta cierto punto. Dicho esto, al fijarse en la magnitud de los coeficientes, parece que mediante el cálculo de los ITES se subestima el efecto del tratamiento.  Para la gran mayoría de los subgrupos el valor del ITE es menor que el CATE incluso provocando en algunas ocasiones que el signo del efecto se invierta. 
+
+En términos generales esta comparación entre los resultados obtenidos y los CATEs muestra que el cálculo de subgrupos mediante el ITE es capaz de capturar ciertas tendencias, pero también evidencia fallos en la estimación. A pesar de esto, la estimación de los CATEs tampoco es del todo fiable. Alguna de las hojas contiene muy pocas observaciones y el cálculo del CATE es poco preciso, con un error estándar muy elevado. Como conclusión, esta comparación de resultados no invalida el análisis propuesto en este trabajo, pero tampoco lo respalda.
+
 
 ## 7.   Limitaciones
 
