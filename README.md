@@ -146,7 +146,7 @@ A continuación, se optimizan los hiperparámetros para los modelos *Random Fore
 - Para el *Random Forest*, los hiperparámetros optimizados son los siguientes:
 
 <p align="center">
-<img src="./assets/results/RF_hyperparam.png" alt="RF hyperparameters">
+<img src="./assets/results/par_RF.png" alt="RF hyperparameters">
 </p>
     
 El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un R<sup>2</sup> de 32.69 % y un RMSE de 0.433, claramente superior al *Random Forest* base.
@@ -154,7 +154,7 @@ El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un 
 - Para el *LightGBM*, los hiperparámetros optimizados son los siguientes:
 
 <p align="center">
-<img src="./assets/results/LightGBM_hyperparam.png" alt="LightGBM hyperparameters">
+<img src="./assets/results/par_light.png" alt="LightGBM hyperparameters">
 </p>
     
 El *LightGBM* optimizado proporciona un R<sup>2</sup> de 32.34 % y un RMSE de 0.431. Por lo tanto, se concluye que este es el mejor modelo comparado con el resto.
