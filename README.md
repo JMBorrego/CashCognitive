@@ -17,7 +17,7 @@
     7.1.   *Causal Forest*       
 9.	Conclusión
 10.	Bibliografía
-
+ 
 
 ## 1. Resumen
 
@@ -137,55 +137,59 @@ Como se ha explicado previamente, para estimar el ITE, se han explorado diversos
 
 Inicialmente se entrenaron los modelos sin hacer optimización de sus hiperparámetros para comprobar la utilidad de base de los modelos. Los resultados obtenidos son los siguientes:
 
-- La regresión lineal simple proporciona una R<sup>2</sup> de 17.41 % y un RMSE de 0.471.
-- El modelo *Random Forest* con 20 estimadores proporciona un R<sup>2</sup> de 26.39 % y un RMSE de 0.442, mejor que la regresión lineal.
-- Finalmente, el *XGBoost* proporciona un R<sup>2</sup> de 15.77 %, siendo el modelo con peor bondad de ajuste de todos. El RMSE es de 0.474, el más alto de los modelos. Esto no sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un *dataset* tan pequeño.
+- La regresión lineal simple proporciona una R<sup>2</sup> de 16.57 % y un RMSE de 0.464.
+- El modelo *Random Forest* con 20 estimadores proporciona un R<sup>2</sup> de 25.62 % y un RMSE de 0.443, mejor que la regresión lineal.
+- Finalmente, el *LightGBM* proporciona un R<sup>2</sup> de 11.46 %, siendo el modelo con peor bondad de ajuste de todos. El RMSE es de 0.476, el más alto de los modelos. Esto no sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un *dataset* tan pequeño.
    
-A continuación, se optimizan los hiperparámetros para los modelos *Random Forest* y *XGBoost* (para la regresión lineal no es necesario), usando un *Randomized Grid Search*.
+A continuación, se optimizan los hiperparámetros para los modelos *Random Forest* y *LightGBM* (para la regresión lineal no es necesario), usando un *Randomized Grid Search*.
 
 - Para el *Random Forest*, los hiperparámetros optimizados son los siguientes:
 
 <p align="center">
-<img src="./assets/results/RF_hyperparam.png" alt="RF hyperparameters">
+<img src="./assets/images/par_RF.jpeg" alt="RF hyperparameters" width="250">
 </p>
     
-El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un R<sup>2</sup> de 31.80 % y un RMSE de 0.434, claramente superior al *Random Forest* base.
+El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un R<sup>2</sup> de 32.69 % y un RMSE de 0.433, claramente superior al *Random Forest* base.
 
-- Para el *XGBoost*, los hiperparámetros optimizados son los siguientes:
+- Para el *LightGBM*, los hiperparámetros optimizados son los siguientes:
 
 <p align="center">
-<img src="./assets/results/XGB_hyperparam.png" alt="XGBoost hyperparameters">
+<img src="./assets/images/par_light.jpeg" alt="LightGBM hyperparameters" width="400">
 </p>
     
-El *XGBoost* optimizado proporciona un R<sup>2</sup> de 32.35 % y un RMSE de 0.431. Por lo tanto, se concluye que este es el mejor modelo comparado con el resto.
+El *LightGBM* optimizado proporciona un R<sup>2</sup> de 32.34 % y un RMSE de 0.431.
 
 Para seguir analizando los modelos se realiza una visualización de sus respectivas curvas de aprendizaje.
 
 <p align="center">
     <img src="./assets/results/LC_LinReg.png" alt="Learning Curve LinReg">
-    <img src="./assets/results/LC_XGB.png" alt="Learning Curve XGBoost">
+    <img src="./assets/results/LC_XGB.png" alt="Learning Curve LightGBM">
 </p>
-A pesar de que las curvas convergen con mayor rapidez utilizando la regresión lineal, el *XGBoost* presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del *train* y del *test*.
+A pesar de que las curvas convergen con mayor rapidez utilizando la regresión lineal, el *LightGBM* presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del *train* y del *test*.
 
 
-A continuación se muestra, también, un *scatterplot* para comparar los resultados: 🟥 [...] 🟥
+A continuación se muestra, también, un *scatterplot* para comparar los resultados:
 
 <p align="center">
     <img src="./assets/results/ScP_LinReg.png" alt="Scatterplot LinReg">
     <img src="./assets/results/ScP_XGB.png" alt="Scatterplot XGBoost">
 </p>
    
-🟥 [Conclusión de qué modelo se usa finalmente y cómo performa] 🟥
+Se puede observar que en el gráfico del *Random Forest* se revela un *overfitting* durante el entrenamiento del modelo donde incluso los valores extremos se predicen con poco error. En cambio, se observa que el modelo *LightGBM* no se ajusta de forma tan extrema.
+
+Considerando esta visualización y la previa visualización de las curvas de aprendizaje, y pese a que el modelo *Random Forest* haya tenido un mayor R<sup>2</sup> y un RMSE parecido al *LightGBM*, se ha escogido el modelo de *LightGBM* para realizar las predicciones de los valores contrafactuales.
+
   
 <ins> Cálculo de los valores de ITE </ins>
 
-El primer paso para estimar el ITE es generar el contrafactual de cada individuo. Mediante el modelo *XGboost* entrenado anteriormente se podrá predecir el *outcome* (*z_all_06*) para cada contrafactual. Llegados a este punto, se dispone del estado actual y del estado contrafactual de cada individuo, obteniendo así toda la información necesaria para calcular el ITE. El último paso simplemente consiste en calcular la diferencia de resultados entre el Y<sub>i</sub><sup>1</sup> (la puntuación cuando el individuo i recibe el tratamiento) y Y<sub>i</sub><sup>0</sup> (cuando el individuo i no recibe el tratamiento).
+El primer paso para estimar el ITE es generar el contrafactual de cada individuo. Mediante el modelo *LightGBM* entrenado anteriormente se podrá predecir el *outcome* (*z_all_06*) para cada contrafactual. Llegados a este punto, se dispone del estado actual y del estado contrafactual de cada individuo, obteniendo así toda la información necesaria para calcular el ITE. El último paso simplemente consiste en calcular la diferencia de resultados entre el Y<sub>i</sub><sup>1</sup> (la puntuación cuando el individuo i recibe el tratamiento) y Y<sub>i</sub><sup>0</sup> (cuando el individuo i no recibe el tratamiento). Así, se obtiene un *dataframe* con el ITE para cada individuo. 
 
-Así, se obtiene un *dataframe* con el ITE para cada individuo. <ins><strong>La distribución de los ITE sigue una distribución aproximadamente normal con una media en 0.09. Probablemente este es el primer resultado interesante del estudio. Tal y como se ha mencionado anteriormente, E(ITE)=E(δ<sub>i</sub> )=ATE, indicando que el ATE estimado mediante nuestro modelo es de 0.09, muy similar y dentro del intervalo de confianza del resultado obtenido por (Macours et al., 2012). Dada la consistencia y ausencia de sesgo del ATE en regresión simple, podemos asumir que nuestros estimadores son insesgados. </strong> </ins> 
-
-🟥 Revisar este texto con los datos nuevos (en principio quedamos que ya no cuadraba) 🟥
-🟥 Yo añadiría algún histograma o algo visual del ITE 🟥
-
+<p align="center">
+    <img src="./assets/results/hist_ite.png" alt="Histograma ITE" width="400">
+</p>
+En el histograma anterior se puede observar que la distribución de los ITEs es aproximadamente normal con media muy cercana al 0, concretamente de 0.04. Se debe considerar que la media poblacional del ITE debería coincidir con el ATE. Teniendo esto en cuenta, se puede decir que probablemente estamos infraestimando el efecto del tratamiento teniendo en cuenta que el ATE poblacional que ofrece el paper de (Macours, 2012) es de 0.0875.    
+     
+<br> 
 <ins> Estratificación por ITE </ins>
 
 El punto final para la implementación del método es el entrenamiento de un *Decision Tree* sobre el *dataset* con el ITE calculado como variable de respuesta. En el cuaderno [04_DECISION_TREE](04_DECISION_TREE.ipynb) se expone el procedimiento en detalle. Para una mejor visualización del árbol, con la estratificación de ITE como objetivo, se establece una escala de color con el intervalo (-0.5, 0.5).
@@ -193,7 +197,7 @@ El punto final para la implementación del método es el entrenamiento de un *De
 El *Decision Tree* entrenado tiene una profundidad máxima de 3 y un valor mínimo de 30 individuos por hoja. Con estos parámetros, se ha obtenido el siguiente árbol:
 
 <p align="center">
-<img src="./assets/images/arbre1.png" alt="Decision Tree con las variables individuales" width="1000">
+<img src="./assets/images/arbre1.png" alt="Decision Tree con las variables individuales" width="700">
 </p>
 
 Según esta estructura, las variables que permiten subclasificar la población según el efecto del tratamiento son las siguientes:
@@ -281,7 +285,7 @@ El conjunto de limitaciones que se han presentado apuntan a la idea que a pesar 
 
 
 ### 7.1.   *Causal Tree*
-
+ 
 La intuición detrás de este método, propuesto por Susan Athey (Athey et al., 2019), es similar a un *Decision Tree*. Sin embargo, en este caso el criterio a optimizar cuando se dividen los nodos no es minimizar el error en la predicción sino maximizar la diferencia de ATE en cada subgrupo que se crea. 
 
 Tal y como se puede intuir, el *Causal Tree* no necesita el cálculo de los ITE para conseguir los subgrupos y sus CATEs, solamente necesita que haya individuos tratados y controles en cada subgrupo que se crea. La principal ventaja de esto es que permite utilizar los datos observacionales evitando posibles errores de estimación producidos al calcular los ITE.
@@ -294,4 +298,16 @@ Los resultados del *Causal Tree*, a diferencia de los modelos presentados anteri
 (proceso disponible en [05_CAUSAL_TREE](05_CAUSAL_TREE.ipynb))
 ## 7.	Conclusión
 ## 8.	Bibliografía
+
+- [Athey and Imbens, 2015] Athey, S. and Imbens, G. (2015). Recursive partitioning for heterogeneous causal effects.
+- [Case and Paxson, 2006] Case, A. and Paxson, C. (2006). Stature and status: Height, ability, and labor market outcomes.
+- [Crépon et al., 2014] Cr ́epon, B., Devoto, F., Duflo, E., and Pariente, W.(2014). Estimating the impact of microcredit on those who take it up: Evidence from a randomized experiment in morocco.
+- [Currie and Thomas, 1999] Currie, J. and Thomas, D. (1999). Early test scores, socioeconomic status and future outcomes.
+- [Friedberg et al., 2018] Friedberg, R., Tibshirani, J., Athey, S., and Wager, S. (2018). Local linear forests.
+- [Jacob, 2021] Jacob, D. (2021). Cate meets ml - conditional average treatment effect and machine learning. SSRN Electronic Journal.
+- [Kwak and Kim, 2017] Kwak, S. K. and Kim, J. H. (2017). Statistical data preparation: Management of missing values and outliers.
+- [Lamont et al., 2018] Lamont, A., Lyons, M. D., Jaki, T., Stuart, E., Feaster, D. J., Tharmaratnam, K., Oberski, D., Ishwaran, H., Wilson, D. K., and Horn, M. L. V. (2018). Identification of predicted individual treatment effects in randomized clinical trials. Statistical Methods in Medical Research, 27:142–157.
+- [Macours et al., 2012] Macours, K., Schady, N., and Vakis, R. (2012). Cash transfers, behavioral changes, and cognitive development in early childhood: Evidence from a randomized experiment.
+- [Yao, 2021] Yao, F. (2021). Machine learning with limited data.
+- [Zhou et al., 2017] Zhou, D. P., Balandat, M., and Tomlin, C. J. (2017). Estimating heterogeneous treatment effects in residential demand response.
 
