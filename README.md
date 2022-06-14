@@ -206,11 +206,12 @@ Según esta estructura, las variables que permiten subclasificar la población s
 
 <center>
 
-|    Variable   |   |                    Significado                  |
-|---------------|---|-------------------------------------------------|
-|com_deworm_05  |   |% de niños con medicación antiparasitaria        |
-|com_haz_05     |   |Media comunitaria depeso por estaturade los niños|
-|age_transfer   |   |Edad del niño al recibir la transferencia        |
+| Variable        |   | Significado                                           |
+|-----------------|---|-------------------------------------------------------|
+| com_deworm_05   |   | % de niños con medicación antiparasitaria             |
+| com_vit_05      |   | % de niños que han recibido vitaminas en la comunidad |
+| s1hhsz_undr5_05 |   | núm de individuos con <5 años en la unidad familiar   |
+| MUN6            |   | variable *dummy* que indentifica a un municipio       |
 
 </center>
 
