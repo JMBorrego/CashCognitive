@@ -162,8 +162,9 @@ El *LightGBM* optimizado proporciona un R<sup>2</sup> de 32.34 % y un RMSE de 0.
 Para seguir analizando los modelos se realiza una visualización de sus respectivas curvas de aprendizaje.
 
 <p align="center">
-    <img src="./assets/results/LC_LinReg.png" alt="Learning Curve LinReg">
-    <img src="./assets/results/LC_XGB.png" alt="Learning Curve LightGBM">
+    <img src="./assets/results/LC Linear Reg.png" alt="Learning Curve LinReg">
+    <img src="./assets/results/LC best RF.png" alt="Learning Curve RF">
+    <img src="./assets/results/LC best LightGBM.png" alt="Learning Curve lightGBM">
 </p>
 A pesar de que las curvas convergen con mayor rapidez utilizando la regresión lineal, el *LightGBM* presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del *train* y del *test*.
 
@@ -172,7 +173,6 @@ A continuación se muestra, también, un *scatterplot* para comparar los resulta
 
 <p align="center">
     <img src="./assets/results/ScP_LinReg.png" alt="Scatterplot LinReg">
-    <img src="./assets/results/ScP_XGB.png" alt="Scatterplot XGBoost">
 </p>
    
 Se puede observar que en el gráfico del *Random Forest* se revela un *overfitting* durante el entrenamiento del modelo donde incluso los valores extremos se predicen con poco error. En cambio, se observa que el modelo *LightGBM* no se ajusta de forma tan extrema.
