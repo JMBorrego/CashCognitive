@@ -197,7 +197,7 @@ El punto final para la implementación del método es el entrenamiento de un *De
 El *Decision Tree* entrenado tiene una profundidad máxima de 3 y un valor mínimo de 30 individuos por hoja. Con estos parámetros, se ha obtenido el siguiente árbol:
 
 <p align="center">
-<img src="./assets/images/arbre1.png" alt="Decision Tree con las variables individuales" width="700">
+<img src="./assets/results/ite_dt.png" alt="Decision Tree con todas las variables" width="700">
 </p>
 
 Según esta estructura, las variables que permiten subclasificar la población según el efecto del tratamiento son las siguientes:
@@ -216,7 +216,7 @@ Puesto que algunas estas variables pertenecen a variables comunitarias (como *co
 
 
 <p align="center">
-<img src="./assets/images/arbre2.png" alt="Decision Tree con las variables individuales" width="1000">
+<img src="./assets/results/ite_ind_dt.png" alt="Decision Tree con las variables individuales" width="1000">
 </p>
 
 <center>
@@ -262,6 +262,13 @@ Para el subgrupo femenino, parece que el efecto del tratamiento depende en gran 
 ### 6.2.   Validez del método
 Para evaluar el grado de precisión del modelo presentado se ha considerado pertinente comparar los ITEs obtenidos en cada subgrupo con los CATEs correspondientes utilizando los datos observacionales. De este modo se puede comparar si los subgrupos que se generan a partir de los ITEs realmente existen en la realidad. También permite comparar la dirección del efecto (si el tratamiento tiene un efecto positivo o negativo) y la magnitud de este efecto.
 Para comparar de forma más sencilla los resultados se ha calculado el error relativo cometido en cada uno de los subgrupos.
+
+<p align="center">
+
+<img src="./assets/results/Tree_VAL_FULL.png" alt="Error DT total">   
+<img src="./assets/results/Tree_VAL_IND.png" alt="Error DT variables individuales">
+</p>
+    
 
 En términos relativos las diferencias entre ITEs y CATEs son grandes. A pesar de esto, se debe tener en cuenta que en general los ITEs y CATEs calculados son muy pequeños, con lo que pequeñas variaciones acaban sugiriendo grandes desajustes en términos relativos.
 
