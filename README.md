@@ -250,7 +250,7 @@ Dada la relevancia que el Decision Tree da a las variables comunitarias, se ha d
 
 
 <img src="./assets/images/arbre2.png" alt="Decision Tree con las variables individuales" width="1000">
-
+ 
 El primer resultado relevante es que existen diferencias a la respuesta al tratamiento en función del sexo de individuo. Acorde con los resultados del modelo, el subgrupo masculino recibiría un efecto positivo del tratamiento, mientras el efecto del subgrupo femenino seria negativo. Una vez más, estos resultados pueden estar indicando que la metodología usada es imprecisa. Incluso de ser ciertos estos resultados y el efecto del tratamiento se maximizará en función del sexo, por razones de sentido común y equidad, este no debería ser un criterio para tener en cuenta a la hora de diseñar política pública.   
 
 Para el subgrupo masculino, el Decision Tree crea tres subgrupos en función de la edad. El ITE toma un mayor valor para aquellos individuos de mayor edad, diluyéndose el efecto del tratamiento para el grupo de edad media (age_transfer_05(0.543, 0.97] y llegando a ser negativo para el subgrupo de niños de menor edad. De forma similar a lo que hemos comentado anteriormente, estos resultados sugieren que Atención a Crisis debería centrarse en individuos de más edad elegibles para el programa (menos de 5 años).    
