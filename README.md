@@ -139,9 +139,9 @@ Inicialmente se entrenaron los modelos sin hacer optimización de sus hiperpará
 
 - La regresión lineal simple proporciona una R<sup>2</sup> de 17.41 % y un RMSE de 0.471.
 - El modelo *Random Forest* con 20 estimadores proporciona un R<sup>2</sup> de 26.39 % y un RMSE de 0.442, mejor que la regresión lineal.
-- Finalmente, el *XGBoost* proporciona un R<sup>2</sup> de 15.77 %, siendo el modelo con peor bondad de ajuste de todos. El RMSE es de 0.474, el más alto de los modelos. Esto no sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un *dataset* tan pequeño.
+- Finalmente, el *LightGBM* proporciona un R<sup>2</sup> de 15.77 %, siendo el modelo con peor bondad de ajuste de todos. El RMSE es de 0.474, el más alto de los modelos. Esto no sorprende, puesto que sin optimizar los hiperparámetros la complejidad del modelo es demasiado alta para un *dataset* tan pequeño.
    
-A continuación, se optimizan los hiperparámetros para los modelos *Random Forest* y *XGBoost* (para la regresión lineal no es necesario), usando un *Randomized Grid Search*.
+A continuación, se optimizan los hiperparámetros para los modelos *Random Forest* y *LightGBM* (para la regresión lineal no es necesario), usando un *Randomized Grid Search*.
 
 - Para el *Random Forest*, los hiperparámetros optimizados son los siguientes:
 
@@ -154,7 +154,7 @@ El nuevo modelo *Random Forest* con los hiperparámetros optimizados obtiene un 
 - Para el *LightGBM*, los hiperparámetros optimizados son los siguientes:
 
 <p align="center">
-<img src="./assets/results/XGB_hyperparam.png" alt="XGBoost hyperparameters">
+<img src="./assets/results/XGB_hyperparam.png" alt="LightGBM hyperparameters">
 </p>
     
 El *LightGBM* optimizado proporciona un R<sup>2</sup> de 32.35 % y un RMSE de 0.431. Por lo tanto, se concluye que este es el mejor modelo comparado con el resto.
@@ -163,7 +163,7 @@ Para seguir analizando los modelos se realiza una visualización de sus respecti
 
 <p align="center">
     <img src="./assets/results/LC_LinReg.png" alt="Learning Curve LinReg">
-    <img src="./assets/results/LC_XGB.png" alt="Learning Curve XGBoost">
+    <img src="./assets/results/LC_XGB.png" alt="Learning Curve LightGBM">
 </p>
 A pesar de que las curvas convergen con mayor rapidez utilizando la regresión lineal, el *LightGBM* presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del *train* y del *test*.
 
@@ -182,7 +182,7 @@ A continuación se muestra, también, un *scatterplot* para comparar los resulta
 El primer paso para estimar el ITE es generar el contrafactual de cada individuo. Mediante el modelo *LightGBM* entrenado anteriormente se podrá predecir el *outcome* (*z_all_06*) para cada contrafactual. Llegados a este punto, se dispone del estado actual y del estado contrafactual de cada individuo, obteniendo así toda la información necesaria para calcular el ITE. El último paso simplemente consiste en calcular la diferencia de resultados entre el Y<sub>i</sub><sup>1</sup> (la puntuación cuando el individuo i recibe el tratamiento) y Y<sub>i</sub><sup>0</sup> (cuando el individuo i no recibe el tratamiento). Así, se obtiene un *dataframe* con el ITE para cada individuo. 
 
 <p align="center">
-    <img src="./assets/results/hist_ite.png" alt="Histograma ITE" width="600">
+    <img src="./assets/results/hist_ite.png" alt="Histograma ITE" width="400">
 </p>
 En el histograma anterior se puede observar que la distribución de los ITEs es aproximadamente normal con media muy cercana al 0, concretamente de 0.04. Se debe considerar que la media poblacional del ITE debería coincidir con el ATE. Teniendo esto en cuenta, se puede decir que probablemente estamos infraestimando el efecto del tratamiento teniendo en cuenta que el ATE poblacional que ofrece el paper de (Crepon, 2014) es de 0.0875.
 
