@@ -167,7 +167,7 @@ Para seguir analizando los modelos se realiza una visualización de sus respecti
     <img src="./assets/results/LC best LightGBM.png" alt="Learning Curve lightGBM">
 </p>
 A pesar de que las curvas convergen con mayor rapidez utilizando la regresión lineal, el *LightGBM* presenta unos valores de error más bajos y un cierto nivel de convergencia entre las curvas del *train* y del *test*.
-
+ 
 
 A continuación se muestra, también, un *scatterplot* para comparar los resultados:
 
