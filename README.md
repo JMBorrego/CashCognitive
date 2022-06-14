@@ -203,8 +203,8 @@ Según esta estructura, las variables que permiten subclasificar la población s
 |    Variable   |   |                    Significado                  |
 |---------------|---|-------------------------------------------------|
 |com_deworm_05  |   |% de niños con medicación antiparasitaria        |
-|com_haz_05     |   |media comunitaria depeso por estaturade los niños|
-|age_transfer   |   |edad del niño al recibir la transferencia        |
+|com_haz_05     |   |Media comunitaria depeso por estaturade los niños|
+|age_transfer   |   |Edad del niño al recibir la transferencia        |
 
 </center>
 
@@ -220,10 +220,10 @@ Puesto que algunas estas variables pertenecen a variables comunitarias (como *VA
 |    Variable     |   |                      Significado                       |
 |-----------------|---|--------------------------------------------------------|
 |male             |   |Sexo                                                    |
-|age_transfer     |   |edad del niño al recibir la transferencia               |
+|age_transfer     |   |Edad del niño al recibir la transferencia               |
 |pranimalprot_f_05|   |% de consumo de proteina animal sobre el total consumido|
 |prstap_f_05      |   |% de alimentos básicos sobre el total consumido         |
-|a10whz_05        |   |peso por la edad (z-score)                              |
+|a10whz_05        |   |Peso por la edad (z-score)                              |
 
 </center>
 
