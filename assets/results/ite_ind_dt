@@ -1,0 +1,29 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="bweight <= 0.716\nsquared_error = 0.194\nsamples = 3085\nvalue = 0.069", fillcolor="#e4f49b"] ;
+1 [label="ed_mom <= 0.656\nsquared_error = 0.197\nsamples = 2804\nvalue = 0.077", fillcolor="#e1f297"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="prfruitveg_f_05 <= 0.011\nsquared_error = 0.197\nsamples = 2707\nvalue = 0.072", fillcolor="#e3f399"] ;
+1 -> 2 ;
+3 [label="squared_error = 0.209\nsamples = 777\nvalue = 0.117", fillcolor="#d1eb85"] ;
+2 -> 3 ;
+4 [label="squared_error = 0.19\nsamples = 1930\nvalue = 0.054", fillcolor="#eaf6a3"] ;
+2 -> 4 ;
+5 [label="propfood_05 <= 0.55\nsquared_error = 0.183\nsamples = 97\nvalue = 0.22", fillcolor="#98d268"] ;
+1 -> 5 ;
+6 [label="squared_error = 0.218\nsamples = 34\nvalue = 0.378", fillcolor="#2a9f54"] ;
+5 -> 6 ;
+7 [label="squared_error = 0.144\nsamples = 63\nvalue = 0.134", fillcolor="#c7e77f"] ;
+5 -> 7 ;
+8 [label="s3ap25_hqtime_h_05 <= 0.354\nsquared_error = 0.158\nsamples = 281\nvalue = -0.013", fillcolor="#fefab7"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="cons_food_pc_05 <= 0.265\nsquared_error = 0.135\nsamples = 233\nvalue = 0.01", fillcolor="#fbfdb9"] ;
+8 -> 9 ;
+10 [label="squared_error = 0.13\nsamples = 111\nvalue = 0.075", fillcolor="#e1f297"] ;
+9 -> 10 ;
+11 [label="squared_error = 0.132\nsamples = 122\nvalue = -0.049", fillcolor="#feefa5"] ;
+9 -> 11 ;
+12 [label="squared_error = 0.256\nsamples = 48\nvalue = -0.122", fillcolor="#fdd481"] ;
+8 -> 12 ;
+}

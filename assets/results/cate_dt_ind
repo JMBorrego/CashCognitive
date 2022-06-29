@@ -1,0 +1,29 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="bweight <= 0.716\nsquared_error = 0.194\nsamples = 3085\nvalue = 0.036662810932489936", fillcolor="#f0f9ab"] ;
+1 [label="ed_mom <= 0.656\nsquared_error = 0.197\nsamples = 2804\nvalue = 0.05877138041211316", fillcolor="#e7f59f"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="prfruitveg_f_05 <= 0.011\nsquared_error = 0.197\nsamples = 2707\nvalue = 0.00506046024796541519527851301726", fillcolor="#fcfebb"] ;
+1 -> 2 ;
+3 [label="squared_error = 0.209\nsamples = 777\nvalue = 0.15468549609412657", fillcolor="#bde278"] ;
+2 -> 3 ;
+4 [label="squared_error = 0.19\nsamples = 1930\nvalue = 0.08682406838731427", fillcolor="#eaf6a3"] ;
+2 -> 4 ;
+5 [label="propfood_05 <= 0.55\nsquared_error = 0.183\nsamples = 97\nvalue = 0.4743823445517241", fillcolor="#ddf091"] ;
+1 -> 5 ;
+6 [label="squared_error = 0.218\nsamples = 34\nvalue = -0.08499840522448993", fillcolor="#06733c"] ;
+5 -> 6 ;
+7 [label="squared_error = 0.144\nsamples = 63\nvalue = -0.10775463321926804", fillcolor="#fee493"] ;
+5 -> 7 ;
+8 [label="s3ap25_hqtime_h_05 <= 0.354\nsquared_error = 0.158\nsamples = 281\nvalue = -0.09903435996680389", fillcolor="#fddc87"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="cons_food_pc_05 <= 0.265\nsquared_error = 0.135\nsamples = 233\nvalue = 0.023012902404222234", fillcolor="#fee08b"] ;
+8 -> 9 ;
+10 [label="squared_error = 0.13\nsamples = 111\nvalue = -0.18692935067540797", fillcolor="#f6fbb3"] ;
+9 -> 10 ;
+11 [label="squared_error = 0.132\nsamples = 122\nvalue = -0.14411673965624996", fillcolor="#fdb466"] ;
+9 -> 11 ;
+12 [label="squared_error = 0.256\nsamples = 48\nvalue = -0.122", fillcolor="#fdca78"] ;
+8 -> 12 ;
+}

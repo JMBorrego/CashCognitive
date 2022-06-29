@@ -1,0 +1,25 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="age_transfer <= 0.921\nhet = 1.559\nsamples = 1543\nvalue = [[0.026]]", fillcolor="#f5fab1"] ;
+1 [label="cons_food_pc_05 <= 0.228\nhet = 1.586\nsamples = 1387\nvalue = [[0.012]]", fillcolor="#f9fcb7"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="prstap_f_05 <= 0.513\nhet = 1.384\nsamples = 580\nvalue = [[-0.005]]", fillcolor="#fefdbb"] ;
+1 -> 2 ;
+3 [label="het = 1.224\nsamples = 130\nvalue = [[-0.007]]", fillcolor="#fefdbb"] ;
+2 -> 3 ;
+4 [label="het = 1.374\nsamples = 450\nvalue = [[-0.021]]", fillcolor="#fef8b3"] ;
+2 -> 4 ;
+5 [label="a10whz_05 <= 0.642\nhet = 1.707\nsamples = 807\nvalue = [[0.02]]", fillcolor="#f6fbb3"] ;
+1 -> 5 ;
+6 [label="het = 1.735\nsamples = 629\nvalue = [[0.012]]", fillcolor="#f9fcb7"] ;
+5 -> 6 ;
+7 [label="het = 1.615\nsamples = 178\nvalue = [[0.056]]", fillcolor="#e9f5a1"] ;
+5 -> 7 ;
+8 [label="prfruitveg_f_05 <= 0.032\nhet = 1.311\nsamples = 156\nvalue = [[0.16]]", fillcolor="#b9e176"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="het = 1.313\nsamples = 78\nvalue = [[0.258]]", fillcolor="#7fc765"] ;
+8 -> 9 ;
+10 [label="het = 1.258\nsamples = 78\nvalue = [[0.063]]", fillcolor="#e6f49d"] ;
+8 -> 10 ;
+}
